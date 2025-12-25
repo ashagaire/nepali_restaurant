@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma";
 import type { MenuItem as MenuItemType } from "@prisma/client";
-
 import MenuTable from "@/components/MenuTable";
 
 export default async function AdminMenuPage() {

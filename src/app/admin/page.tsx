@@ -7,6 +7,10 @@ import type { MenuItemDTO } from "@/types";
 export default function AdminPage() {
   const [items, setItems] = useState<MenuItemDTO[]>([]);
 
+  useEffect(() => {
+    loadItems();
+  }, []);
+
   async function loadItems() {
     const res = await fetch("/api/menu");
     const data = await res.json();
@@ -56,7 +60,7 @@ export default function AdminPage() {
         <input name="name" placeholder="Name" required />
         <textarea name="description" placeholder="Description" required />
         <input name="price" type="number" step="0.01" required />
-        <input name="file" type="file" accept="image/*" required />
+        <input name="file" type="file" accept="image/*" />
         <button type="submit">Add Item</button>
       </form>
 
@@ -66,8 +70,15 @@ export default function AdminPage() {
         <ul>
           {items.map((item) => (
             <li key={item.id}>
+              {item.imageUrl && (
+                <div>
+                  <p>Current image:</p>
+                  <img src={item.imageUrl} alt={item.name} width={200} />
+                </div>
+              )}
               <strong>{item.name}</strong> – €{item.price}
               <button onClick={() => deleteItem(item.id)}>❌ Delete</button>
+              <a href={`/admin/edit/${item.id}`}>Edit</a>
             </li>
           ))}
         </ul>

@@ -34,7 +34,13 @@ export default function MenuTable({ items }: Props) {
               <td>{item.name}</td>
               <td>{item.price.toString()}</td>
               <td>
-                <button onClick={() => setSelectedItem(item)}>Edit</button>{" "}
+                <button
+                  onClick={() => {
+                    window.location.href = `/admin/menu/${item.id}/edit`;
+                  }}
+                >
+                  ✏️ Edit
+                </button>
                 <button onClick={() => handleDelete(item.id)}>Delete</button>
               </td>
             </tr>

@@ -13,11 +13,11 @@ npm install
 ```bash
 npx prisma generate
 
-Run ONLY when change in schema.prisma
+# Run ONLY when change in schema.prisma
 
 npx prisma migrate dev
 
-Only when data has to be seeded
+#Only when data has to be seeded
 
 npx prisma db seed
 

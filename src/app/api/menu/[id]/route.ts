@@ -11,7 +11,10 @@ export async function GET(
   const { id } = await context.params;
 
   const item = await prisma.menuItem.findUnique({
-    where: { id: Number(id) },
+    where: { id: id },
+    include: {
+      tags: true,
+    },
   });
 
   return NextResponse.json(item);
@@ -25,7 +28,7 @@ export async function PUT(
   const body = await req.json();
 
   const existing = await prisma.menuItem.findUnique({
-    where: { id: Number(id) },
+    where: { id: id },
   });
 
   if (!existing) {
@@ -42,7 +45,7 @@ export async function PUT(
   }
 
   const item = await prisma.menuItem.update({
-    where: { id: Number(id) },
+    where: { id: id },
     data: {
       name: body.name,
       price: body.price,
@@ -62,7 +65,7 @@ export async function DELETE(
   const { id } = await context.params;
 
   const item = await prisma.menuItem.findUnique({
-    where: { id: Number(id) },
+    where: { id: id },
   });
 
   if (!item) {
@@ -75,7 +78,7 @@ export async function DELETE(
     await cloudinary.uploader.destroy(item.imagePublicId);
   }
   await prisma.menuItem.delete({
-    where: { id: Number(id) },
+    where: { id: id },
   });
 
   return NextResponse.json({ success: true });

@@ -1,11 +1,11 @@
 import { prisma } from "@/lib/prisma";
-import type { MenuItem as MenuItemType } from "@prisma/client";
+import type { MenuItem as MenuItemDTO } from "@prisma/client";
 // import type { MenuItemDTO } from "@/types";
 
 export const dynamic = "force-dynamic";
 
 export default async function MenuPage() {
-  const menuItems: MenuItemType[] = await prisma.menuItem.findMany();
+  const menuItems: MenuItemDTO[] = await prisma.menuItem.findMany();
 
   return (
     <main style={{ padding: "2rem" }}>

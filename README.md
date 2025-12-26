@@ -17,8 +17,10 @@ npx prisma generate
 npx prisma format
 npx prisma validate
 npx prisma migrate dev
+npx prisma generate
 
 # Only when data has to be seeded
+
 
 npx prisma db seed
 

@@ -59,6 +59,12 @@ model Tag {
   createdAt DateTime @default(now())
 }
 
+model Ingredient {
+  id        String     @id @default(uuid())
+  name      String     @unique
+  menuItems MenuItem[] @relation("MenuItemIngredients")
+}
+
 model MenuItem {
   id String @id @default(uuid())
 
@@ -85,6 +91,7 @@ model MenuItem {
 
   tags      Tag[]      @relation("MenuItemTags")
   favorites Favorite[]
+  ingredients   Ingredient[] @relation("MenuItemIngredients") 
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

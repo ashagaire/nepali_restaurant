@@ -15,6 +15,7 @@ export async function POST(req: Request) {
       description: body.description,
       price: body.price,
       imageUrl: body.imageUrl,
+      imagePublicId: body.imagePublicId,
     },
   });
 

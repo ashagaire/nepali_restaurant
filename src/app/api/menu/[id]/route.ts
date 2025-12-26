@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import cloudinary from "@/lib/cloudinary";
 
 export async function GET(
   _req: Request,
@@ -22,6 +23,24 @@ export async function PUT(
 ) {
   const { id } = await context.params;
   const body = await req.json();
+
+  const existing = await prisma.menuItem.findUnique({
+    where: { id: Number(id) },
+  });
+
+  if (!existing) {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+
+  // 🧹 DELETE OLD IMAGE if replaced
+  if (
+    body.imagePublicId &&
+    existing.imagePublicId &&
+    body.imagePublicId !== existing.imagePublicId
+  ) {
+    await cloudinary.uploader.destroy(existing.imagePublicId);
+  }
+
   const item = await prisma.menuItem.update({
     where: { id: Number(id) },
     data: {
@@ -29,18 +48,9 @@ export async function PUT(
       price: body.price,
       description: body.description,
       imageUrl: body.imageUrl,
+      imagePublicId: body.imagePublicId,
     },
   });
-
-  if (body.oldImageUrl && body.oldImageUrl !== body.imageUrl) {
-    const filePath = path.join(process.cwd(), "public", body.oldImageUrl);
-
-    fs.unlink(filePath, (err) => {
-      if (err) {
-        console.error("Failed to delete old image:", err.message);
-      }
-    });
-  }
 
   return NextResponse.json(item);
 }
@@ -61,20 +71,12 @@ export async function DELETE(
   if (Number.isNaN(id)) {
     return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
   }
-
+  if (item.imagePublicId) {
+    await cloudinary.uploader.destroy(item.imagePublicId);
+  }
   await prisma.menuItem.delete({
     where: { id: Number(id) },
   });
-
-  if (item.imageUrl) {
-    const filePath = path.join(process.cwd(), "public", item.imageUrl);
-
-    fs.unlink(filePath, (err) => {
-      if (err) {
-        console.error("Failed to delete image:", err.message);
-      }
-    });
-  }
 
   return NextResponse.json({ success: true });
 }

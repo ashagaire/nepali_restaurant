@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import type { MenuItemDTO } from "@/types";
+import type { MenuItem as MenuItemDTO } from "@prisma/client";
+
 import { toast } from "react-toastify";
 
 export default function EditMenuItemPage() {
@@ -33,9 +34,9 @@ export default function EditMenuItemPage() {
     if (!item) return;
 
     setLoading(true);
-
     try {
       let imageUrl = item.imageUrl;
+      let imagePublicId = item.imagePublicId;
 
       if (file) {
         const formData = new FormData();
@@ -46,8 +47,10 @@ export default function EditMenuItemPage() {
           body: formData,
         });
         if (!uploadRes.ok) throw new Error("Image upload failed");
-        const uploadData = await uploadRes.json();
-        imageUrl = uploadData.imageUrl;
+
+        const { imageUrl, publicId } = await uploadRes.json();
+        item.imageUrl = imageUrl;
+        item.imagePublicId = publicId;
       }
 
       const res = await fetch(`/api/menu/${item.id}`, {
@@ -57,7 +60,8 @@ export default function EditMenuItemPage() {
           name: item.name,
           description: item.description,
           price: item.price,
-          imageUrl,
+          imageUrl: item.imageUrl,
+          imagePublicId: item.imagePublicId,
         }),
       });
 
@@ -94,7 +98,7 @@ export default function EditMenuItemPage() {
         />
 
         <textarea
-          value={item.description}
+          value={item.description ?? ""}
           onChange={(e) => setItem({ ...item, description: e.target.value })}
           required
         />

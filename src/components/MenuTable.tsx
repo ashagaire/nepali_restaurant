@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { MenuItem } from "@prisma/client";
 import EditMenuModal from "./EditMenuModal";
 import ConfirmDialog from "@/components/ConfirmDialog";
+import { toast } from "react-toastify";
 
 type Props = {
   items: MenuItem[];
@@ -13,8 +14,13 @@ export default function MenuTable({ items }: Props) {
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
   async function handleDelete(id: number) {
-    await fetch(`/api/admin/menu/${id}`, { method: "DELETE" });
-    window.location.reload();
+    try {
+      const res = await fetch(`/api/menu/${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Delete failed");
+      toast.success("Menu item deleted successfully");
+    } catch (err) {
+      toast.error("Failed to delete item");
+    }
   }
 
   return (

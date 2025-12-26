@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import type { MenuItemDTO } from "@/types";
+import type { MenuItem as MenuItemDTO } from "@prisma/client";
+
 import ConfirmDialog from "@/components/ConfirmDialog";
 
 export default function AdminPage() {
@@ -50,7 +51,7 @@ export default function AdminPage() {
         body: formData,
       });
       if (!uploadRes.ok) throw new Error("Image upload failed");
-      const { imageUrl } = await uploadRes.json();
+      const { imageUrl, publicId } = await uploadRes.json();
 
       // Add menu item
       const res = await fetch("/api/menu", {
@@ -60,7 +61,8 @@ export default function AdminPage() {
           name: formData.get("name"),
           description: formData.get("description"),
           price: Number(formData.get("price")),
-          imageUrl,
+          imageUrl: imageUrl,
+          imagePublicId: publicId,
         }),
       });
       if (!res.ok) throw new Error("Failed to add menu item");

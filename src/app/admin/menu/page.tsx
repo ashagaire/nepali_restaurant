@@ -1,9 +1,9 @@
 import { prisma } from "@/lib/prisma";
-import type { MenuItem as MenuItemType } from "@prisma/client";
+import type { MenuItem as MenuItemDTO } from "@prisma/client";
 import MenuTable from "@/components/MenuTable";
 
 export default async function AdminMenuPage() {
-  const items: MenuItemType[] = await prisma.menuItem.findMany({
+  const items: MenuItemDTO[] = await prisma.menuItem.findMany({
     orderBy: { createdAt: "desc" },
   });
 

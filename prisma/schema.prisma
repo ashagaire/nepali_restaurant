@@ -13,5 +13,6 @@ model MenuItem {
   description String?
   price       Float
   imageUrl    String?
+  imagePublicId  String?
   createdAt   DateTime @default(now())
 }

@@ -17,7 +17,7 @@ npx prisma generate
 
 npx prisma migrate dev
 
-#Only when data has to be seeded
+# Only when data has to be seeded
 
 npx prisma db seed
 

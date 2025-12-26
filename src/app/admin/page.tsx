@@ -1,25 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// import type { MenuItem as MenuItemType } from "@prisma/client";
+import { toast } from "react-toastify";
 import type { MenuItemDTO } from "@/types";
+import ConfirmDialog from "@/components/ConfirmDialog";
 
 export default function AdminPage() {
   const [items, setItems] = useState<MenuItemDTO[]>([]);
+  const [loading, setLoading] = useState(false);
 
+  async function loadItems() {
+    try {
+      const res = await fetch("/api/menu");
+      const data = await res.json();
+      setItems(data);
+    } catch (err) {
+      toast.error("Failed to load menu items");
+    }
+  }
   useEffect(() => {
     loadItems();
   }, []);
 
-  async function loadItems() {
-    const res = await fetch("/api/menu");
-    const data = await res.json();
-    setItems(data);
-  }
-
   async function deleteItem(id: number) {
-    await fetch(`/api/menu/${id}`, { method: "DELETE" });
-    loadItems();
+    try {
+      const res = await fetch(`/api/menu/${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Delete failed");
+      toast.success("Menu item deleted successfully");
+      loadItems();
+    } catch (err) {
+      toast.error("Failed to delete item");
+    }
   }
 
   useEffect(() => {
@@ -31,25 +42,37 @@ export default function AdminPage() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const uploadRes = await fetch("/api/upload", {
-      method: "POST",
-      body: formData,
-    });
+    setLoading(true);
+    try {
+      // Upload image
+      const uploadRes = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (!uploadRes.ok) throw new Error("Image upload failed");
+      const { imageUrl } = await uploadRes.json();
 
-    const { imageUrl } = await uploadRes.json();
+      // Add menu item
+      const res = await fetch("/api/menu", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          description: formData.get("description"),
+          price: Number(formData.get("price")),
+          imageUrl,
+        }),
+      });
+      if (!res.ok) throw new Error("Failed to add menu item");
 
-    await fetch("/api/menu", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: formData.get("name"),
-        description: formData.get("description"),
-        price: Number(formData.get("price")),
-        imageUrl,
-      }),
-    });
-
-    form.reset();
+      toast.success("Menu item added successfully");
+      form.reset();
+      loadItems();
+    } catch (err) {
+      toast.error((err as Error).message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -77,8 +100,13 @@ export default function AdminPage() {
                 </div>
               )}
               <strong>{item.name}</strong> – €{item.price}
-              <button onClick={() => deleteItem(item.id)}>❌ Delete</button>
-              <a href={`/admin/edit/${item.id}`}>Edit</a>
+              <ConfirmDialog
+                message="Are you sure you want to delete?"
+                onConfirm={() => deleteItem(item.id)}
+              >
+                <button style={{ marginLeft: "1rem" }}>❌ Delete</button>
+              </ConfirmDialog>
+              <a href={`/admin/menu/${item.id}/edit`}>Edit</a>
             </li>
           ))}
         </ul>

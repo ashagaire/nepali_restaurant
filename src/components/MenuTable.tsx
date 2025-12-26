@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { MenuItem } from "@prisma/client";
 import EditMenuModal from "./EditMenuModal";
+import ConfirmDialog from "@/components/ConfirmDialog";
 
 type Props = {
   items: MenuItem[];
@@ -12,9 +13,7 @@ export default function MenuTable({ items }: Props) {
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
   async function handleDelete(id: number) {
-    if (!confirm("Delete this item?")) return;
-
-    await fetch(`/api/menu/${id}`, { method: "DELETE" });
+    await fetch(`/api/admin/menu/${id}`, { method: "DELETE" });
     window.location.reload();
   }
 
@@ -41,7 +40,13 @@ export default function MenuTable({ items }: Props) {
                 >
                   ✏️ Edit
                 </button>
-                <button onClick={() => handleDelete(item.id)}>Delete</button>
+                {/* <button onClick={() => handleDelete(item.id)}>Delete</button> */}
+                <ConfirmDialog
+                  message="Are you sure you want to delete?"
+                  onConfirm={() => handleDelete(item.id)}
+                >
+                  <button style={{ marginLeft: "1rem" }}>❌ Delete</button>
+                </ConfirmDialog>
               </td>
             </tr>
           ))}

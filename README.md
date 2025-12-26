@@ -14,7 +14,8 @@ npm install
 npx prisma generate
 
 # Run ONLY when change in schema.prisma
-
+npx prisma format
+npx prisma validate
 npx prisma migrate dev
 
 # Only when data has to be seeded

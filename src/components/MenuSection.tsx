@@ -1,13 +1,19 @@
 "use client";
-import React from "react";
-import MenuItemCard from "./MenuItemCard";
-import type { MenuItemWithRelations } from "@/app/page";
-import LoadingMeanuSection from "./Skeletons/loadingMenuSection";
-interface MenuSectionProps {
-  menuItems: MenuItemWithRelations[];
-}
 
-const MenuSection: React.FC<MenuSectionProps> = ({ menuItems }) => {
+import MenuItemCard from "./MenuItemCard";
+import LoadingMeanuSection from "./Skeletons/loadingMenuSection";
+import { useMenuItems } from "@/hooks/useMenuItems";
+import { toast } from "react-toastify";
+
+export default function MenuSection() {
+  const { menuItems, loading, error } = useMenuItems();
+
+  if (loading) return <LoadingMeanuSection />;
+  if (error) {
+    toast.error(error);
+    return <p className="text-red-500">{error}</p>;
+  }
+
   return (
     <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -21,6 +27,4 @@ const MenuSection: React.FC<MenuSectionProps> = ({ menuItems }) => {
       </div>
     </section>
   );
-};
-
-export default MenuSection;
+}

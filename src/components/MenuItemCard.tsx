@@ -13,16 +13,14 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import type { MenuItemWithRelations } from "@/app/page";
-import { getSpiceConfig } from "@/components/utils/spiceLevel";
+import type { MenuItemWithRelations } from "@/types/MenuItemWithRelations";
 import SpiceIndicator from "@/components/utils/SpiceIndicator";
+
 interface MenuItemCardProps {
   item: MenuItemWithRelations;
 }
 
 const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
-  // const spice = getSpiceConfig(item.spicey);
-
   const hasDiscount = item.discount > 0;
   const finalPrice = hasDiscount ? item.price - item.discount : item.price;
 

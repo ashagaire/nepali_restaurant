@@ -5,23 +5,22 @@ export async function GET() {
   const items = await prisma.menuItem.findMany({
     include: {
       tags: true,
+      ingredients: true,
     },
   });
   return NextResponse.json(items);
 }
 
-export async function POST(req: Request) {
-  const body = await req.json();
+// export async function POST(req: Request) {
+//   const body = await req.json();
 
-  const item = await prisma.menuItem.create({
-    data: {
-      name: body.name,
-      description: body.description,
-      price: body.price,
-      imageUrl: body.imageUrl,
-      imagePublicId: body.imagePublicId,
-    },
-  });
+//   const item = await prisma.menuItem.create({
+//     data: {
+//       nameEn: body.nameEn,
+//       nameNp: body.nameNp,
+//       descriptionEn: body.descriptionEn,
+//     },
+//   });
 
-  return NextResponse.json(item);
-}
+//   return NextResponse.json(item);
+// }

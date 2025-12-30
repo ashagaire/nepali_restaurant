@@ -7,67 +7,126 @@ import {
   Typography,
   Chip,
   Box,
+  IconButton,
+  Button,
 } from "@mui/material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import type { MenuItemWithRelations } from "@/app/page";
-
+import { getSpiceConfig } from "@/components/utils/spiceLevel";
+import SpiceIndicator from "@/components/utils/SpiceIndicator";
 interface MenuItemCardProps {
   item: MenuItemWithRelations;
 }
 
 const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
+  // const spice = getSpiceConfig(item.spicey);
+
+  const hasDiscount = item.discount > 0;
+  const finalPrice = hasDiscount ? item.price - item.discount : item.price;
+
   return (
-    <Card className="max-w-sm mx-auto shadow-lg rounded-xl overflow-hidden">
+    <Card
+      className="flex flex-col h-full rounded-2xl shadow-md transition-all duration-300
+    hover:shadow-xl hover:-translate-y-1"
+    >
       {/* Image */}
-      {item.imageUrl ? (
-        <CardMedia
-          component="img"
-          height="200"
-          image={item.imageUrl}
-          alt={item.nameEn}
-        />
-      ) : (
-        <Box className="w-full h-48 flex items-center justify-center bg-gray-200 text-gray-500">
-          No Image
+      <Box className="relative">
+        {item.imageUrl ? (
+          <CardMedia
+            component="img"
+            height="180"
+            image={item.imageUrl}
+            alt={item.nameEn}
+            className="object-cover"
+          />
+        ) : (
+          <Box className="h-44 flex items-center justify-center bg-gray-100">
+            No Image
+          </Box>
+        )}
+        {/* Spice Level */}
+        <Box sx={{ position: "absolute", top: 8, right: 8 }}>
+          <SpiceIndicator level={item.spicey} />
         </Box>
-      )}
+      </Box>
 
-      {/* Details */}
-      <CardContent className="p-4">
-        <Typography variant="h6" className="mb-2 font-semibold">
-          {item.nameEn}
-        </Typography>
+      <CardContent className="flex flex-col flex-1 p-4">
+        {/* Title + Favorite */}
+        <Box className="flex justify-between items-start">
+          <Typography variant="h6" className="font-semibold leading-tight">
+            {item.nameEn}
+          </Typography>
 
-        <Typography variant="body2" color="textSecondary" className="mb-2">
-          {item.descriptionEn}
-        </Typography>
+          <Box className="flex items-center gap-1">
+            <IconButton size="small">
+              {/* check is the item favorites in current context */}
+              {item.isArchived ? (
+                <FavoriteIcon className="text-red-500" />
+              ) : (
+                <FavoriteBorderIcon />
+              )}
+            </IconButton>
+          </Box>
+        </Box>
+
+        {/* Description */}
+        <Box className="mb-2 flex-1">
+          <Typography
+            variant="body1"
+            color="textSecondary"
+            className=" line-clamp-2"
+          >
+            {item.descriptionEn}
+          </Typography>
+        </Box>
 
         {/* Tags */}
-        <Box className="flex flex-wrap gap-2 mb-2">
-          {item.tags?.map((tag) => (
-            <Chip key={tag.id} label={tag.nameEn} size="small" />
+        <Box display="flex" flexWrap="wrap" gap={0.5} sx={{ mb: 1 }}>
+          {item.tags?.slice(0, 3).map((tag) => (
+            <Chip
+              key={tag.id}
+              label={tag.nameEn}
+              size="small"
+              variant="outlined"
+              sx={{
+                fontSize: "0.8rem",
+                borderRadius: 1,
+                // color: "text.secondary",
+              }}
+            />
           ))}
         </Box>
 
-        {/* Ingredients & Servings */}
-        <Box className="flex justify-between text-sm text-gray-700 mb-2">
-          <span>
-            Ingredients:
-            {item.ingredients
-              ?.map((ingredient) => ingredient.nameEn)
-              .join(", ")}
-          </span>
-          <span>Servings: {item.servings}</span>
-        </Box>
+        {/* Price + Cart */}
+        <Box className="mt-auto flex items-center justify-between">
+          <Box>
+            {hasDiscount && (
+              <Typography
+                variant="caption"
+                className="line-through text-gray-400"
+              >
+                €{item.price.toFixed(2)}
+              </Typography>
+            )}
+            <Typography
+              variant="h6"
+              className={hasDiscount ? "text-red-600" : ""}
+            >
+              €{finalPrice.toFixed(2)}
+            </Typography>
+          </Box>
 
-        {/* Price */}
-        <Typography variant="subtitle1" className="font-semibold">
-          ${item.price.toFixed(2)}
-          {item.discount > 0 && (
-            <span className="ml-2 text-red-500 line-through">
-              ${item.discount.toFixed(2)}
-            </span>
-          )}
-        </Typography>
+          <Button
+            variant="contained"
+            size="small"
+            startIcon={<ShoppingCartIcon />}
+            className="rounded-full"
+          >
+            Add
+          </Button>
+        </Box>
       </CardContent>
     </Card>
   );

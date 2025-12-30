@@ -2,7 +2,7 @@
 import React from "react";
 import MenuItemCard from "./MenuItemCard";
 import type { MenuItemWithRelations } from "@/app/page";
-
+import LoadingMeanuSection from "./Skeletons/loadingMenuSection";
 interface MenuSectionProps {
   menuItems: MenuItemWithRelations[];
 }

@@ -15,70 +15,67 @@ async function main() {
   });
 
   /* ------------------ CATEGORIES ------------------ */
-  const categories = await prisma.category.createMany({
+  await prisma.category.createMany({
     data: [
-      { name: "Starters", order: 1 },
-      { name: "Main Course", order: 2 },
-      { name: "Seafood", order: 3 },
-      { name: "Desserts", order: 4 },
-      { name: "Kids Menu", order: 5 },
+      { nameEn: "Starters", nameFi: "Alkuruoat", order: 1 },
+      { nameEn: "Main Course", nameFi: "Pääruoat", order: 2 },
+      { nameEn: "Seafood", nameFi: "Merenelävät", order: 3 },
+      { nameEn: "Desserts", nameFi: "Jälkiruoat", order: 4 },
+      { nameEn: "Kids Menu", nameFi: "Lasten menu", order: 5 },
     ],
   });
 
-  const categoryMap = await prisma.category.findMany();
-  const getCategoryId = (name: string) =>
-    categoryMap.find((c) => c.name === name)!.id;
+  const categories = await prisma.category.findMany();
+  const getCategoryId = (nameEn: string) =>
+    categories.find((c) => c.nameEn === nameEn)!.id;
 
   /* ------------------ TAGS ------------------ */
-  const tagNames = [
-    "veg",
-    "nonveg",
-    "vegan",
-    "noLactose",
-    "chicken",
-    "fish",
-    "shrimp",
-    "lamb",
-    "kids",
-    "spicy",
+  const tags = [
+    { nameEn: "veg", nameFi: "kasvis" },
+    { nameEn: "nonveg", nameFi: "liha" },
+    { nameEn: "vegan", nameFi: "vegaani" },
+    { nameEn: "noLactose", nameFi: "laktoositon" },
+    { nameEn: "chicken", nameFi: "kana" },
+    { nameEn: "fish", nameFi: "kala" },
+    { nameEn: "shrimp", nameFi: "katkarapu" },
+    { nameEn: "lamb", nameFi: "lammas" },
+    { nameEn: "kids", nameFi: "lapset" },
+    { nameEn: "spicy", nameFi: "tulinen" },
   ];
 
-  await prisma.tag.createMany({
-    data: tagNames.map((name) => ({ name })),
-  });
+  await prisma.tag.createMany({ data: tags });
 
-  const tags = await prisma.tag.findMany();
-  const getTags = (...names: string[]) =>
-    tags.filter((t) => names.includes(t.name));
+  const allTags = await prisma.tag.findMany();
+  const getTags = (...namesEn: string[]) =>
+    allTags.filter((t) => namesEn.includes(t.nameEn));
 
-  /* ------------------ INGREDIENTS  ------------------ */
-
-  const ingredientNames = [
-    "Tomato",
-    "Onion",
-    "Garlic",
-    "Cheese",
-    "Chicken",
-    "Paneer",
-    "Butter",
-    "Rice",
-    "Spices",
-    "Cream",
+  /* ------------------ INGREDIENTS ------------------ */
+  const ingredientsData = [
+    { nameEn: "Tomato", nameFi: "Tomaatti" },
+    { nameEn: "Onion", nameFi: "Sipuli" },
+    { nameEn: "Garlic", nameFi: "Valkosipuli" },
+    { nameEn: "Cheese", nameFi: "Juusto" },
+    { nameEn: "Chicken", nameFi: "Kana" },
+    { nameEn: "Paneer", nameFi: "Paneer" },
+    { nameEn: "Butter", nameFi: "Voi" },
+    { nameEn: "Rice", nameFi: "Riisi" },
+    { nameEn: "Spices", nameFi: "Mausteet" },
+    { nameEn: "Cream", nameFi: "Kerma" },
   ];
 
-  await prisma.ingredient.createMany({
-    data: ingredientNames.map((name) => ({ name })),
-  });
+  await prisma.ingredient.createMany({ data: ingredientsData });
 
   const ingredients = await prisma.ingredient.findMany();
-  const getIngredients = (...names: string[]) =>
-    ingredients.filter((i) => names.includes(i.name));
+  const getIngredients = (...namesEn: string[]) =>
+    ingredients.filter((i) => namesEn.includes(i.nameEn));
 
   /* ------------------ MENU ITEMS ------------------ */
   const menuItems = [
     {
-      name: "Spring Rolls",
-      description: "Crispy vegetable spring rolls",
+      nameEn: "Spring Rolls",
+      nameFi: "Kevätkääryleet",
+      descriptionEn: "Crispy vegetable spring rolls",
+      descriptionFi: "Rapeat kasviskevätkääryleet",
       price: 6.99,
       servings: 1,
       spicey: SpiceLevel.LOW,
@@ -87,8 +84,10 @@ async function main() {
       ingredients: ["Tomato", "Cheese", "Onion"],
     },
     {
-      name: "Chicken Tikka",
-      description: "Grilled chicken with spices",
+      nameEn: "Chicken Tikka",
+      nameFi: "Kana Tikka",
+      descriptionEn: "Grilled chicken with spices",
+      descriptionFi: "Grillattua kanaa mausteilla",
       price: 9.99,
       servings: 1,
       spicey: SpiceLevel.MEDIUM,
@@ -97,152 +96,50 @@ async function main() {
       ingredients: ["Tomato", "Cheese", "Onion"],
     },
     {
-      name: "Butter Chicken",
-      description: "Creamy tomato chicken curry",
+      nameEn: "Butter Chicken",
+      nameFi: "Voikana",
+      descriptionEn: "Creamy tomato chicken curry",
+      descriptionFi: "Kermainen tomaattinen kanacurry",
       price: 14.99,
       servings: 1,
       spicey: SpiceLevel.MEDIUM,
       category: "Main Course",
       tags: ["nonveg", "chicken"],
-      ingredients: ["Tomato", "Cheese", "Onion"],
+      ingredients: ["Tomato", "Butter", "Cream", "Spices"],
     },
     {
-      name: "Paneer Masala",
-      description: "Cottage cheese curry",
+      nameEn: "Paneer Masala",
+      nameFi: "Paneer Masala",
+      descriptionEn: "Cottage cheese curry",
+      descriptionFi: "Paneer-juustocurry",
       price: 13.49,
       servings: 1,
       spicey: SpiceLevel.LOW,
       category: "Main Course",
       tags: ["veg"],
-      ingredients: ["Chicken", "Butter", "Cream", "Spices"],
+      ingredients: ["Paneer", "Butter", "Cream", "Spices"],
     },
     {
-      name: "Lamb Rogan Josh",
-      description: "Slow cooked lamb curry",
-      price: 16.99,
-      servings: 1,
-      spicey: SpiceLevel.HIGH,
-      category: "Main Course",
-      tags: ["nonveg", "lamb"],
-      ingredients: ["Chicken", "Butter", "Cream", "Spices"],
-    },
-    {
-      name: "Grilled Salmon",
-      description: "Fresh salmon with herbs",
-      price: 17.99,
-      servings: 1,
-      spicey: SpiceLevel.NO,
-      category: "Seafood",
-      tags: ["fish"],
-      ingredients: ["Chicken", "Butter", "Cream", "Spices"],
-    },
-    {
-      name: "Shrimp Curry",
-      description: "Spicy shrimp curry",
-      price: 15.99,
-      servings: 1,
-      spicey: SpiceLevel.HIGH,
-      category: "Seafood",
-      tags: ["shrimp", "spicy"],
-      ingredients: ["Chicken", "Butter", "Cream", "Spices"],
-    },
-    {
-      name: "Fish Fry",
-      description: "Crispy fried fish",
-      price: 12.99,
-      servings: 1,
-      spicey: SpiceLevel.MEDIUM,
-      category: "Seafood",
-      tags: ["fish"],
-      ingredients: ["Chicken", "Butter", "Cream", "Spices"],
-    },
-    {
-      name: "Chocolate Cake",
-      description: "Rich chocolate dessert",
+      nameEn: "Chocolate Cake",
+      nameFi: "Suklaakakku",
+      descriptionEn: "Rich chocolate dessert",
+      descriptionFi: "Täyteläinen suklaajälkiruoka",
       price: 6.49,
       servings: 1,
       spicey: SpiceLevel.NO,
       category: "Desserts",
       tags: ["veg"],
-      ingredients: ["Chicken", "Butter", "Cream", "Spices"],
-    },
-    {
-      name: "Ice Cream",
-      description: "Vanilla ice cream scoop",
-      price: 4.99,
-      servings: 1,
-      spicey: SpiceLevel.NO,
-      category: "Desserts",
-      tags: ["veg"],
-      ingredients: ["Chicken", "Butter", "Cream", "Spices"],
-    },
-    {
-      name: "Fruit Salad",
-      description: "Fresh seasonal fruits",
-      price: 5.99,
-      servings: 1,
-      spicey: SpiceLevel.NO,
-      category: "Desserts",
-      tags: ["vegan"],
-      ingredients: ["Chicken", "Butter", "Cream", "Spices"],
-    },
-    {
-      name: "Kids Nuggets",
-      description: "Chicken nuggets with fries",
-      price: 7.99,
-      servings: 1,
-      spicey: SpiceLevel.NO,
-      category: "Kids Menu",
-      tags: ["kids", "chicken"],
-      ingredients: ["Chicken", "Butter", "Cream", "Spices"],
-    },
-    {
-      name: "Kids Pasta",
-      description: "Creamy pasta for kids",
-      price: 6.99,
-      servings: 1,
-      spicey: SpiceLevel.NO,
-      category: "Kids Menu",
-      tags: ["kids", "veg"],
-      ingredients: ["Chicken", "Butter", "Cream", "Spices"],
-    },
-    {
-      name: "Veg Burger",
-      description: "Plant-based burger",
-      price: 8.49,
-      servings: 1,
-      spicey: SpiceLevel.LOW,
-      category: "Main Course",
-      tags: ["vegan"],
-      ingredients: ["Chicken", "Butter", "Cream", "Spices"],
-    },
-    {
-      name: "Chicken Biryani",
-      description: "Aromatic rice with chicken",
-      price: 15.49,
-      servings: 1,
-      spicey: SpiceLevel.HIGH,
-      category: "Main Course",
-      tags: ["nonveg", "chicken"],
-      ingredients: ["Chicken", "Butter", "Cream", "Spices"],
-    },
-    {
-      name: "Garlic Naan",
-      description: "Flatbread with garlic",
-      price: 3.49,
-      servings: 2,
-      spicey: SpiceLevel.NO,
-      category: "Starters",
-      tags: ["veg"],
-      ingredients: ["Chicken", "Butter", "Cream", "Spices"],
+      ingredients: ["Butter", "Cream"],
     },
   ];
 
   for (const item of menuItems) {
     await prisma.menuItem.create({
       data: {
-        name: item.name,
-        description: item.description,
+        nameEn: item.nameEn,
+        nameFi: item.nameFi,
+        descriptionEn: item.descriptionEn,
+        descriptionFi: item.descriptionFi,
         price: item.price,
         servings: item.servings,
         spicey: item.spicey,

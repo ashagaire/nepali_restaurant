@@ -23,7 +23,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
           component="img"
           height="200"
           image={item.imageUrl}
-          alt={item.name}
+          alt={item.nameEn}
         />
       ) : (
         <Box className="w-full h-48 flex items-center justify-center bg-gray-200 text-gray-500">
@@ -34,17 +34,17 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
       {/* Details */}
       <CardContent className="p-4">
         <Typography variant="h6" className="mb-2 font-semibold">
-          {item.name}
+          {item.nameEn}
         </Typography>
 
         <Typography variant="body2" color="textSecondary" className="mb-2">
-          {item.description}
+          {item.descriptionEn}
         </Typography>
 
         {/* Tags */}
         <Box className="flex flex-wrap gap-2 mb-2">
           {item.tags?.map((tag) => (
-            <Chip key={tag.id} label={tag.name} size="small" />
+            <Chip key={tag.id} label={tag.nameEn} size="small" />
           ))}
         </Box>
 
@@ -52,7 +52,9 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
         <Box className="flex justify-between text-sm text-gray-700 mb-2">
           <span>
             Ingredients:
-            {item.ingredients?.map((ingredient) => ingredient.name).join(", ")}
+            {item.ingredients
+              ?.map((ingredient) => ingredient.nameEn)
+              .join(", ")}
           </span>
           <span>Servings: {item.servings}</span>
         </Box>

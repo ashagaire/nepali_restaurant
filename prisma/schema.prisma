@@ -40,8 +40,11 @@ model User {
 }
 
 model Category {
-  id       String  @id @default(uuid())
-  name     String  @unique
+  id String @id @default(uuid())
+
+  nameEn String @unique
+  nameFi String @unique
+
   order    Int     @default(0)
   isActive Boolean @default(true)
 
@@ -51,8 +54,10 @@ model Category {
 }
 
 model Tag {
-  id   String @id @default(uuid())
-  name String @unique
+  id String @id @default(uuid())
+
+  nameEn String @unique
+  nameFi String @unique
 
   menuItems MenuItem[] @relation("MenuItemTags")
 
@@ -60,16 +65,21 @@ model Tag {
 }
 
 model Ingredient {
-  id        String     @id @default(uuid())
-  name      String     @unique
+  id String @id @default(uuid())
+
+  nameEn String @unique
+  nameFi String @unique
+
   menuItems MenuItem[] @relation("MenuItemIngredients")
 }
 
 model MenuItem {
   id String @id @default(uuid())
 
-  name        String
-  description String
+  nameEn        String
+  nameFi        String
+  descriptionEn String
+  descriptionFi String
 
   price    Float
   discount Float @default(0)
@@ -89,9 +99,9 @@ model MenuItem {
   userId String
   user   User   @relation(fields: [userId], references: [id])
 
-  tags      Tag[]      @relation("MenuItemTags")
-  favorites Favorite[]
-  ingredients   Ingredient[] @relation("MenuItemIngredients") 
+  tags        Tag[]        @relation("MenuItemTags")
+  favorites  Favorite[]
+  ingredients Ingredient[] @relation("MenuItemIngredients")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

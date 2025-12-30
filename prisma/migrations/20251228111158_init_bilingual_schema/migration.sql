@@ -19,7 +19,8 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Category" (
     "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
+    "nameEn" TEXT NOT NULL,
+    "nameFi" TEXT NOT NULL,
     "order" INTEGER NOT NULL DEFAULT 0,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -30,17 +31,29 @@ CREATE TABLE "Category" (
 -- CreateTable
 CREATE TABLE "Tag" (
     "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
+    "nameEn" TEXT NOT NULL,
+    "nameFi" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Tag_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
+CREATE TABLE "Ingredient" (
+    "id" TEXT NOT NULL,
+    "nameEn" TEXT NOT NULL,
+    "nameFi" TEXT NOT NULL,
+
+    CONSTRAINT "Ingredient_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "MenuItem" (
     "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
+    "nameEn" TEXT NOT NULL,
+    "nameFi" TEXT NOT NULL,
+    "descriptionEn" TEXT NOT NULL,
+    "descriptionFi" TEXT NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
     "discount" DOUBLE PRECISION NOT NULL DEFAULT 0,
     "imageUrl" TEXT,
@@ -68,6 +81,14 @@ CREATE TABLE "Favorite" (
 );
 
 -- CreateTable
+CREATE TABLE "_MenuItemIngredients" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_MenuItemIngredients_AB_pkey" PRIMARY KEY ("A","B")
+);
+
+-- CreateTable
 CREATE TABLE "_MenuItemTags" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL,
@@ -79,13 +100,28 @@ CREATE TABLE "_MenuItemTags" (
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
+CREATE UNIQUE INDEX "Category_nameEn_key" ON "Category"("nameEn");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Tag_name_key" ON "Tag"("name");
+CREATE UNIQUE INDEX "Category_nameFi_key" ON "Category"("nameFi");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Tag_nameEn_key" ON "Tag"("nameEn");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Tag_nameFi_key" ON "Tag"("nameFi");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Ingredient_nameEn_key" ON "Ingredient"("nameEn");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Ingredient_nameFi_key" ON "Ingredient"("nameFi");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Favorite_cookieId_menuItemId_key" ON "Favorite"("cookieId", "menuItemId");
+
+-- CreateIndex
+CREATE INDEX "_MenuItemIngredients_B_index" ON "_MenuItemIngredients"("B");
 
 -- CreateIndex
 CREATE INDEX "_MenuItemTags_B_index" ON "_MenuItemTags"("B");
@@ -98,6 +134,12 @@ ALTER TABLE "MenuItem" ADD CONSTRAINT "MenuItem_userId_fkey" FOREIGN KEY ("userI
 
 -- AddForeignKey
 ALTER TABLE "Favorite" ADD CONSTRAINT "Favorite_menuItemId_fkey" FOREIGN KEY ("menuItemId") REFERENCES "MenuItem"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_MenuItemIngredients" ADD CONSTRAINT "_MenuItemIngredients_A_fkey" FOREIGN KEY ("A") REFERENCES "Ingredient"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_MenuItemIngredients" ADD CONSTRAINT "_MenuItemIngredients_B_fkey" FOREIGN KEY ("B") REFERENCES "MenuItem"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_MenuItemTags" ADD CONSTRAINT "_MenuItemTags_A_fkey" FOREIGN KEY ("A") REFERENCES "MenuItem"("id") ON DELETE CASCADE ON UPDATE CASCADE;

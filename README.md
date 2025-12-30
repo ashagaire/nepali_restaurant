@@ -19,6 +19,12 @@ npx prisma validate
 npx prisma migrate dev
 npx prisma generate
 
+# Reseting datbase
+Remove-Item -Recurse -Force prisma\migrations
+npx prisma migrate reset --skip-seed
+npx prisma migrate dev
+npx prisma generate
+
 # Only when data has to be seeded
 
 

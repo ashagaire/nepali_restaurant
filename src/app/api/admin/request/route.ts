@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { PrismaClient, AdminRequestStatus } from "@prisma/client";
-import { sendAdminApprovalRequestEmail } from "../../../../lib/email/templates/sendAdminApprovalRequestEmail";
 import crypto from "crypto";
-
+import { adminRequestTemplate } from "@/lib/email/templates";
+import { sendEmail } from "@/lib/email/sendEmail";
 const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
@@ -34,35 +34,49 @@ export async function POST(req: Request) {
     );
   }
 
+  // Create admin request
   const token = crypto.randomUUID();
   const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
-  await prisma.adminRequest.upsert({
-    where: { email },
-    update: {
-      token,
-      status: AdminRequestStatus.PENDING,
-      expiresAt,
-    },
-    create: {
-      email,
-      token,
-      expiresAt,
-    },
-  });
+  try {
+    const result = await prisma.$transaction(async (tx) => {
+      // Find admin request
 
-  await prisma.auditLog.create({
-    data: {
-      action: "CREATE",
-      entity: "AdminRequest",
-      entityId: adminRequest.id,
-      message: `Admin request created for ${adminRequest.email}`,
-      userId: requestingUser?.id ?? "system", // null/placeholder if user not in system yet
-    },
-  });
-  await sendAdminApprovalRequestEmail(email, token);
+      const request = await prisma.adminRequest.create({
+        data: { email, token, status: AdminRequestStatus.PENDING, expiresAt },
+      });
+      // Audit log
+      await prisma.auditLog.create({
+        data: {
+          action: "CREATE",
+          entity: "AdminRequest",
+          entityId: request.id,
+          message: `Admin request created for ${email}`,
+          userId: "SYSTEM", // system for not-yet-existing user
+        },
+      });
+      return {
+        adminEmail: email,
+      };
+    });
 
-  return NextResponse.json({
-    message: "Admin request submitted",
-  });
+    // Send email to SUPER_ADMIN
+    const approveUrl = `${process.env.APP_URL}/api/admin/approve?token=${token}`;
+    const rejectionUrl = `${process.env.APP_URL}/api/admin/reject?token=${token}`;
+    const emailTemplate = adminRequestTemplate(
+      result.adminEmail,
+      approveUrl,
+      rejectionUrl
+    );
+    await sendEmail(
+      process.env.SUPER_ADMIN_EMAIL!,
+      emailTemplate.subject,
+      emailTemplate.html
+    );
+
+    return new Response("Admin request submitted", { status: 200 });
+  } catch (error) {
+    console.error("Admin approval failed:", error);
+    return new Response("Admin approval failed", { status: 500 });
+  }
 }

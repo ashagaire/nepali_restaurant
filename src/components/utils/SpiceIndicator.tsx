@@ -11,7 +11,7 @@ const SpiceIndicator = ({
     level === "LOW" ? 1 : level === "MEDIUM" ? 2 : level === "HIGH" ? 3 : 0;
 
   return (
-    <Box sx={{ display: "flex", gap: 0.5 }}>
+    <Box sx={{ display: "flex" }}>
       {[1, 2, 3].map((i) => (
         <GiChiliPepper
           key={i}

@@ -23,21 +23,91 @@ enum Visibility {
   PRIVATE
 }
 
+enum UserRole {
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum AdminRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum AuditAction {
+  CREATE
+  UPDATE
+  DELETE
+  LOGIN
+  LOGOUT
+  APPROVE_ADMIN
+}
+
 /**
  * ---------- MODELS ----------
  */
 
 model User {
-  id       String @id @default(uuid())
-  email    String @unique
-  password String
-  role     String @default("ADMIN")
+  id        String   @id @default(uuid())
+  email     String   @unique
+  role      UserRole @default(ADMIN)
+  isActive  Boolean  @default(true)
 
   menuItems MenuItem[]
+  auditLogs AuditLog[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+/**
+ * Admin approval requests (handled by SUPER_ADMIN)
+ */
+model AdminRequest {
+  id        String              @id @default(uuid())
+  email     String              @unique
+  status    AdminRequestStatus  @default(PENDING)
+  token     String              @unique
+  expiresAt DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/**
+ * One-time login codes (OTP)
+ */
+model LoginCode {
+  id        String   @id @default(uuid())
+  email     String
+  code      String
+  expiresAt DateTime
+  used      Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+
+  @@index([email])
+}
+
+/**
+ * Audit logs for admin actions
+ */
+model AuditLog {
+  id        String      @id @default(uuid())
+  action    AuditAction
+  entity    String
+  entityId  String?
+  message   String?
+
+  userId    String
+  user      User @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+}
+
+/**
+ * ---------- BUSINESS MODELS ----------
+ */
 
 model Category {
   id String @id @default(uuid())
@@ -97,11 +167,11 @@ model MenuItem {
   category   Category @relation(fields: [categoryId], references: [id])
 
   userId String
-  user   User   @relation(fields: [userId], references: [id])
+  user   User @relation(fields: [userId], references: [id])
 
-  tags        Tag[]        @relation("MenuItemTags")
-  favorites  Favorite[]
-  ingredients Ingredient[] @relation("MenuItemIngredients")
+  tags         Tag[]         @relation("MenuItemTags")
+  favorites    Favorite[]
+  ingredients  Ingredient[] @relation("MenuItemIngredients")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

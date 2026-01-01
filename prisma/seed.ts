@@ -1,16 +1,35 @@
-import { PrismaClient, SpiceLevel, Visibility } from "@prisma/client";
+import { PrismaClient, SpiceLevel, Visibility, UserRole } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 async function main() {
   console.log("🌱 Seeding database...");
 
+  /* ------------------ SUPER ADMIN ------------------ */
+  const superAdminEmail = process.env.SUPER_ADMIN_EMAIL;
+
+  if (!superAdminEmail) {
+    throw new Error("SUPER_ADMIN_EMAIL is not defined in .env");
+  }
+
+  const superAdmin = await prisma.user.upsert({
+    where: { email: superAdminEmail },
+    update: {},
+    create: {
+      email: superAdminEmail,
+      role: UserRole.SUPER_ADMIN,
+    },
+  });
+
   /* ------------------ ADMIN USER ------------------ */
-  const admin = await prisma.user.create({
-    data: {
-      email: "admin@restaurant.com",
-      password: "hashed-password", // replace later
-      role: "ADMIN",
+  const adminEmail = "admin@restaurant.com";
+
+  const admin = await prisma.user.upsert({
+    where: { email: adminEmail },
+    update: {},
+    create: {
+      email: adminEmail,
+      role: UserRole.ADMIN,
     },
   });
 
@@ -23,6 +42,7 @@ async function main() {
       { nameEn: "Desserts", nameFi: "Jälkiruoat", order: 4 },
       { nameEn: "Kids Menu", nameFi: "Lasten menu", order: 5 },
     ],
+    skipDuplicates: true,
   });
 
   const categories = await prisma.category.findMany();
@@ -43,7 +63,10 @@ async function main() {
     { nameEn: "spicy", nameFi: "tulinen" },
   ];
 
-  await prisma.tag.createMany({ data: tags });
+  await prisma.tag.createMany({
+    data: tags,
+    skipDuplicates: true,
+  });
 
   const allTags = await prisma.tag.findMany();
   const getTags = (...namesEn: string[]) =>
@@ -63,7 +86,10 @@ async function main() {
     { nameEn: "Cream", nameFi: "Kerma" },
   ];
 
-  await prisma.ingredient.createMany({ data: ingredientsData });
+  await prisma.ingredient.createMany({
+    data: ingredientsData,
+    skipDuplicates: true,
+  });
 
   const ingredients = await prisma.ingredient.findMany();
   const getIngredients = (...namesEn: string[]) =>
@@ -130,6 +156,42 @@ async function main() {
       category: "Desserts",
       tags: ["veg"],
       ingredients: ["Butter", "Cream"],
+    },
+    {
+      nameEn: "Spring Rolls",
+      nameFi: "Kevätkääryleet",
+      descriptionEn: "Crispy vegetable spring rolls",
+      descriptionFi: "Rapeat kasviskevätkääryleet",
+      price: 6.99,
+      servings: 1,
+      spicey: SpiceLevel.LOW,
+      category: "Starters",
+      tags: ["veg"],
+      ingredients: ["Tomato", "Cheese", "Onion"],
+    },
+    {
+      nameEn: "Spring Rolls",
+      nameFi: "Kevätkääryleet",
+      descriptionEn: "Crispy vegetable spring rolls",
+      descriptionFi: "Rapeat kasviskevätkääryleet",
+      price: 6.99,
+      servings: 1,
+      spicey: SpiceLevel.LOW,
+      category: "Starters",
+      tags: ["veg"],
+      ingredients: ["Tomato", "Cheese", "Onion"],
+    },
+    {
+      nameEn: "Spring Rolls",
+      nameFi: "Kevätkääryleet",
+      descriptionEn: "Crispy vegetable spring rolls",
+      descriptionFi: "Rapeat kasviskevätkääryleet",
+      price: 6.99,
+      servings: 1,
+      spicey: SpiceLevel.LOW,
+      category: "Starters",
+      tags: ["veg"],
+      ingredients: ["Tomato", "Cheese", "Onion"],
     },
   ];
 

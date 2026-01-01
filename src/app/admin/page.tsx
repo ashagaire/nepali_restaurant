@@ -1,14 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
 import type { MenuItem as MenuItemDTO } from "@prisma/client";
 
 import ConfirmDialog from "@/components/ConfirmDialog";
 
 export default function AdminPage() {
+  const { user, loading } = useAuth();
+
+  if (loading) return <p>Loading...</p>;
+
+  if (!user) {
+    redirect("/login");
+  }
+  if (user.role !== "SUPER_ADMIN" && user.role !== "ADMIN") {
+    redirect("/");
+  }
   const [items, setItems] = useState<MenuItemDTO[]>([]);
-  const [loading, setLoading] = useState(false);
 
   async function loadItems() {
     try {
@@ -43,7 +54,6 @@ export default function AdminPage() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    setLoading(true);
     try {
       // Upload image
       const uploadRes = await fetch("/api/upload", {
@@ -69,11 +79,8 @@ export default function AdminPage() {
 
       toast.success("Menu item added successfully");
       form.reset();
-      loadItems();
     } catch (err) {
       toast.error((err as Error).message);
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -92,7 +99,7 @@ export default function AdminPage() {
       <main style={{ padding: "2rem" }}>
         <h1>Admin – Menu Items</h1>
 
-        <ul>
+        {/* <ul>
           {items.map((item) => (
             <li key={item.id}>
               {item.imageUrl && (
@@ -111,7 +118,7 @@ export default function AdminPage() {
               <a href={`/admin/menu/${item.id}/edit`}>Edit</a>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </main>
     </main>
   );

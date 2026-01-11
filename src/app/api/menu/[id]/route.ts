@@ -47,9 +47,9 @@ export async function PUT(
   const item = await prisma.menuItem.update({
     where: { id: id },
     data: {
-      name: body.name,
+      nameEn: body.name,
       price: body.price,
-      description: body.description,
+      descriptionEn: body.description,
       imageUrl: body.imageUrl,
       imagePublicId: body.imagePublicId,
     },

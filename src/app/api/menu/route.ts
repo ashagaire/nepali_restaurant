@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET() {
+  //TODO: try block , pagination and filtering
   const items = await prisma.menuItem.findMany({
     include: {
       tags: true,

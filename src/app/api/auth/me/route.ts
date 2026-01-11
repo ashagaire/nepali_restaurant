@@ -1,13 +1,29 @@
-import { getSessionUser } from "@/lib/auth/session";
+// app/api/auth/me/route.ts
+import { cookies } from "next/headers";
+import { prisma } from "@/lib/prisma";
+import { NextResponse } from "next/server";
 
 export async function GET() {
-  const user = await getSessionUser();
+  const sessionId = (await cookies()).get("session_id")?.value;
 
-  if (!user) {
-    return new Response("Unauthorized", { status: 401 });
+  if (!sessionId) {
+    return NextResponse.json({ user: null }, { status: 401 });
   }
 
-  return Response.json({
-    user,
+  const session = await prisma.session.findUnique({
+    where: { id: sessionId },
+    include: { user: true },
+  });
+
+  if (!session || session.expiresAt < new Date()) {
+    return NextResponse.json({ user: null }, { status: 401 });
+  }
+
+  return NextResponse.json({
+    user: {
+      id: session.user.id,
+      email: session.user.email,
+      role: session.user.role,
+    },
   });
 }

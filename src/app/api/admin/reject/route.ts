@@ -1,6 +1,7 @@
 import { sendEmail } from "@/lib/email/sendEmail";
 import { adminRejectedTemplate } from "@/lib/email/templates";
 import { PrismaClient, AdminRequestStatus } from "@prisma/client";
+import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
@@ -9,7 +10,10 @@ export async function POST(req: Request) {
   const { token, superAdminId, reason } = body;
 
   if (!token || !superAdminId) {
-    return new Response("Missing parameters", { status: 400 });
+    return NextResponse.json(
+      { success: false, message: "Missing parameters" },
+      { status: 400 }
+    );
   }
 
   try {
@@ -62,9 +66,15 @@ export async function POST(req: Request) {
     const emailTemplate = adminRejectedTemplate(result.email);
     await sendEmail(result.email, emailTemplate.subject, emailTemplate.html);
 
-    return new Response("Admin request rejected", { status: 200 });
+    return NextResponse.json({
+      success: true,
+      message: "Admin request rejected",
+    });
   } catch (error) {
     console.error("Admin rejection failed:", error);
-    return new Response("Failed to reject admin request", { status: 500 });
+    return NextResponse.json(
+      { success: false, message: "Failed to reject admin request" },
+      { status: 500 }
+    );
   }
 }

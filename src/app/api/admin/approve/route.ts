@@ -10,7 +10,10 @@ export async function GET(req: Request) {
   const token = searchParams.get("token");
 
   if (!token) {
-    return NextResponse.json({ error: "Invalid token" }, { status: 400 });
+    return NextResponse.json(
+      { success: false, message: "Invalid token" },
+      { status: 400 }
+    );
   }
 
   try {
@@ -76,9 +79,12 @@ export async function GET(req: Request) {
       emailTemplate.html
     );
 
-    return new Response("Admin approved successfully", { status: 200 });
+    return NextResponse.json({ success: true, message: "Admin approved successfully" });
   } catch (error) {
     console.error("Admin approval failed:", error);
-    return new Response("Admin approval failed", { status: 500 });
+    return NextResponse.json(
+      { success: false, message: "Admin approval failed" },
+      { status: 500 }
+    );
   }
 }

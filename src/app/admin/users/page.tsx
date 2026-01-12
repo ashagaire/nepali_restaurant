@@ -3,7 +3,7 @@
 import { useAuth } from "@/hooks/useAuth";
 import { useAdmins } from "@/hooks/useAdmins";
 import { toast } from "react-toastify";
-import ConfirmDialog from "@/components/ConfirmDialog";
+import ConfirmDialog from "@/components/utils/ConfirmDialog";
 
 export default function UsersPage() {
   const { admins, loading, error, reload } = useAdmins();

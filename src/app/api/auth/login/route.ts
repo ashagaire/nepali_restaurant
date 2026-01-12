@@ -7,7 +7,10 @@ export async function POST(req: Request) {
   const { email } = await req.json();
 
   if (!email) {
-    return NextResponse.json({ error: "Email is required" }, { status: 400 });
+    return NextResponse.json(
+      { success: false, message: "Email is required" },
+      { status: 400 }
+    );
   }
 
   const user = await prisma.user.findUnique({
@@ -16,7 +19,7 @@ export async function POST(req: Request) {
 
   if (!user || !user.isActive) {
     return NextResponse.json(
-      { error: "User not allowed to login" },
+      { success: false, message: "User not allowed to login" },
       { status: 403 }
     );
   }
@@ -33,8 +36,5 @@ export async function POST(req: Request) {
 
   await sendLoginOtpEmail(email, code);
 
-  return NextResponse.json({
-    success: true,
-    message: "OTP sent to email",
-  });
+  return NextResponse.json({ success: true, message: "OTP sent to email" });
 }

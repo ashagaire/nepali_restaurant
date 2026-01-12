@@ -10,10 +10,7 @@ export async function POST(req: Request) {
   const { email, otp } = await req.json();
 
   if (!email || !otp) {
-    return NextResponse.json(
-      { error: "Missing email or OTP" },
-      { status: 400 }
-    );
+    return NextResponse.json({ success: false, message: "Missing email or OTP" }, { status: 400 });
   }
 
   try {
@@ -71,12 +68,9 @@ export async function POST(req: Request) {
       expires: session.expiresAt,
     });
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, message: "Logged in" });
   } catch (error) {
     console.error("OTP login failed:", error);
-    return NextResponse.json(
-      { error: "Invalid or expired code" },
-      { status: 401 }
-    );
+    return NextResponse.json({ success: false, message: "Invalid or expired code" }, { status: 401 });
   }
 }

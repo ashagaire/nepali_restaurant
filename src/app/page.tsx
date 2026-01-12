@@ -1,11 +1,11 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import MenuSection from "@/components/MenuSection";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import MenuSection from "@/components/menu/MenuSection";
 
 export default async function Home() {
   return (
     <main style={{ padding: "2rem" }}>
-      <Header />
+      <Navbar />
       <h1>Himalayan Taste</h1>
       <p>Authentic Nepali & Himalayan Cuisine</p>
       <MenuSection />

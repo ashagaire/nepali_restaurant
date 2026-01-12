@@ -1,7 +1,7 @@
 "use client";
 
 import MenuItemCard from "./MenuItemCard";
-import LoadingMeanuSection from "./Skeletons/loadingMenuSection";
+import LoadingMeanuSection from "../Skeletons/loadingMenuSection";
 import { useMenuItems } from "@/hooks/useMenuItems";
 import { toast } from "react-toastify";
 

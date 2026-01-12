@@ -32,7 +32,7 @@ export async function PUT(
   });
 
   if (!existing) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+    return NextResponse.json({ success: false, message: "Not found" }, { status: 404 });
   }
 
   // 🧹 DELETE OLD IMAGE if replaced
@@ -69,10 +69,10 @@ export async function DELETE(
   });
 
   if (!item) {
-    return NextResponse.json({ error: "Menu item not found" }, { status: 404 });
+    return NextResponse.json({ success: false, message: "Menu item not found" }, { status: 404 });
   }
   if (Number.isNaN(id)) {
-    return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
+    return NextResponse.json({ success: false, message: "Invalid ID" }, { status: 400 });
   }
   if (item.imagePublicId) {
     await cloudinary.uploader.destroy(item.imagePublicId);

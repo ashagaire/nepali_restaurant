@@ -1,0 +1,1 @@
+<MenuItemForm onSubmit={createMenuItem} />;

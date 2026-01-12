@@ -10,7 +10,10 @@ export async function POST(req: Request) {
     const file = formData.get("file") as File | null;
 
     if (!file) {
-      return NextResponse.json({ error: "No file provided" }, { status: 400 });
+      return NextResponse.json(
+        { success: false, message: "No file provided" },
+        { status: 400 }
+      );
     }
 
     const arrayBuffer = await file.arrayBuffer();
@@ -54,12 +57,16 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({
+      success: true,
       imageUrl: result.secure_url,
       publicId: result.public_id,
     });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Image upload failed" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, message: "Image upload failed" },
+      { status: 500 }
+    );
   }
   // const data = await req.formData();
   // const file = data.get("file") as File;

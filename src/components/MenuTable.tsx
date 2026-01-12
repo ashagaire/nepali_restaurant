@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { MenuItem } from "@prisma/client";
 import EditMenuModal from "./EditMenuModal";
-import ConfirmDialog from "@/components/ConfirmDialog";
+import ConfirmDialog from "@/components/utils/ConfirmDialog";
 import { toast } from "react-toastify";
 
 type Props = {

@@ -74,9 +74,15 @@ export async function POST(req: Request) {
       emailTemplate.html
     );
 
-    return new Response("Admin request submitted", { status: 200 });
+    return NextResponse.json(
+      { success: true, message: "Admin request submitted" },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Admin approval failed:", error);
-    return new Response("Admin approval failed", { status: 500 });
+    return NextResponse.json(
+      { success: false, message: "Admin approval failed" },
+      { status: 500 }
+    );
   }
 }

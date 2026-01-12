@@ -2,7 +2,7 @@
 
 import { useMenuItems } from "@/hooks/useMenuItems";
 import { toast } from "react-toastify";
-import ConfirmDialog from "@/components/ConfirmDialog";
+import ConfirmDialog from "@/components/utils/ConfirmDialog";
 
 export default function AdminPage() {
   const { menuItems, loading, error, reload } = useMenuItems();

@@ -1,6 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
+import { cookies } from "next/headers";
+
+const SESSION_COOKIE = "session_id";
 
 export async function GET(
   _req: Request,
@@ -43,6 +46,26 @@ export async function PUT(
     const { id } = await context.params;
     const body = await req.json();
 
+    // Get current user from session cookie
+    const sessionId = (await cookies()).get(SESSION_COOKIE)?.value;
+    if (!sessionId) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    const session = await prisma.session.findUnique({
+      where: { id: sessionId },
+      include: { user: true },
+    });
+    if (!session || session.expiresAt < new Date()) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
     const existing = await prisma.menuItem.findUnique({ where: { id } });
 
     if (!existing) {
@@ -81,6 +104,10 @@ export async function PUT(
         imagePublicId: body.imagePublicId ?? null,
 
         /* ---------- RELATIONS ---------- */
+        user: {
+          connect: { id: session.user.id },
+        },
+
         category: { connect: { id: body.categoryId } },
         tags: { set: body.tagIds?.map((id: string) => ({ id })) ?? [] },
         ingredients: {
@@ -110,6 +137,26 @@ export async function DELETE(
 ) {
   try {
     const { id } = await context.params;
+
+    // Get current user from session cookie
+    const sessionId = (await cookies()).get(SESSION_COOKIE)?.value;
+    if (!sessionId) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    const session = await prisma.session.findUnique({
+      where: { id: sessionId },
+      include: { user: true },
+    });
+    if (!session || session.expiresAt < new Date()) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
 
     const item = await prisma.menuItem.findUnique({ where: { id } });
 

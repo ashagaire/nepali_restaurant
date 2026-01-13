@@ -3,14 +3,27 @@
 import { useEffect, useState } from "react";
 import type { MenuItemWithRelations } from "@/types/menuItemWithRelations";
 
-export function useMenuItem(id: string) {
+interface UseMenuItemOptions {
+  enabled?: boolean;
+}
+
+export function useMenuItem(id?: string, options?: UseMenuItemOptions) {
+  const enabled = options?.enabled ?? true;
+
   const [data, setData] = useState<MenuItemWithRelations | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!id || !enabled) return;
+
+    let cancelled = false;
+
     async function fetchMenuItem() {
       try {
+        setLoading(true);
+        setError(null);
+
         const res = await fetch(`/api/menu/${id}`, {
           credentials: "include",
         });
@@ -20,16 +33,25 @@ export function useMenuItem(id: string) {
         }
 
         const json = (await res.json()) as MenuItemWithRelations;
-        setData(json);
+        if (!cancelled) {
+          setData(json);
+        }
       } catch (e: any) {
-        setError(e.message);
+        if (!cancelled) {
+          setError(e.message);
+        }
       } finally {
-        setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
     }
 
     fetchMenuItem();
-  }, [id]);
+    return () => {
+      cancelled = true;
+    };
+  }, [id, enabled]);
 
   return { data, loading, error };
 }

@@ -13,7 +13,7 @@ type Props = {
 export default function MenuTable({ items }: Props) {
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
-  async function handleDelete(id: number) {
+  async function handleDelete(id: string) {
     try {
       const res = await fetch(`/api/menu/${id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Delete failed");
@@ -36,7 +36,7 @@ export default function MenuTable({ items }: Props) {
         <tbody>
           {items.map((item) => (
             <tr key={item.id}>
-              <td>{item.name}</td>
+              <td>{item.nameEn}</td>
               <td>{item.price.toString()}</td>
               <td>
                 <button

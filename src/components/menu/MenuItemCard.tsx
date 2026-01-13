@@ -15,12 +15,21 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import type { MenuItemWithRelations } from "@/types/menuItemWithRelations";
 import SpiceIndicator from "@/components/utils/SpiceIndicator";
+import ConfirmDialog from "@/components/utils/ConfirmDialog";
 
 interface MenuItemCardProps {
   item: MenuItemWithRelations;
+  showAdminActions?: boolean;
+  onEdit?: (id: string) => void;
+  onDelete?: (id: string) => void;
 }
 
-const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
+const MenuItemCard: React.FC<MenuItemCardProps> = ({
+  item,
+  showAdminActions,
+  onDelete,
+  onEdit,
+}) => {
   const hasDiscount = item.discount > 0;
   const finalPrice = hasDiscount ? item.price - item.discount : item.price;
 
@@ -116,14 +125,37 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
             </Typography>
           </Box>
 
-          <Button
-            variant="contained"
-            size="small"
-            startIcon={<ShoppingCartIcon />}
-            className="rounded-full"
-          >
-            Add
-          </Button>
+          {!showAdminActions ? (
+            <Button
+              variant="contained"
+              size="small"
+              startIcon={<ShoppingCartIcon />}
+              className="rounded-full"
+            >
+              Add
+            </Button>
+          ) : (
+            <Box display="flex" gap={1} justifyContent="space-between">
+              <Button
+                variant="outlined"
+                color="primary"
+                size="small"
+                fullWidth
+                onClick={() => onEdit?.(item.id)}
+              >
+                Edit
+              </Button>
+
+              <ConfirmDialog
+                message={`Are you sure you want to delete this item ${item.nameEn}?`}
+                onConfirm={() => onDelete?.(item.id)}
+              >
+                <Button variant="outlined" color="error" size="small" fullWidth>
+                  Delete
+                </Button>
+              </ConfirmDialog>
+            </Box>
+          )}
         </Box>
       </CardContent>
     </Card>

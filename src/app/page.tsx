@@ -5,7 +5,7 @@ import MenuSection from "@/components/menu/MenuSection";
 export default async function Home() {
   return (
     <main style={{ padding: "2rem" }}>
-      <Navbar />
+      {/* <Navbar /> */}
       <h1>Himalayan Taste</h1>
       <p>Authentic Nepali & Himalayan Cuisine</p>
       <MenuSection />

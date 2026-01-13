@@ -2,7 +2,7 @@
 
 import MenuItemCard from "./MenuItemCard";
 import LoadingMeanuSection from "../Skeletons/loadingMenuSection";
-import { useMenuItems } from "@/hooks/useMenuItems";
+import { useMenuItems } from "@/hooks/menu/useMenuItems";
 import { toast } from "react-toastify";
 
 export default function MenuSection() {

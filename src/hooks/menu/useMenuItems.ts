@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { MenuItemWithRelations } from "@/types/MenuItemWithRelations";
+import type { MenuItemWithRelations } from "@/types/menuItemWithRelations";
 
 export function useMenuItems() {
   const [menuItems, setMenuItems] = useState<MenuItemWithRelations[]>([]);

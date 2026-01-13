@@ -9,7 +9,10 @@ export async function POST(req: Request) {
   const { email } = await req.json();
 
   if (!email) {
-    return NextResponse.json({ error: "Email is required" }, { status: 400 });
+    return NextResponse.json(
+      { success: false, message: "Email is required" },
+      { status: 400 }
+    );
   }
 
   const existingUser = await prisma.user.findUnique({
@@ -17,7 +20,10 @@ export async function POST(req: Request) {
   });
 
   if (existingUser) {
-    return NextResponse.json({ error: "User already exists" }, { status: 400 });
+    return NextResponse.json(
+      { success: false, message: "User already exists" },
+      { status: 400 }
+    );
   }
 
   const existingRequest = await prisma.adminRequest.findUnique({
@@ -29,7 +35,7 @@ export async function POST(req: Request) {
     existingRequest.status === AdminRequestStatus.PENDING
   ) {
     return NextResponse.json(
-      { error: "Admin request already pending" },
+      { success: false, message: "Admin request already pending" },
       { status: 400 }
     );
   }

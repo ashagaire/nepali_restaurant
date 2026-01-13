@@ -13,7 +13,7 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import type { MenuItemWithRelations } from "@/types/MenuItemWithRelations";
+import type { MenuItemWithRelations } from "@/types/menuItemWithRelations";
 import SpiceIndicator from "@/components/utils/SpiceIndicator";
 
 interface MenuItemCardProps {

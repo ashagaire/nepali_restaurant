@@ -1,6 +1,6 @@
 "use client";
 
-import { useMenuItems } from "@/hooks/useMenuItems";
+import { useMenuItems } from "@/hooks/menu/useMenuItems";
 import { toast } from "react-toastify";
 import ConfirmDialog from "@/components/utils/ConfirmDialog";
 

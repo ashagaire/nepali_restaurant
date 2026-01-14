@@ -25,3 +25,8 @@ export type MenuItemFormValues = {
   tagIds: string[];
   ingredientIds: string[];
 };
+
+export interface MenuFeaturesItems {
+  nameEn: string;
+  nameFi: string;
+}

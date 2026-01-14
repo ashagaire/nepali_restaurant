@@ -85,9 +85,8 @@ export async function POST(req: Request) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Admin approval failed:", error);
     return NextResponse.json(
-      { success: false, message: "Admin approval failed" },
+      { success: false, message: "Admin request failed" },
       { status: 500 }
     );
   }

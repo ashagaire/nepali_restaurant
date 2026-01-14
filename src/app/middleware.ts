@@ -45,6 +45,11 @@ export async function middleware(req: NextRequest) {
         url.pathname = "/";
         return NextResponse.redirect(url);
       }
+    } else if (url.pathname.startsWith("/admin/features")) {
+      if (!["ADMIN", "SUPER_ADMIN"].includes(userRole)) {
+        url.pathname = "/";
+        return NextResponse.redirect(url);
+      }
     }
 
     return NextResponse.next();

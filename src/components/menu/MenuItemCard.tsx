@@ -16,6 +16,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import type { MenuItemWithRelations } from "@/types/menuItemWithRelations";
 import SpiceIndicator from "@/components/utils/SpiceIndicator";
 import ConfirmDialog from "@/components/utils/ConfirmDialog";
+import { useRouter } from "next/navigation";
 
 interface MenuItemCardProps {
   item: MenuItemWithRelations;
@@ -28,8 +29,9 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
   item,
   showAdminActions,
   onDelete,
-  onEdit,
 }) => {
+  const router = useRouter();
+
   const hasDiscount = item.discount > 0;
   const finalPrice = hasDiscount ? item.price - item.discount : item.price;
 
@@ -141,7 +143,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
                 color="primary"
                 size="small"
                 fullWidth
-                onClick={() => onEdit?.(item.id)}
+                onClick={() => router.push(`/admin/menu/${item.id}/edit`)}
               >
                 Edit
               </Button>

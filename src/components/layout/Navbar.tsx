@@ -29,7 +29,7 @@ export default function Navbar() {
           <Button type="default">Request Admin</Button>
         </Link>
 
-        <Link href="/menu/add">
+        <Link href="/admin/menu/add">
           <Button type="primary">Add Menu</Button>
         </Link>
       </Space>

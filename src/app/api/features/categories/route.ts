@@ -30,18 +30,46 @@ export async function POST(req: Request) {
       );
     }
 
-    const category = await prisma.category.create({
-      data: {
-        nameEn,
-        nameFi,
-      },
+    // const category = await prisma.category.create({
+    //   data: {
+    //     nameEn,
+    //     nameFi,
+    //   },
+    // });
+    // return NextResponse.json(category, { status: 201 });
+    const result = await prisma.$transaction(async (tx) => {
+      // Find admin request
+
+      // const request = await tx.adminRequest.create({
+      //   data: { email, token, status: AdminRequestStatus.PENDING, expiresAt },
+      // });
+      const category = await tx.category.create({
+        data: {
+          nameEn,
+          nameFi,
+        },
+      });
+      // Audit log
+      await tx.auditLog.create({
+        data: {
+          action: "CREATE",
+          entity: "Category",
+          entityId: category.id,
+          message: `Category add  ${nameEn} `,
+          userId: "20b40344-d28f-4416-8076-44e5923df658", // system for not-yet-existing user
+        },
+      });
+      return category;
     });
 
-    return NextResponse.json(category, { status: 201 });
+    return NextResponse.json(result, { status: 201 });
   } catch (err: any) {
     return NextResponse.json(
-      { message: err.message || "Failed to create category" },
-      { status: 401 }
+      {
+        message: err?.message || "Failed to create category",
+        error: String(err),
+      },
+      { status: 500 }
     );
   }
 }

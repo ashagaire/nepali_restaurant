@@ -48,11 +48,11 @@ export async function POST(req: Request) {
     const result = await prisma.$transaction(async (tx) => {
       // Find admin request
 
-      const request = await prisma.adminRequest.create({
+      const request = await tx.adminRequest.create({
         data: { email, token, status: AdminRequestStatus.PENDING, expiresAt },
       });
       // Audit log
-      await prisma.auditLog.create({
+      await tx.auditLog.create({
         data: {
           action: "CREATE",
           entity: "AdminRequest",

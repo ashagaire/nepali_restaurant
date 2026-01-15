@@ -25,6 +25,7 @@ export default function AddItemModal({
     try {
       setLoading(true);
       await onSubmit({ nameEn, nameFi });
+      toast.success(`${title} added successfully`);
       onClose();
     } catch {
       toast.error(`Failed to add ${title.toLowerCase()}`);

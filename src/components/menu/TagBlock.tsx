@@ -1,10 +1,12 @@
+"use client";
+
 import SimpleListBlock from "@/components/utils/SimpleListBlock";
 import { useTags } from "@/hooks/menu/useTags";
 import { useState } from "react";
 import AddItemModal from "@/components/forms/AddItemModal";
 import { toast } from "react-toastify";
 
-export default function CategoryBlock() {
+export default function TagBlock() {
   const { data, loading, create, remove, error } = useTags();
   const [open, setOpen] = useState(false);
 

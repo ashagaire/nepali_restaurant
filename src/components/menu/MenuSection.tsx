@@ -15,9 +15,9 @@ export default function MenuSection() {
   }
 
   return (
-    <section className=" bg-gray-50">
-      <div className="container mx-auto max-w-7xl p-4">
-        <h2 className="text-3xl font-bold mb-8 text-center">Our Menu</h2>
+    <section className=" ">
+      <div className="container mx-auto max-w-7xl p-4 bg-gray-50 rounded-md shadow-sm">
+        <h2 className="text-3xl font-bold mb-4 text-center">Our Menu</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {menuItems.map((item) => (

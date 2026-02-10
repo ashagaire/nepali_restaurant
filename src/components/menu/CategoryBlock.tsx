@@ -1,3 +1,5 @@
+"use client";
+
 import SimpleListBlock from "@/components/utils/SimpleListBlock";
 import { useCategories } from "@/hooks/menu/useCategories";
 import { useState } from "react";

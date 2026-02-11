@@ -1,11 +1,13 @@
-import MenuSection from "@/components/menu/MenuSection";
-import SearchOptions from "@/components/menu/SearchOptions";
+import PopularDishes from "@/components/utils/PopularDishes";
+import Hero from "@/components/utils/Hero";
+import OpeningDetails from "@/components/utils/OpeningDetails";
 
 export default async function Home() {
   return (
-    <main className="container mx-auto max-w-7xl p-4">
-      <SearchOptions />
-      <MenuSection />
+    <main>
+      <Hero />
+      <PopularDishes />
+      <OpeningDetails />
     </main>
   );
 }

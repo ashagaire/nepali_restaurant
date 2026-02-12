@@ -4,6 +4,7 @@ import { Layout, Button, Space } from "antd";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import CartButton from "../utils/CartButton";
 const { Header } = Layout;
 
 export default function Navbar() {
@@ -24,7 +25,7 @@ export default function Navbar() {
       <nav className="max-w-7xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 color-primary">
-          <span className="text-2xl">🍽️ Restaurant</span>
+          <span className="text-2xl">🍽️ Helsinki Spice</span>
         </Link>
 
         {/* <Link href="/">🍽️ Restaurant</Link> */}
@@ -71,8 +72,10 @@ export default function Navbar() {
                 </Link>
               </Space>
             )}
+            <CartButton />
           </div>
           <div className="lg:hidden ">
+            <CartButton />
             <button
               onClick={toggleMenu}
               className="nav-menu p-2 rounded-md bg-gray-200 hover:bg-gray-300"

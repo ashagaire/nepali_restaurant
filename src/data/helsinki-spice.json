@@ -1,0 +1,209 @@
+{
+  "title": "Helsinki Spice",
+  "sections": [
+    {
+      "name": "ALKURUOAT",
+      "items": [
+        {
+          "id": 1,
+          "name": "VEGETABLE SOUP (GLP) (MYÖS VEGAN)",
+          "desc_fi": "Kasviskeitto",
+          "desc_en": "Vegetables soups with herbs.",
+          "price": "6,90€"
+        },
+        {
+          "id": 2,
+          "name": "CREAM OF CHICKEN SOUP (GLP)",
+          "desc_fi": "Yrttinen kanakeitto",
+          "desc_en": "Chicken soup with herbs.",
+          "price": "6,90€"
+        },
+        {
+          "id": 3,
+          "name": "CREAM OF SHRIMP SOUP (GLP)",
+          "desc_fi": "Kermainen katkarapukeitto",
+          "desc_en": "Creamy shrimp soup.",
+          "price": "7,00€"
+        },
+        {
+          "id": 4,
+          "name": "PANEER PAKORA (GP)(6KPL)",
+          "desc_fi": "Friteerattua tuorejuustoa",
+          "desc_en": "Deep fried fresh cheese.",
+          "price": "7,00€"
+        },
+        {
+          "id": 5,
+          "name": "PRAWN PAKORA (GLP)(6KPL)",
+          "desc_fi": "Friteerattuja jättikatkarapuja",
+          "desc_en": "Deep fried king prawn.",
+          "price": "8,50€"
+        },
+        {
+          "id": 6,
+          "name": "VEGETABLE SAMOSA (LP)(2KPL)",
+          "desc_fi": "Friteerattuja rapeita kasvispiirakoita",
+          "desc_en": "Crispy deep fried pastries with vegetables.",
+          "price": "7,50€"
+        },
+        {
+          "id": 7,
+          "name": "CHICKEN PAKORA (GLP)(6KPL)",
+          "desc_fi": "Friteerattua kanaa",
+          "desc_en": "Deep fried chicken.",
+          "price": "7,50€"
+        },
+        {
+          "id": 8,
+          "name": "CHICKEN SALAD (GLP)",
+          "desc_fi": "Kanaa ja kauden salaatti",
+          "desc_en": "Chicken with seasonal salads.",
+          "price": "10,00€"
+        },
+        {
+          "id": 9,
+          "name": "SHRIMP SALAD (GLP)",
+          "desc_fi": "Katkarapuja kauden salaatti",
+          "desc_en": "Shrimps with seasonal salads.",
+          "price": "11,00€"
+        }
+      ]
+    },
+    {
+      "name": "TANDOORIRUOAT",
+      "items": [
+        {
+          "id": 10,
+          "name": "CHICKEN TIKKA MASALA (GLP)",
+          "desc_fi": "Tandoori-uunissa paistettua kanaa tomaatti-inkivääri-sipuli-tik­ka-masalakastikkeessa",
+          "desc_en": "Tandoori grilled chicken pieces in tikka masala sauce.",
+          "price": "18,90€"
+        },
+        {
+          "id": 11,
+          "name": "LAMB TIKKA MASALA (GLP)",
+          "desc_fi": "Tandoori-uunissa paistettua lampaan sisäfilettä tomaatti-inkivääri-sipuli-tik­ka-masalakastikkeessa",
+          "desc_en": "Tandoori grilled lamb pieces in tikka masala sauce.",
+          "price": "19,90€"
+        },
+        {
+          "id": 12,
+          "name": "KING PRAWN TIKKA MASALA (GLP)",
+          "desc_fi": "Marinoituja jättikatkarapuja mausteilla, sipulilla ja paprikalla tikka masala kastikkeessa",
+          "desc_en": "Marinated king prawns in tikka masala sauce.",
+          "price": "20,90€"
+        },
+        {
+          "id": 13,
+          "name": "PANEER TIKKA MASALA (GP)",
+          "desc_fi": "Tandoori-uunissa paistettua kotijuustoa tikka masalakastikkeessa",
+          "desc_en": "Tandoori grilled cottage cheese pieces in tikka masala sauce.",
+          "price": "17,90€"
+        },
+        {
+          "id": 14,
+          "name": "KING PRAWN TIKKA (GLP)",
+          "desc_fi": "Yrtti-jogurttimarinoituja ja tandoori-uunissa paistettuja jättikatkarapuja",
+          "desc_en": "Herb and yoghurt marinated king prawns.",
+          "price": "21,90€"
+        },
+        {
+          "id": 15,
+          "name": "PANEER TIKKA (GP)",
+          "desc_fi": "Marinoitua kotitekoista tuorejuustoa ja kasviksia tikka kastikkeessa",
+          "desc_en": "Marinated cottage cheese with vegetables in tikka sauce.",
+          "price": "18,90€"
+        },
+        {
+          "id": 16,
+          "name": "CHICKEN TIKKA (GLP)",
+          "desc_fi": "Marinoitu kana tikkakastikkeessa",
+          "desc_en": "Marinated chicken breast in tikka sauce.",
+          "price": "18,90€"
+        },
+        {
+          "id": 17,
+          "name": "LAMB TIKKA (GLP)",
+          "desc_fi": "Marinoitua lampaan sisäfilettä, sipulia ja paprikaa tikka kastikkeessa",
+          "desc_en": "Marinated lamb with onion and capsicum in tikka sauce.",
+          "price": "21,90€"
+        },
+        {
+          "id": 18,
+          "name": "KARUWA TANDOOR MIX (GLP)",
+          "desc_fi": "Tandoori-uunissa paistettuja lampaan ja kanan paloja sipulin ja paprikan kanssa",
+          "desc_en": "Tandoori grilled lamb and chicken with deep fried onion and capsicum.",
+          "price": "24,90€"
+        },
+        {
+          "id": 19,
+          "name": "KARUWA TANDOOR SPECIAL (GLP)",
+          "desc_fi": "Tandoori-uunissa paistettuja lampaan, kanan ja jättikatkarapujen paloja",
+          "desc_en": "Tandoori grilled lamb, chicken and king prawns with deep fried onion and capsicum.",
+          "price": "26,90€"
+        }
+      ]
+    },
+    {
+      "name": "KASVISRUOAT",
+      "items": [
+        {
+          "id": 20,
+          "name": "ALU GOBI (GLP) (VEGAN)",
+          "desc_fi": "Peruna-kukkakaalipataa paprikaa ja sipulia masalakastikkeessa",
+          "desc_en": "Potatoes and cauliflower with capsicum and onion masala sauce.",
+          "price": "15,50€"
+        },
+        {
+          "id": 21,
+          "name": "TOFU MASALA (GLP) (VEGAN)",
+          "desc_fi": "Tofua ja tomaatti-inkivääri-sipuli masalakastikkeessa",
+          "desc_en": "Tofu with tomato-ginger-onion masala sauce.",
+          "price": "16,50€"
+        },
+        {
+          "id": 22,
+          "name": "TOFU CHILI (GLP) (VEGAN)",
+          "desc_fi": "Tofua ja paprika-sipuli-valkosipuli tomaatti chilikastikkeessa",
+          "desc_en": "Tofu with capsicum-onion-garlic chili sauce.",
+          "price": "16,50€"
+        },
+        {
+          "id": 23,
+          "name": "VEG. KOFTA (GLP) (MYÖS VEGAN)",
+          "desc_fi": "Kasvispyöryköitä tomaattikermakastikkeessa",
+          "desc_en": "Vegetable balls in tomato-cream sauce.",
+          "price": "16,90€"
+        },
+        {
+          "id": 24,
+          "name": "MALAI KOFTA (G)",
+          "desc_fi": "Talon juustopyöryköitä kookos-cashew kermakastikkeessa",
+          "desc_en": "Cottage cheese balls in coconut cashew cream sauce.",
+          "price": "17,90€"
+        },
+        {
+          "id": 25,
+          "name": "SHAHI PANEER (GP)",
+          "desc_fi": "Talon tuorejuustoa tomaattikermakastikkeessa",
+          "desc_en": "Cottage cheese in tomato-cream sauce.",
+          "price": "16,90€"
+        },
+        {
+          "id": 26,
+          "name": "PALAK PANEER / SAAG KOFTA (GP)",
+          "desc_fi": "Tuorejuustoa ja pinaattia tomaattikermakastikkeessa",
+          "desc_en": "Cottage cheese with spinach in tomato-butter cream sauce.",
+          "price": "17,90€"
+        },
+        {
+          "id": 27,
+          "name": "PANEER CHILLI (GP)",
+          "desc_fi": "Tuorejuustoa ja paprika-sipuli chili-kastikkeessa",
+          "desc_en": "Cottage cheese with capsicum-onion chili sauce.",
+          "price": "16,90€"
+        }
+      ]
+    }
+  ]
+}

@@ -50,25 +50,21 @@ export default function Navbar() {
             ) : (
               /* user actions */
               <Space>
-                <Link href="/">
-                  <Button type="default">Home</Button>
+                <Link href="/menu">
+                  <Button type="default">Menu</Button>
                 </Link>
 
                 <Link href="/">
-                  <Button type="default">Buffet</Button>
+                  <Button type="default">Lunch</Button>
                 </Link>
-
                 <Link href="/">
                   <Button type="default">Alacarte</Button>
                 </Link>
                 <Link href="/">
-                  <Button type="default">About Us</Button>
-                </Link>
-                <Link href="/">
-                  <Button type="default">Contacts</Button>
-                </Link>
-                <Link href="/">
                   <Button type="default">Reservation</Button>
+                </Link>
+                <Link href="/contact">
+                  <Button type="default">Contacts</Button>
                 </Link>
               </Space>
             )}
@@ -119,10 +115,10 @@ export default function Navbar() {
                   <Link href="/">
                     <Button type="text">Alacarte</Button>
                   </Link>
-                  <Link href="/">
+                  <Link href="/about">
                     <Button type="text">About Us</Button>
                   </Link>
-                  <Link href="/">
+                  <Link href="/contact">
                     <Button type="text">Contacts</Button>
                   </Link>
                   <Link href="/">

@@ -26,7 +26,7 @@ export default function PopularDishes() {
             View Full Menu &rarr;
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-6">
           {menuItems.map((item) => (
             <MenuItemCard key={item.id} item={item} />
           ))}

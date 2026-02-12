@@ -56,15 +56,23 @@ export default function Footer() {
                   href="/menu"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  menu
+                  Menu
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/order"
+                  href="/"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  order
+                  Lunch
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Alacarte
                 </Link>
               </li>
               <li>
@@ -72,7 +80,7 @@ export default function Footer() {
                   href="/reservation"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  reservation
+                  Reservation
                 </Link>
               </li>
               <li>
@@ -80,7 +88,7 @@ export default function Footer() {
                   href="/about"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  about
+                  About
                 </Link>
               </li>
             </ul>

@@ -57,11 +57,14 @@ export default function Navbar() {
                 <Link href="/">
                   <Button type="default">Lunch</Button>
                 </Link>
-                <Link href="/">
+                <Link href="/alacarte">
                   <Button type="default">Alacarte</Button>
                 </Link>
-                <Link href="/">
+                <Link href="/reservation">
                   <Button type="default">Reservation</Button>
+                </Link>
+                <Link href="/about">
+                  <Button type="default">About Us</Button>
                 </Link>
                 <Link href="/contact">
                   <Button type="default">Contacts</Button>
@@ -90,39 +93,57 @@ export default function Navbar() {
                 /* admin actions */
                 <Space orientation="vertical">
                   <Link href="/login">
-                    <Button type="text">Login</Button>
+                    <Button type="text" onClick={toggleMenu}>
+                      Login
+                    </Button>
                   </Link>
 
                   <Link href="/request-admin">
-                    <Button type="text">Request Admin</Button>
+                    <Button type="text" onClick={toggleMenu}>
+                      Request Admin
+                    </Button>
                   </Link>
 
                   <Link href="/admin/menu/add">
-                    <Button type="primary">Add Menu</Button>
+                    <Button type="primary" onClick={toggleMenu}>
+                      Add Menu
+                    </Button>
                   </Link>
                 </Space>
               ) : (
                 /* user actions */
                 <Space orientation="vertical">
                   <Link href="/">
-                    <Button type="text">Home</Button>
+                    <Button type="text" onClick={toggleMenu}>
+                      Home
+                    </Button>
                   </Link>
 
                   <Link href="/">
-                    <Button type="text">Buffet</Button>
+                    <Button type="text" onClick={toggleMenu}>
+                      Buffet
+                    </Button>
                   </Link>
 
-                  <Link href="/">
-                    <Button type="text">Alacarte</Button>
+                  <Link href="/alacarte">
+                    <Button type="text" onClick={toggleMenu}>
+                      Alacarte
+                    </Button>
+                  </Link>
+                  <Link href="/reservation">
+                    <Button type="text" onClick={toggleMenu}>
+                      Reservation
+                    </Button>
                   </Link>
                   <Link href="/about">
-                    <Button type="text">About Us</Button>
+                    <Button type="text" onClick={toggleMenu}>
+                      About Us
+                    </Button>
                   </Link>
                   <Link href="/contact">
-                    <Button type="text">Contacts</Button>
-                  </Link>
-                  <Link href="/">
-                    <Button type="text">Reservation</Button>
+                    <Button type="text" onClick={toggleMenu}>
+                      Contacts
+                    </Button>
                   </Link>
                 </Space>
               )}

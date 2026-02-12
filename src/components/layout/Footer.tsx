@@ -13,7 +13,10 @@ export default function Footer() {
             <h3 className="text-2xl font-bold text-saffron-400 mb-4">
               Himalayan Kitchen
             </h3>
-            <p className="text-gray-400 mb-4">tagline</p>
+            <p className="text-gray-400 mb-4">
+              {" "}
+              'Atithi Devo Bhava' - Guest is God
+            </p>
             <div className="flex space-x-4">
               <a
                 href="https://facebook.com"

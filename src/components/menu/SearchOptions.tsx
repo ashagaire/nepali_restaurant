@@ -3,15 +3,11 @@
 import { useState } from "react";
 import { useTags } from "@/hooks/menu/useTags";
 import { toast } from "react-toastify";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-
 import { ToggleButton, ToggleButtonGroup, Chip, Button } from "@mui/material";
 
 export default function SearchOptions() {
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [showAllTags, setShowAllTags] = useState(false);
 
   const { data: tags, loading, create, remove, error } = useTags();
   if (loading) return <p> loading Tags </p>;
@@ -19,10 +15,6 @@ export default function SearchOptions() {
     toast.error(error);
     return <p className="text-red-500">{error}</p>;
   }
-
-  const DEFAULT_TAG_LIMIT = 5;
-  const hasMoreTags = tags.length > DEFAULT_TAG_LIMIT;
-  const visibleTags = showAllTags ? tags : tags.slice(0, DEFAULT_TAG_LIMIT);
 
   const handleCategories = (
     _event: React.MouseEvent<HTMLElement>,
@@ -39,13 +31,13 @@ export default function SearchOptions() {
 
   return (
     <section className=" bg-gray-100">
-      <div className="py-12 container mx-auto max-w-7xl p-4 ">
+      <div className="py-8 container mx-auto max-w-7xl p-4 ">
         <h2 className="text-3xl font-bold pt-4 text-center">Find Menu</h2>
-        <div className="  flex flex-col  gap-2 mt-6 jystify-center items-center">
+        <p className="text-xl text-gray-600 mb-4 text-center">
+          Explore our selection of authentic Nepali dishes
+        </p>
+        <div className="  flex flex-col  gap-2 mt-2 jystify-center items-center text-red-400">
           <div className="pb-4">
-            <h3 className="text-medium font-medium mb-3 text-center">
-              Filter by categories
-            </h3>
             <ToggleButtonGroup
               value={categories}
               onChange={handleCategories}
@@ -91,16 +83,20 @@ export default function SearchOptions() {
           </div>
 
           <div className="pb-4 ">
-            <h3 className="text-medium font-medium mb-3 text-center">
-              Filter by tags
-            </h3>
-
             {tags.length > 0 && (
               <div>
-                <div
-                  className={`flex flex-wrap gap-2 ${hasMoreTags ? "mb-2" : "mb-0"}`}
-                >
-                  {visibleTags.map((tag) => {
+                <div className={`flex flex-wrap gap-2 mb-0}`}>
+                  <button
+                    onClick={() => setSelectedTags([])}
+                    className={`px-4 py-1 rounded-full text-sm font-medium transition-colors ${
+                      selectedTags.length === 0
+                        ? "bg-blue-600 text-white hover:bg-blue-700"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
+                  >
+                    All
+                  </button>
+                  {tags.map((tag) => {
                     const isSelected = selectedTags.includes(tag.id);
                     return (
                       <Chip
@@ -115,7 +111,7 @@ export default function SearchOptions() {
                       />
                     );
                   })}
-                  {hasMoreTags && (
+                  {/* {hasMoreTags && (
                     <Button
                       size="small"
                       onClick={() => setShowAllTags(!showAllTags)}
@@ -131,7 +127,7 @@ export default function SearchOptions() {
                     >
                       {showAllTags ? "Show less" : `Show all tags`}
                     </Button>
-                  )}
+                  )} */}
                 </div>
               </div>
             )}

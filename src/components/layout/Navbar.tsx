@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import CartButton from "../utils/CartButton";
+import Logo from "../utils/Logo";
 const { Header } = Layout;
 
 export default function Navbar() {
@@ -22,17 +23,13 @@ export default function Navbar() {
       className="fixed top-0 left-0 w-full shadow-md z-50"
       style={{ backgroundColor: "#ffffff" }}
     >
-      <nav className="max-w-7xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
+      <nav className="max-w-7xl mx-auto px-4 py-2 sm:py-2 lg:py-4 flex flex-wrap justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2 color-primary">
-          <span className="text-2xl">🍽️ Helsinki Spice</span>
-        </Link>
-
-        {/* <Link href="/">🍽️ Restaurant</Link> */}
+        <Logo />
 
         {/* Actions */}
-        <div className="   flex justify-end items-center">
-          <div className="hidden lg:flex items-center space-x-1">
+        <div className="  flex justify-end items-center">
+          <div className="hidden lg:flex items-center space-x-1 ">
             {isAdminMode ? (
               /* admin actions */
               <Space>
@@ -90,7 +87,7 @@ export default function Navbar() {
         </div>
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="w-full mt-2 grid gap-2 grid-cols-1 lg:hidden px-2">
+          <div className="w-full mt-2 grid gap-2 grid-cols-1 lg:hidden px-2 m">
             <div className="grid gap-2 justify-items-start border-t border-gray-300 pt-2 ">
               {isAdminMode ? (
                 /* admin actions */

@@ -24,3 +24,14 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities {
+  .hero-heading {
+    @apply text-4xl md:text-5xl font-bold mb-4;
+    color: #ca2c04; /* Custom yellow color */
+  }
+  .hero-paragraph {
+    @apply text-lg md:text-2xl mb-6;
+    color: #f12d58; /* Custom yellow color */
+  }
+}

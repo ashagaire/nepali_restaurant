@@ -52,9 +52,13 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
             className="object-cover"
           />
         ) : (
-          <Box className="h-44 flex items-center justify-center bg-gray-100">
-            No Image
-          </Box>
+          <CardMedia
+            component="img"
+            height="180"
+            image="/images/banner1.jpg"
+            alt="Default Image"
+            className="object-cover"
+          />
         )}
         {/* Spice Level */}
         <Box sx={{ position: "absolute", top: 8, right: 8 }}>

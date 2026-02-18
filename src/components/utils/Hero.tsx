@@ -16,25 +16,25 @@ export default function Hero() {
             }}
           ></div>
           <div className=" p-10 relative z-10">
-            <h2 className="hero-heading">
+            <h2 className="hero-heading text-orange-900">
               Experience Authentic Nepalese Flavor
             </h2>
-            <div className="mt-6 flex justify-center gap-4">
+            <div className=" flex justify-center gap-4">
               <a
                 href="/lunch"
-                className="inline-block bg-red-600 text-white px-6 py-3 rounded  hover:bg-red-700 transition border-2 border-white"
+                className="inline-block bg-blue-400 text-l font-bold  text-center text-yellow-900 px-6 py-2 rounded  hover:bg-blue-500 transition border-3 border-white"
               >
                 Lunch
               </a>
               <a
                 href="/menu"
-                className="inline-block bg-red-600 text-white px-6 py-3 rounded hover:bg-red-700 transition border-2 border-white"
+                className="inline-block bg-blue-400 text-l font-bold  text-center text-yellow-900 px-6 py-2 rounded  hover:bg-blue-500 transition border-3 border-white"
               >
                 Menu
               </a>
               <a
                 href="/alacarte"
-                className="inline-block bg-red-600 text-white px-6 py-3 rounded hover:bg-red-700 transition border-2 border-white"
+                className="inline-block bg-blue-400 text-l font-bold  text-center text-yellow-900 px-6 py-2 rounded  hover:bg-blue-500 transition border-3 border-white"
               >
                 Alacarte
               </a>
@@ -42,8 +42,8 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div className="bg-red-700 py-4">
-        <div className="text-3xl font-bold mb-4 text-center text-yellow-500   whitespace-nowrap ">
+      <div className="bg-blue-100 py-2">
+        <div className="text-xl font-bold  text-center text-yellow-700   whitespace-nowrap ">
           <ScrollingText />
         </div>
       </div>

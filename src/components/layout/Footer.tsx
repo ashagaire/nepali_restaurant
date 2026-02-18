@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-
+import ScrollToTopButton from "@/components/utils/ScrollToTopButton";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -124,21 +124,11 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            &copy; {currentYear} Himalayan Kitchen. copyright
+            &copy; copyright {currentYear} Asha Gaire. Suunnittelu ja kehitys
+            ashagaire.com.np
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link
-              href="/privacy"
-              className="text-gray-400 hover:text-white text-sm transition-colors"
-            >
-              privacy
-            </Link>
-            <Link
-              href="/terms"
-              className="text-gray-400 hover:text-white text-sm transition-colors"
-            >
-              terms
-            </Link>
+            <ScrollToTopButton />
           </div>
         </div>
       </div>

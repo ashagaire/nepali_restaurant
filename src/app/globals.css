@@ -28,10 +28,34 @@ body {
 @layer utilities {
   .hero-heading {
     @apply text-4xl md:text-5xl font-bold mb-4;
-    color: #ca2c04; /* Custom yellow color */
+    color: text-yellow-500; /* Custom yellow color */
   }
   .hero-paragraph {
     @apply text-lg md:text-2xl mb-6;
     color: #f12d58; /* Custom yellow color */
   }
+}
+.custom-button-scroll-top {
+  background-color: #1f2937;
+  color: #9ca3af;
+  border: 1px solid #fff;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+
+.footer-nav-link {
+  color: #9b9a99;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.footer-nav-link:hover {
+  color: #f9f7f5;
 }

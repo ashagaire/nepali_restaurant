@@ -13,22 +13,33 @@ export default function ScrollingText() {
         style={{
           display: "inline-flex",
         }}
-        animate={{ x: ["0%", "-50%"] }}
+        animate={{ x: ["0%", "-100%"] }}
         transition={{
           repeat: Infinity,
-          duration: 12, // slower and smoother
+          duration: 30, // slower and smoother
           ease: "linear",
         }}
       >
         {/* First Text */}
-        <h2 className="mr-16">
+        <p className="mr-16">
           Fresh, Flavorful, Different Every Day – Lunch Served 10:30–15:00
-        </h2>
+        </p>
 
         {/* Duplicate Text */}
-        <h2 className="mr-16">
+        <p className="mr-16">
           Fresh, Flavorful, Different Every Day – Lunch Served 10:30–15:00
-        </h2>
+        </p>
+
+        {/* Duplicate Text */}
+        <p className="mr-16">
+          Fresh, Flavorful, Different Every Day – Lunch Served 10:30–15:00
+        </p>
+        <p className="mr-16">
+          Fresh, Flavorful, Different Every Day – Lunch Served 10:30–15:00
+        </p>
+        <p className="mr-16">
+          Fresh, Flavorful, Different Every Day – Lunch Served 10:30–15:00
+        </p>
       </motion.div>
     </div>
   );

@@ -5,7 +5,7 @@ import { Button } from "antd";
 
 export default function Delivery() {
   return (
-    <section className=" bg-red-400 text-white">
+    <section className=" bg-blue-100 text-yellow-700">
       <div className="py-12 container mx-auto max-w-7xl p-4  text-center ">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Order?</h2>
         <h3 className="text-large md:text-2xl font-bold mb-6">

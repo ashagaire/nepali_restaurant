@@ -16,9 +16,9 @@ export default function Hero() {
             }}
           ></div>
           <div className=" p-10 relative z-10">
-            <h2 className="hero-heading text-orange-900">
+            {/* <h2 className="hero-heading text-orange-900">
               Experience Authentic Nepalese Flavor
-            </h2>
+            </h2> */}
             <div className=" flex justify-center gap-4">
               <a
                 href="/lunch"
@@ -30,7 +30,7 @@ export default function Hero() {
                 href="/menu"
                 className="inline-block bg-blue-400 text-l font-bold  text-center text-yellow-900 px-6 py-2 rounded  hover:bg-blue-500 transition border-3 border-white"
               >
-                Menu
+                Order
               </a>
               <a
                 href="/alacarte"

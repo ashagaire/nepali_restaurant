@@ -15,31 +15,23 @@ export default function PopularDishes() {
   }
 
   return (
-    <section className="relative">
-      <div className="relative bg-cover">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/bg5.jpg')", opacity: 0.5 }}
-        />
-        <div className="py-12 container relative z-10 mx-auto max-w-7xl p-4">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-yellow-700 mb-4">
-              Most Popular Dishes in Fusion Nepal
-            </h2>
-            <Link
-              href="/menu"
-              className="text-yellow-700 hover:text-yellow-900 font-bold"
-            >
-              View Full Menu &rarr;
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {menuItems.map((item) => (
-              <MenuItemCard key={item.id} item={item} />
-            ))}
-          </div>
-        </div>
+    <div className="py-12 container mx-auto max-w-7xl p-4">
+      <div className="flex justify-between items-center mb-8">
+        <h2 className="text-3xl font-bold text-yellow-700 mb-4">
+          Most Popular Dishes in Fusion Nepal
+        </h2>
+        <Link
+          href="/menu"
+          className="text-yellow-700 hover:text-yellow-900 font-bold"
+        >
+          View Full Menu &rarr;
+        </Link>
       </div>
-    </section>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {menuItems.map((item) => (
+          <MenuItemCard key={item.id} item={item} />
+        ))}
+      </div>
+    </div>
   );
 }

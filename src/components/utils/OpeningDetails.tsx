@@ -8,7 +8,9 @@ export default function OpeningDetails() {
       <div className="container-custom">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl font-bold mb-6">Opening Hours</h2>
+            <h2 className="text-3xl font-bold mb-6 text-center">
+              Opening Hours
+            </h2>
             <OpenHours />
           </div>
           <div>

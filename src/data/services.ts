@@ -1,0 +1,58 @@
+export interface Service {
+  id: number;
+  serviceName: string;
+  serviceDescription: string;
+  image: string;
+  link: string;
+}
+
+export const services: Service[] = [
+  {
+    id: 1,
+    serviceName: "Lunch",
+    serviceDescription:
+      "We offer a Lunch from Monday to Friday, featuring a different menu every day. Find daily lunch menu details here.",
+    image: "/images/buffet1.jpg",
+    link: "/lunch",
+  },
+  {
+    id: 2,
+    serviceName: "À la Carte",
+    serviceDescription:
+      "Enjoy our cozy and welcoming atmosphere while savoring our authentic Nepalese dishes.",
+    image: "/images/À la Carte.avif",
+    link: "/alacarte",
+  },
+  {
+    id: 3,
+    serviceName: "Bar And Drinks",
+    serviceDescription:
+      "Explore Nepali beer and wine, as well as a selection of cocktails and mocktails.",
+    image: "/images/bar.jpg",
+    link: "/alacarte",
+  },
+  {
+    id: 4,
+    serviceName: "Takeaway",
+    serviceDescription:
+      "Order your favorite meals online and pick them up at your convenience.",
+    image: "/images/takeaway.jpg",
+    link: "/menu",
+  },
+  {
+    id: 5,
+    serviceName: "Online Order",
+    serviceDescription:
+      "Get your meals delivered straight to your doorstep through our online order service.",
+    image: "/images/onlineorder2.jpg",
+    link: "/menu",
+  },
+  {
+    id: 6,
+    serviceName: "Reservation",
+    serviceDescription:
+      "Make a reservation to secure your table and enjoy our authentic Nepalese cuisine with your preferred spice level in a cozy atmosphere.",
+    image: "/images/reservation.jpg",
+    link: "/reservation",
+  },
+];

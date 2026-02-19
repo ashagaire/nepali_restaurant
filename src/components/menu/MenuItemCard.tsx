@@ -39,7 +39,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
   return (
     <Card
       className="flex flex-col h-full rounded-2xl shadow-md transition-all duration-300
-    hover:shadow-xl hover:-translate-y-1"
+    hover:shadow-xl hover:-translate-y-1 border-4 border-blue-200"
     >
       {/* Image */}
       <Box className="relative">

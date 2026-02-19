@@ -1,31 +1,31 @@
 "use client";
 
 const hours = {
-  monday: { open: "11:00", close: "21:00" },
-  tuesday: { open: "11:00", close: "21:00" },
-  wednesday: { open: "11:00", close: "21:00" },
-  thursday: { open: "11:00", close: "21:00" },
-  friday: { open: "11:00", close: "22:00" },
-  saturday: { open: "12:00", close: "22:00" },
-  sunday: { open: "12:00", close: "20:00" },
+  Monday: { open: "11:00", close: "21:00" },
+  Tuesday: { open: "11:00", close: "21:00" },
+  Wednesday: { open: "11:00", close: "21:00" },
+  Thursday: { open: "11:00", close: "21:00" },
+  Friday: { open: "11:00", close: "22:00" },
+  Saturday: { open: "12:00", close: "22:00" },
+  Sunday: { open: "12:00", close: "20:00" },
 };
 
 export default function OpeningHours() {
   const days = [
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-    "sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
   ] as const;
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 max-w-sm md:mx-8">
       {days.map((day) => (
-        <div key={day} className="flex justify-between text-gray-700">
-          <span className="font-medium">{day}</span>
+        <div key={day} className="flex justify-between text-gray-700 font-bold">
+          <span className="font-bold">{day}</span>
           <span>
             {hours[day].open} - {hours[day].close}
           </span>

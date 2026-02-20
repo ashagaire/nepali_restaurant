@@ -12,7 +12,7 @@ export const services: Service[] = [
     serviceName: "Lunch",
     serviceDescription:
       "We offer a Lunch from Monday to Friday, featuring a different menu every day. Find daily lunch menu details here.",
-    image: "/images/buffet1.jpg",
+    image: "/images/buffet.png",
     link: "/lunch",
   },
   {

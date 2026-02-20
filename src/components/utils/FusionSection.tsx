@@ -11,8 +11,8 @@ export default function FusionSection() {
     >
       <div className="absolute inset-0 bg-black/30 pointer-events-none" />
       <div className="relative z-10">
-        <Services />
         <PopularDishes />
+        <Services />
       </div>
     </section>
   );

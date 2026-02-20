@@ -21,7 +21,7 @@ export default function PopularDishes() {
           Most Popular Dishes in Fusion Nepal
         </h2>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 rounded-lg px-4 py-2 ">
+      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6 rounded-lg px-4 py-2 ">
         {menuItems.map((item) => (
           <MenuItemCard key={item.id} item={item} />
         ))}

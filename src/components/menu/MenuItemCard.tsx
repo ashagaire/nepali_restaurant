@@ -37,110 +37,30 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
   const finalPrice = hasDiscount ? item.price - item.discount : item.price;
 
   return (
-    <Card
-      className="flex flex-col h-full rounded-2xl shadow-md transition-all duration-300
-    hover:shadow-xl hover:-translate-y-1 border-4 border-blue-200"
-    >
-      {/* Image */}
-      <Box className="relative">
-        {item.imageUrl ? (
-          <CardMedia
-            component="img"
-            height="180"
-            image={item.imageUrl}
-            alt={item.nameEn}
-            className="object-cover"
-          />
-        ) : (
-          <CardMedia
-            component="img"
-            height="180"
-            image="/images/banner1.jpg"
-            alt="Default Image"
-            className="object-cover"
-          />
-        )}
-        {/* Spice Level */}
-        <Box sx={{ position: "absolute", top: 8, right: 8 }}>
-          <SpiceIndicator level={item.spicey} />
-        </Box>
-      </Box>
+    <div className=" flex bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300  ">
+      {/* LEFT SIDE — CONTENT */}
+      <div className=" relative w-4/7 flex flex-col justify-between p-2 ">
+        <div>
+          {/* Title */}
+          <h3 className="text-lg font-semibold leading-tight">{item.nameEn}</h3>
 
-      <CardContent className="flex flex-col flex-1 p-4">
-        {/* Title + Favorite */}
-        <Box className="flex justify-between items-start">
-          <Typography variant="h6" className="font-semibold leading-tight">
-            {item.nameEn}
-          </Typography>
-
-          <Box className="flex items-center gap-1">
-            <IconButton size="small">
-              {/* check is the item favorites in current context */}
-              {item.isArchived ? (
-                <FavoriteIcon className="text-red-500" />
-              ) : (
-                <FavoriteBorderIcon />
-              )}
-            </IconButton>
-          </Box>
-        </Box>
-
-        {/* Description */}
-        <Box className="mb-2 flex-1">
-          <Typography
-            variant="body1"
-            color="textSecondary"
-            className=" line-clamp-2"
-          >
+          {/* Description */}
+          <p className="text-sm text-gray-500 line-clamp-2 mt-1">
             {item.descriptionEn}
-          </Typography>
-        </Box>
+          </p>
+        </div>
 
-        {/* Tags */}
-        <Box display="flex" flexWrap="wrap" gap={0.5} sx={{ mb: 1 }}>
-          {item.tags?.slice(0, 3).map((tag) => (
-            <Chip
-              key={tag.id}
-              label={tag.nameEn}
-              size="small"
-              variant="outlined"
-              sx={{
-                fontSize: "0.8rem",
-                borderRadius: 1,
-                // color: "text.secondary",
-              }}
-            />
-          ))}
-        </Box>
+        {/* Bottom Row */}
+        <div className="flex items-center justify-between mt-3">
+          {/* Price */}
+          <span className="text-lg font-bold">€{finalPrice.toFixed(2)}</span>
 
-        {/* Price + Cart */}
-        <Box className="mt-auto flex items-center justify-between">
-          <Box>
-            {hasDiscount && (
-              <Typography
-                variant="caption"
-                className="line-through text-gray-400"
-              >
-                €{item.price.toFixed(2)}
-              </Typography>
-            )}
-            <Typography
-              variant="h6"
-              className={hasDiscount ? "text-red-600" : ""}
-            >
-              €{finalPrice.toFixed(2)}
-            </Typography>
-          </Box>
+          {/* Add Button */}
 
           {!showAdminActions ? (
-            <Button
-              variant="contained"
-              size="small"
-              startIcon={<ShoppingCartIcon />}
-              className="rounded-full"
-            >
-              Add
-            </Button>
+            <button className="px-2 py-2 text-sm  rounded-full hover:bg-gray-800 transition">
+              <ShoppingCartIcon fontSize="medium" />
+            </button>
           ) : (
             <Box display="flex" gap={1} justifyContent="space-between">
               <Button
@@ -163,9 +83,59 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
               </ConfirmDialog>
             </Box>
           )}
-        </Box>
-      </CardContent>
-    </Card>
+        </div>
+        {/* Optional Spice Badge */}
+      </div>
+
+      {/* RIGHT SIDE — IMAGE */}
+      <div className="relative w-3/7 h-40">
+        <img
+          src={item.imageUrl || "/images/banner1.jpg"}
+          alt={item.nameEn}
+          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        <div className="absolute top-2 right-2    backdrop-blur px-2 py-1 rounded-full text-xs font-medium shadow">
+          <SpiceIndicator level={item.spicey} />
+        </div>
+      </div>
+    </div>
+
+    // <Card className="menu-card overflow-hidden">
+    //   <CardContent className="flex !p-0">
+    //     {/* LEFT SIDE — TEXT */}
+    //     <Box className="flex flex-col w-1/2 !p-4 relative">
+    //       <Typography variant="h6" className="font-semibold leading-tight">
+    //         {item.nameEn}
+    //       </Typography>
+
+    //       <Typography
+    //         variant="body2"
+    //         color="textSecondary"
+    //         className="line-clamp-2 mt-2"
+    //       >
+    //         {item.descriptionEn}
+    //       </Typography>
+
+    //       <Box className="mt-auto">
+    //         <Typography variant="h6">€{finalPrice.toFixed(2)}</Typography>
+    //       </Box>
+    //     </Box>
+
+    //     {/* RIGHT SIDE — IMAGE */}
+    //     <Box className="relative w-1/2 ">
+    //       <CardMedia
+    //         component="img"
+    //         image={item.imageUrl || "/images/banner1.jpg"}
+    //         alt={item.nameEn}
+    //         className="absolute inset-0 w-full h-full object-cover block"
+    //       />
+
+    //       <Box className="absolute top-2 right-2">
+    //         <SpiceIndicator level={item.spicey} />
+    //       </Box>
+    //     </Box>
+    //   </CardContent>
+    // </Card>
   );
 };
 

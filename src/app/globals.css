@@ -31,6 +31,14 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+@layer components {
+  .menu-card {
+    @apply flex flex-row h-full overflow-hidden 
+           shadow-md transition-all duration-300
+           hover:shadow-xl hover:-translate-y-1;
+    border-radius: 18px !important;
+  }
+}
 
 @layer utilities {
   .hero-heading {

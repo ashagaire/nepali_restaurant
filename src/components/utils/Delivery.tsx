@@ -12,7 +12,7 @@ export default function Delivery() {
           <br />
           You can also place your order online via Foodora and Wolt.
         </h3>
-        <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
+        <div className="flex flex-row gap-8 justify-center items-center">
           <Link
             href="/menu"
             className="hover:opacity-80 transition-opacity"

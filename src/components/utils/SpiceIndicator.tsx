@@ -9,15 +9,10 @@ const SpiceIndicator = ({
 }) => {
   const filledCount =
     level === "LOW" ? 1 : level === "MEDIUM" ? 2 : level === "HIGH" ? 3 : 0;
-
   return (
-    <Box sx={{ display: "flex" }}>
-      {[1, 2, 3].map((i) => (
-        <GiChiliPepper
-          key={i}
-          fontSize="1.3rem"
-          className={i <= filledCount ? "text-red-500" : "text-gray-300"}
-        />
+    <Box sx={{ display: "flex", gap: 0.5 }}>
+      {Array.from({ length: filledCount }, (_, i) => (
+        <GiChiliPepper key={i} fontSize="1.3rem" className="text-red-500" />
       ))}
     </Box>
   );

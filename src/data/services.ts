@@ -12,7 +12,7 @@ export const services: Service[] = [
     serviceName: "Lunch",
     serviceDescription:
       "We offer a Lunch from Monday to Friday, featuring a different menu every day. Find daily lunch menu details here.",
-    image: "/images/buffet.png",
+    image: "/gifs/lunch.gif",
     link: "/lunch",
   },
   {
@@ -20,15 +20,15 @@ export const services: Service[] = [
     serviceName: "À la Carte",
     serviceDescription:
       "Enjoy our cozy and welcoming atmosphere while savoring our authentic Nepalese dishes.",
-    image: "/images/À la Carte.avif",
+    image: "/gifs/alacarte.gif",
     link: "/alacarte",
   },
   {
     id: 3,
-    serviceName: "Bar And Drinks",
+    serviceName: "Bar",
     serviceDescription:
       "Explore Nepali beer and wine, as well as a selection of cocktails and mocktails.",
-    image: "/images/bar.jpg",
+    image: "/gifs/drinks.gif",
     link: "/alacarte",
   },
   {
@@ -36,7 +36,7 @@ export const services: Service[] = [
     serviceName: "Takeaway",
     serviceDescription:
       "Order your favorite meals online and pick them up at your convenience.",
-    image: "/images/takeaway.jpg",
+    image: "/gifs/takeAway.gif",
     link: "/menu",
   },
   {
@@ -44,7 +44,7 @@ export const services: Service[] = [
     serviceName: "Online Order",
     serviceDescription:
       "Get your meals delivered straight to your doorstep through our online order service.",
-    image: "/images/onlineorder2.jpg",
+    image: "/gifs/onlineOrder.gif",
     link: "/menu",
   },
   {
@@ -52,7 +52,7 @@ export const services: Service[] = [
     serviceName: "Reservation",
     serviceDescription:
       "Make a reservation to secure your table and enjoy our authentic Nepalese cuisine with your preferred spice level in a cozy atmosphere.",
-    image: "/images/reservation.jpg",
+    image: "/gifs/reservation.gif",
     link: "/reservation",
   },
 ];

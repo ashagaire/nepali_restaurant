@@ -33,7 +33,9 @@ export default function RootLayout({
       >
         <AuthProvider>
           <Navbar />
-          <main className="pt-16">{children}</main>
+          <main className="pt-14 md:pt-16 lg:pt-16 overflow-x-hidden">
+            {children}
+          </main>
           <Footer />
         </AuthProvider>
         <ToastContainer

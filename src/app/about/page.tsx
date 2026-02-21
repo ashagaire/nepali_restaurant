@@ -8,40 +8,35 @@ export default function About() {
 
         <section className="mb-16">
           <h2 className="text-2xl font-bold mb-6">Our Story</h2>
-          <div className=" max-w-none text-gray-600 space-y-4">
-            <p className="">
-              At Fusion Nepal, we offer a variety of services to cater to your
-              dining needs. Whether you're looking for a quick lunch, a
-              full-course meal, or catering for your special events, we've got
-              you covered.
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className=" max-w-none text-gray-600 space-y-4">
+              <p>
+                Fusion Nepal was founded with a simple dream, to bring the
+                authentic flavors of Nepal to the heart of Helsinki. Our journey
+                began in 2018 when our head chef, trained in the mountain
+                villages of Nepal, decided to share the recipes passed down
+                through generations of his family.
+              </p>
               <br />
+              <p>
+                Every dish we prepare carries the essence of Nepali hospitality
+                – warm, generous, and made with love. We use traditional cooking
+                methods and source authentic spices directly from Nepal to
+                ensure each bite transports you to the Himalayas.
+              </p>
               <br />
-              We are committed to providing excellent service and ensuring that
-              every dining experience at Fusion Nepal is memorable. Whether
-              you're dining in, taking out, or having your meal delivered, we
-              strive to exceed your expectations with our flavorful dishes and
-              exceptional customer service.
-            </p>
-            <p>
-              Fusion Nepal was founded with a simple dream: to bring the
-              authentic flavors of Nepal to the heart of Helsinki. Our journey
-              began in 2018 when our head chef, trained in the mountain villages
-              of Nepal, decided to share the recipes passed down through
-              generations of his family.
-            </p>
-            <br />
-            <p>
-              Every dish we prepare carries the essence of Nepali hospitality –
-              warm, generous, and made with love. We use traditional cooking
-              methods and source authentic spices directly from Nepal to ensure
-              each bite transports you to the Himalayas.
-            </p>
-            <br />
 
-            <p>
-              Our team is dedicated to creating not just meals, but experiences
-              that celebrate the rich culinary heritage of Nepal.
-            </p>
+              <p>
+                Our team is dedicated to creating not just meals, but
+                experiences that celebrate the rich culinary heritage of Nepal.
+                We are committed to providing excellent service and ensuring
+                that every dining experience at Fusion Nepal is memorable.
+                Whether you're dining in, taking out, or having your meal
+                delivered, we strive to exceed your expectations with our
+                flavorful dishes and exceptional customer service.
+              </p>
+            </div>
+            <img src="/images/chef.webp" alt="Chef" className="w-1/2 h-1/2" />
           </div>
         </section>
 

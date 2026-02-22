@@ -6,8 +6,8 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-white overflow-x-hidden">
-      <div className=" py-12 container mx-auto max-w-7xl p-4">
+    <footer className="bg-gray-900 text-white overflow-x-hidden ">
+      <div className=" pt-12 container mx-auto max-w-7xl p-4">
         <div className="grid grid-cols-1 md:grid-cols-4 justify-between">
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-2xl font-bold text-saffron-400 mb-4">

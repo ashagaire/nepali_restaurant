@@ -1,19 +1,21 @@
 "use client";
 import styles from "@/styles/Hero.module.css"; // Import the external CSS module
-import ScrollingText from "./ScrollingText";
 import { Button } from "@mui/material";
 import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="">
+    <section className=" container mx-auto max-w-7xl  ">
+      <h2 className=" py-4 text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold text-orange-900 sm:mb-4 text-center">
+        Experience Authentic Flavor
+      </h2>
       {/* takes full width of the screen */}
       <div className="">
         <div className="text-center relative bg-cover bg-center h-[30vh] md:h-[30vh] lg:h-[40vh] flex items-center o">
           <div
-            className="absolute inset-0 bg-cover bg-center "
+            className="absolute inset-0 bg-cover bg-center xl:rounded-4xl"
             style={{
-              backgroundImage: "url('/images/bannersidespace.jpg')",
+              backgroundImage: "url('/images/spicesaroundbg.jpg')",
               opacity: 1, // Apply opacity only to the background
             }}
           ></div>
@@ -58,11 +60,6 @@ export default function Hero() {
               </Button>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="bg-blue-100 py-2">
-        <div className="text-sm sm:text-base md:text-lg lg:text-xl font-bold  text-center text-yellow-700   whitespace-nowrap ">
-          <ScrollingText />
         </div>
       </div>
     </section>

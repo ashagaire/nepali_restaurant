@@ -4,10 +4,18 @@
 @import "swiper/css/effect-coverflow";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: #d92cf9;
-  --primary-hover: #a40dbe;
+  --background: #ffedd5;
+  --foreground: #fdba74;
+  --primary: #c2410c;
+  --primary-hover: #9a3412;
+  --orange-100: #ffedd5;
+  --orange-300: #fdba74;
+  --orange-400: #fb923c;
+  --orange-500: #f97316;
+  --orange-600: #ea580c;
+  --orange-700: #c2410c;
+  --orange-800: #9a3412;
+  --orange-900: #7c2d12;
 }
 
 @theme inline {
@@ -21,8 +29,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffedd5;
+    --foreground: #fdba74;
   }
 }
 

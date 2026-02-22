@@ -1,11 +1,19 @@
 "use client";
+import Services from "./Services";
+import ScrollingText from "./ScrollingText";
 
 import Link from "next/link";
 
 export default function Delivery() {
   return (
-    <section className=" bg-blue-100 text-yellow-700">
-      <div className="py-6 container mx-auto max-w-7xl p-4  text-center ">
+    <section className=" bg-orange-200 text-yellow-700 ">
+      <Services />
+      <div className="bg-orange-300 py-2 mx-auto max-w-7xl lg:rounded-4xl">
+        <div className="text-sm sm:text-base md:text-lg lg:text-xl font-bold  text-center text-yellow-700   whitespace-nowrap ">
+          <ScrollingText />
+        </div>
+      </div>
+      <div className="pb-12 lg:py-12 container mx-auto max-w-7xl p-4  text-center ">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Order?</h2>
         <h3 className="text-large md:text-2xl  mb-6 max-w-3xl mx-auto">
           Checkout the available menu and order instantly.

@@ -8,7 +8,7 @@ import GoogleReviews from "@/components/utils/GoogleReviews";
 
 export default async function Home() {
   return (
-    <main>
+    <main className="bg-orange-100 lg:pb-12">
       <Hero />
       <FusionSection />
       <Delivery />

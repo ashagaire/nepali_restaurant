@@ -4,12 +4,13 @@ import Image from "next/image";
 
 export default function Services() {
   return (
-    <section className="py-12 container mx-auto  max-w-7xl p-4">
+    <section className="pb-12 lg:py-12 container mx-auto  max-w-7xl p-4">
       <div className="text-center mb-6">
         <h2 className="text-3xl md:text-4xl font-bold text-yellow-700">
           Our Services
         </h2>
-        <p className="text-yellow-700 mt-2 md:w-1/2 mx-auto text-center">
+
+        <p className="text-yellow-700 mt-2 md:w-1/2 mx-auto text-center text-large md:text-2xl  mb-6 max-w-3xl mx-auto">
           We offer a variety of services to make your dining experience
           unforgettable.
         </p>
@@ -19,7 +20,7 @@ export default function Services() {
         {services.map((service) => (
           <div
             key={service.id}
-            className="flex flex-col items-center  rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 bg-blue-100  "
+            className="flex flex-col items-center  rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 bg-orange-300  "
           >
             <a className="" href={service.link}>
               <div className=" flex justify-center items-center w-auto ">

@@ -1,107 +1,160 @@
 "use client";
-import styles from "@/styles/Hero.module.css"; // Import the external CSS module
-import { Button, Typography } from "@mui/material";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button, Typography } from "@mui/material";
+
+const slides = [
+  { url: "/slideImages/curry.jpg", alt: "Indian Curry" },
+  { url: "/slideImages/momo.jpg", alt: "Momo" },
+  { url: "/slideImages/dining.jpg", alt: "Dining" },
+  { url: "/slideImages/fried momo.jpg", alt: "Fried Momo" },
+  { url: "/slideImages/dinner.jpg", alt: "Dinner" }
+];
 
 export default function Hero() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
   return (
-    <section className=" container mx-auto max-w-7xl  ">
-      {/* <Typography
-        variant="h2"
-        align="center"
-        sx={{
-          py: 4,
-          color: "primary.main",
-        }}
-      >
-        Fusion Nepal Ravintola
-      </Typography> */}
-      {/* <h2 className=" py-4 text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold text-orange-900 sm:mb-4 text-center ">
-        Fusion Nepal Ravintola
-      </h2> */}
-      {/* takes full width of the screen */}
-      <div className="">
-        <div className="text-center relative bg-cover bg-center h-[40vh] md:h-[30vh] lg:h-[30vh] xl:h-[50vh] flex justify-center items-center ">
-          <div
-            className="absolute inset-0 bg-cover bg-center "
-            style={{
-              backgroundImage: "url('/images/spicesaroundbg.jpg')",
-              opacity: 1, // Apply opacity only to the background
-            }}
+    <section className="relative min-h-[60vh] bg-gradient-to-br from-orange-50 to-red-50 overflow-hidden">
+      {/* Invisible SVG definition crucial for responsive clipPath */}
+      <svg width="0" height="0" className="absolute pointer-events-none">
+        <defs>
+          <clipPath id="blob-clip" clipPathUnits="objectBoundingBox">
+            <path d="M 0.075,0.046 Q 0.5,0 0.925,0.046 C 1,0.385 0.875,0.692 0.925,0.954 Q 0.5,1 0.075,0.954 C 0,0.692 0.125,0.385 0.075,0.046 Z" />
+          </clipPath>
+        </defs>
+      </svg>
+
+      <div className="container mx-auto max-w-7xl px-4 py-12 lg:py-20">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 md:gap-4 items-center">
+          
+          {/* 1. Title Area - Shows first on Mobile, Top-Left on Desktop */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="order-1 lg:col-start-1 lg:row-start-1 lg:self-end w-full"
           >
-            {/* Top Gradient Fade */}
-            <div className="absolute inset-x-0 top-0 h-24 z-[5] pointer-events-none bg-gradient-to-b from-white/100 via-white/40  to-transparent   "></div>
-            
-            {/* Bottom Gradient Fade */}
-            <div className="absolute inset-x-0 bottom-0 h-16 z-[5] pointer-events-none bg-gradient-to-t from-white/100 via-white/50  to-transparent   "></div>
-          </div>
-          <div className="absolute  flex flex-col items-center justify-center text-white px-4">
-            <Typography
-              variant="h2"
-              align="center"
-              sx={{
-                py: 4,
-                color: "primary.main",
-              }}
-            >
-              Fusion Nepal Ravintola
-            </Typography>
             <Typography
               variant="h3"
-              align="center"
-              sx={{ fontWeight: 700, color: "orange.900", mb: 2 }}
+              align="left"
+              sx={{ fontWeight: 700, my:  2, fontSize: { xs: 30, md: 50, lg: 60 } }}
             >
-              Experience Authentic Flavor
+              <span className="block text-transparent leading-tight bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
+                Fusion Nepal Ravintola
+              </span>
+            </Typography>
+          </motion.div>
+
+          {/* 2. Image Area - Shows second on Mobile (between title & paragraph), Spanning Right on Desktop */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-2 relative flex justify-center w-full my-2 md:my-8 lg:my-0"
+          >
+            {/* Wrapper for responsive sizing and drop shadow */}
+            <div className="relative w-full max-w-[400px] aspect-[400/650] drop-shadow-2xl">
+              {/* Inner container with the responsive percentage-based SVG clip-path */}
+              <div 
+                className="absolute inset-0 bg-white"
+                style={{ clipPath: "url(#blob-clip)" }}
+              >
+                <AnimatePresence>
+                  <motion.img
+                    key={currentSlide}
+                    src={slides[currentSlide].url}
+                    alt={slides[currentSlide].alt}
+                    initial={{ opacity: 0, x: 50, filter: "blur(12px)" }}
+                    animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, x: -50, filter: "blur(12px)" }}
+                    transition={{ duration: 2, ease: "easeInOut" }}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                </AnimatePresence>
+              </div>
+
+              {/* Slide Indicators */}
+              <div className="absolute z-10 bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+                {slides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentSlide(idx)}
+                    className={`w-3 h-3 rounded-full transition-all ${
+                      idx === currentSlide ? "bg-white w-8" : "bg-white/50"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Decorative Elements */}
+            <div className="absolute top-4 -right-2 md:-right-6 w-24 h-24 bg-orange-300 rounded-full opacity-20 blur-2xl -z-10" />
+            <div className="absolute bottom-4 -left-2 md:-left-6 w-32 h-32 bg-red-300 rounded-full opacity-20 blur-2xl -z-10" />
+          </motion.div>
+
+          {/* 3. Text & Buttons Area - Shows third on Mobile, Bottom-Left on Desktop */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="order-3 lg:col-start-1 lg:row-start-2 lg:self-start space-y-4 lg:space-y-6 w-full"
+          >
+            <Typography
+              variant="h6"
+              align="left"
+              sx={{
+                py: { xs: 2, lg: 4 },
+                color: "primary.main",
+                fontWeight: 400,
+                lineHeight: 1.4,
+                textAlign: "justify",
+                fontSize: { xs: '0.90rem', md: '1.25rem' }
+              }}
+            >
+              Embark on a culinary journey through the rich flavors of Nepal. Our authentic, 
+              generation-passed recipes are crafted with the finest spices and freshest ingredients. 
+              From aromatic biryanis and momos to creamy curries, experience our warm hospitality.
             </Typography>
 
-            <Typography
-              variant="body1"
-              align="center"
-              sx={{ color: "gray.600", mb: 2 }}
-            >
-              Exceed your expectations with our flavorful dishes and exceptional
-              customer service.
-            </Typography>
-            {/* <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-orange-900 sm:mb-4">
-              Experience Authentic Flavor
-            </h2>
-            <p className="text-sm sm:text-sm md:text-lg text-gray-600 sm:mb-4 text-center ">
-              Exceed your expectations with our flavorful dishes and exceptional
-              customer service.
-            </p> */}
-            <div className="flex mt-4  gap-2 md:gap-4">
-              <Button
-                component={Link}
-                href="/lunch"
-                variant="contained"
-                color="primary"
-                size="small"
-                // className="hero-button"
-              >
-                Lunch
-              </Button>
-              <Button
-                component={Link}
-                href="/menu"
-                variant="contained"
-                color="primary"
-                size="small"
-                // className="hero-button"
-              >
-                Order
-              </Button>
-              <Button
-                component={Link}
-                href="/alacarte"
-                variant="contained"
-                color="primary"
-                size="small"
-                // className="hero-button"
-              >
-                Alacarte
-              </Button>
+            {/* Buttons */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 pt-2">
+              <Link href="/menu">
+                <button className="px-4 py-2 md:px-8 md:py-3 text-sm md:text-base font-medium bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-full hover:shadow-lg transform hover:-translate-y-1 transition-all">
+                  View Menu
+                </button>
+              </Link>
+              <Link href="/lunch">
+                <button className="px-4 py-2 md:px-8 md:py-3 text-sm md:text-base font-medium bg-yellow-500 text-white rounded-full hover:shadow-lg transform hover:-translate-y-1 transition-all">
+                  Lunch Specials
+                </button>
+              </Link>
+              <Link href="/alacarte">
+                <button className="px-4 py-2 md:px-8 md:py-3 text-sm md:text-base font-medium bg-green-600 text-white rounded-full hover:shadow-lg transform hover:-translate-y-1 transition-all">
+                  A La Carte
+                </button>
+              </Link>
             </div>
-          </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

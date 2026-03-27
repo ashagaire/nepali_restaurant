@@ -4,7 +4,7 @@
 @import "swiper/css/effect-coverflow";
 
 :root {
-  --background: #ffedd5;
+  --background: #ffffff;
   --foreground: #fdba74;
   --primary: #c2410c;
   --primary-hover: #9a3412;
@@ -29,7 +29,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #ffedd5;
+    --background: #ffffff;
     --foreground: #fdba74;
   }
 }

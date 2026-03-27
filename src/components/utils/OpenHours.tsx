@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 const hours = {
   Monday: { open: "11:00", close: "21:00" },
   Tuesday: { open: "11:00", close: "21:00" },
@@ -11,6 +13,12 @@ const hours = {
 };
 
 export default function OpeningHours() {
+  const [currentDay, setCurrentDay] = useState("");
+
+  useEffect(() => {
+    setCurrentDay(new Date().toLocaleDateString("en-US", { weekday: "long" }));
+  }, []);
+
   const days = [
     "Monday",
     "Tuesday",
@@ -22,9 +30,12 @@ export default function OpeningHours() {
   ] as const;
 
   return (
-    <div className="space-y-3 max-w-sm  bg-orange-100 p-4 rounded-sm">
+    <div className="space-y-3 max-w-sm  ">
       {days.map((day) => (
-        <div key={day} className="flex justify-between text-gray-700 font-bold">
+        <div
+          key={day}
+          className={`flex justify-between border-1 border-orange-400 rounded-4xl px-4 py-1 text-gray-700 font-bold ${currentDay === day ? "bg-orange-300" : "bg-orange-50"}`}
+        >
           <span className="font-bold">{day}</span>
           <span>
             {hours[day].open} - {hours[day].close}

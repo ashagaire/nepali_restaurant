@@ -4,7 +4,7 @@ import OpenHours from "./OpenHours";
 
 export default function OpeningDetails() {
   return (
-    <section className=" mt-6 lg:mt-12 container mx-auto max-w-7xl p-4 shadow-xl rounded-sm">
+    <section className=" mt-6 lg:mt-12 container mx-auto max-w-7xl p-4 md:px-12 lg:px-24 shadow-xl rounded-sm">
       <div className="container-custom ">
         <div className="grid md:grid-cols-2 gap-12">
           <div>

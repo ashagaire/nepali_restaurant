@@ -3,8 +3,12 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "@/context/AuthContext";
+import ThemeProviderClient from "@/components/ThemeProviderClient";
+import { Twinkle_Star } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+
+const twinkleStar = Twinkle_Star({ subsets: ["latin"], weight: "400" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,17 +31,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={twinkleStar.className}>
       <body
         className={`${geistSans.variable} ${geistMono.variable}  antialiased`}
       >
-        <AuthProvider>
-          <Navbar />
-          <main className="pt-14 md:pt-16 lg:pt-16 overflow-x-hidden">
-            {children}
-          </main>
-          <Footer />
-        </AuthProvider>
+        <ThemeProviderClient>
+          <AuthProvider>
+            <Navbar />
+            <main className="pt-14 md:pt-16 lg:pt-16 overflow-x-hidden">
+              {children}
+            </main>
+            <Footer />
+          </AuthProvider>
+        </ThemeProviderClient>
         <ToastContainer
           position="top-right"
           autoClose={3000}

@@ -22,7 +22,7 @@ export default function OpeningHours() {
   ] as const;
 
   return (
-    <div className="space-y-3 max-w-sm md:mx-8">
+    <div className="space-y-3 max-w-sm  bg-orange-100 p-4 rounded-sm">
       {days.map((day) => (
         <div key={day} className="flex justify-between text-gray-700 font-bold">
           <span className="font-bold">{day}</span>

@@ -4,17 +4,17 @@ import OpenHours from "./OpenHours";
 
 export default function OpeningDetails() {
   return (
-    <section className=" lg:mt-12 container mx-auto max-w-7xl p-4 bg-orange-200 xl:rounded-4xl">
+    <section className=" mt-6 lg:mt-12 container mx-auto max-w-7xl p-4 shadow-xl rounded-sm">
       <div className="container-custom ">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl font-bold mb-6 text-center">
+            <h2 className="text-3xl font-bold mb-6 text-start text-orange-400">
               Opening Hours
             </h2>
             <OpenHours />
           </div>
           <div>
-            <h2 className="text-3xl font-bold mb-6">Find Us</h2>
+            <h2 className="text-3xl font-bold mb-6 text-orange-400">Find Us</h2>
             <div className=" rounded-xl h-64 flex items-center justify-center">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1984.4!2d24.9354!3d60.1699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNjDCsDEwJzExLjYiTiAyNMKwNTYnMDcuNCJF!5e0!3m2!1sen!2sfi!4v1"

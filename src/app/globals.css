@@ -18,14 +18,14 @@
   --orange-900: #7c2d12;
 }
 
-@theme inline {
+/* @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
+} */
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -86,7 +86,7 @@ body {
 /* Nav link with underline animation */
 .nav-link {
   position: relative;
-  color: var(--primary);
+  color: #c2410c;
   cursor: pointer;
   font-weight: bold;
   transition: color 0.3s;
@@ -99,7 +99,7 @@ body {
   bottom: -4px;
   width: 0;
   height: 2px;
-  background: var(--primary-hover);
+  background: #9a3412;
   transition: width 0.3s;
 }
 
@@ -109,11 +109,11 @@ body {
 }
 
 .nav-link.active {
-  color: var(--primary-hover);
+  color: #9a3412;
 }
 
 .nav-link:hover {
-  color: var(--primary-hover);
+  color: #9a3412;
 }
 
 /* Hero section buttons */

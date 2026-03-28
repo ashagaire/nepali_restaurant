@@ -7,10 +7,10 @@ import { Button, Typography } from "@mui/material";
 
 const slides = [
   { url: "/slideImages/curry.jpg", alt: "Indian Curry" },
-  { url: "/slideImages/momo.jpg", alt: "Momo" },
-  { url: "/slideImages/dining.jpg", alt: "Dining" },
+  { url: "/slideImages/fire.jpg", alt: "Fire" },
+  { url: "/slideImages/dinner.jpg", alt: "Dinner" },
   { url: "/slideImages/fried momo.jpg", alt: "Fried Momo" },
-  { url: "/slideImages/dinner.jpg", alt: "Dinner" }
+  { url: "/slideImages/fire2.jpg", alt: "Fire2" }
 ];
 
 export default function Hero() {
@@ -72,7 +72,7 @@ export default function Hero() {
             className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-2 relative flex justify-center w-full my-2 md:my-8 lg:my-0"
           >
             {/* Wrapper for responsive sizing and drop shadow */}
-            <div className="relative w-full max-w-[400px] aspect-[400/650] drop-shadow-2xl">
+            <div className="relative w-full max-w-[500px] aspect-[400/500] drop-shadow-2xl">
               {/* Inner container with the responsive percentage-based SVG clip-path */}
               <div 
                 className="absolute inset-0 bg-white"

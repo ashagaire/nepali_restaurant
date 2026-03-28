@@ -11,35 +11,40 @@ const services = [
     icon: ShoppingBag, 
     // Mobile: 1 col | Tablet: 2 col | Desktop: 3 col
     className: "col-span-1 md:col-span-2 lg:col-span-3 lg:row-span-2 bg-orange-100 text-orange-900", 
-    href: "/menu"
+    href: "/menu",
+    image: "/services/onlineOrder.jpg"
   },
   { 
     label: "Table Reservation", 
     description: "Book your cozy corner for an evening of spices.",
     icon: Calendar, 
-    className: "col-span-1 md:col-span-1 lg:col-span-2 bg-white border border-orange-100", 
-    href: "/reservation"
+    className: "col-span-1 md:col-span-1 lg:col-span-2 border border-orange-100", 
+    href: "/reservation",
+    image: "/services/reservation.jpg"
   },
   { 
     label: "Take Away", 
     description: "Freshly packed and ready.",
     icon: Package, 
-    className: "col-span-1 md:col-span-1 lg:col-span-2 bg-white border border-orange-100",
-    href: "/menu"
+    className: "col-span-1 md:col-span-1 lg:col-span-2  border border-orange-100",
+    href: "/menu",
+    image: "/services/takeaway.jpg"
   },
   { 
-    label: "Catering", 
-    description: "Premium Nepali feasts for your special events.",
+    label: "Lunch Buffet", 
+    description: "Premium Nepali feasts for your lunch.",
     icon: UtensilsCrossed, 
-    className: "col-span-1 md:col-span-2 lg:col-span-2 bg-stone-900 text-white",
-    href: "/contact"
+    className: "col-span-1 md:col-span-2 lg:col-span-2 text-white",
+    href: "/lunch",
+    image: "/services/lunch.jpg"
   },
   { 
     label: "Menu", 
     description: "Explore our regions.",
     icon: BookOpen, 
     className: "col-span-1 md:col-span-2 lg:col-span-1 bg-orange-50 text-orange-800",
-    href: "/menu"
+    href: "/menu",
+    image: "/services/menu.jpg"
   }
 ];
 
@@ -49,7 +54,7 @@ export default function Services() {
       <div className="container mx-auto px-4 max-w-7xl">
         
         {/* Header - Balanced for all screens */}
-        <div className="text-center lg:text-left mb-16">
+        <div className="text-center lg:text-left mb-8 md:mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Our <span className="text-orange-500">Services</span>
           </h2>
@@ -59,7 +64,7 @@ export default function Services() {
         </div>
 
         {/* Responsive Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 auto-rows-[minmax(160px,auto)]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 auto-rows-[minmax(160px,auto)] ">
           {services.map((service, i) => (
             <motion.div
               key={i}
@@ -68,28 +73,37 @@ export default function Services() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -5 }}
-              className={`group relative overflow-hidden rounded-[2rem] p-8 flex flex-col justify-between transition-all ${service.className}`}
+              className={`group relative overflow-hidden rounded-[2rem] p-4 md:p-8 flex flex-col justify-between transition-all ${service.className}`}
             >
+              {/* Blurred background image + dark overlay */}
+              {service.image && (
+                <>
+                  <img
+                    src={service.image}
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute inset-0 w-full h-full object-cover scale-110 pointer-events-none select-none"
+                  />
+                  {/* Dark gradient overlay */}
+                  <div className="absolute inset-0 bg-black/40 pointer-events-none" />
+                </>
+              )}
+
               <div className="flex justify-between items-start z-10">
-                <div className={`p-3 rounded-2xl ${service.className.includes('bg-white') ? 'bg-orange-50 text-orange-500' : 'bg-white/20 text-white'}`}>
+                <div className="p-1 md:p-3 rounded-2xl bg-white/20 text-white">
                   <service.icon size={26} />
                 </div>
                 <Link href={service.href}>
-                  <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0" />
+                  <ArrowUpRight className="text-white md:opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0" />
                 </Link>
               </div>
 
-              <div className="z-10 mt-8">
+              <div className="z-10 mt-4 md:mt-8 text-white">
                 <h3 className="text-xl md:text-2xl font-bold mb-2">{service.label}</h3>
-                <p className={`text-sm leading-relaxed ${service.className.includes('bg-white') ? 'text-gray-500' : 'opacity-80'}`}>
+                <p className="text-sm leading-relaxed opacity-80">
                   {service.description}
                 </p>
               </div>
-
-              {/* Subtle Decorative Background Element for the Light Orange card */}
-              {service.label === "Online Ordering" && (
-                <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-orange-200/50 rounded-full blur-3xl" />
-              )}
             </motion.div>
           ))}
         </div>

@@ -38,9 +38,21 @@ export default function ReviewCard({ review }: ReviewCardProps) {
         width: "100%",
         maxWidth: isMobile ? "100%" : isTablet ? "400px" : "400px",
         margin: "0 auto",
-        backgroundColor: "white",
-        borderRadius: 3,
-        boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
+        // Floating glass effect
+        background: "rgba(255, 255, 255, 0.9)",
+        backdropFilter: "blur(8px)",
+        borderRadius: "24px", // More rounded for modern look
+        border: "1px solid rgba(255, 255, 255, 0.3)",
+        boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
+        overflow: "visible", // Allows elements to "float"
+        // transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+        // "&:hover": {
+        //   transform: "translateY(-10px) scale(1.02) translateZ(0)",
+        //   boxShadow: "0 20px 60px rgba(255, 140, 0, 0.15)", // Light orange glow
+        // },
+        // backgroundColor: "white",
+        // borderRadius: 3,
+        // boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
         "&:hover": {
           transform: "translateY(-4px)",
@@ -48,105 +60,94 @@ export default function ReviewCard({ review }: ReviewCardProps) {
         },
       }}
     >
-      <CardContent className="p-4 md:p-6">
+      <CardContent className="p-4 relative">
         {/* Review Header */}
-        <Box className="flex items-center gap-3 mb-3">
+        {/* Floating Google Logo - Top Right */}
+        
+
+        {/* Header Section */}
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
           <Avatar
             sx={{
-              width: 48,
-              height: 48,
-              bgcolor: "#4285F4",
-              fontSize: "1.2rem",
+              width: 56,
+              height: 56,
+              bgcolor: "#FFB347", // Your Light Orange
+              fontWeight: 700,
+              fontSize: "1.4rem",
+              boxShadow: "0 4px 10px rgba(255, 179, 71, 0.4)"
             }}
           >
             {review.name.charAt(0)}
           </Avatar>
-          <Box className="flex-1 min-w-0">
-            <Typography
-              variant="subtitle1"
-              className="font-semibold text-gray-900"
-              sx={{
-                fontSize: "1rem",
-                fontWeight: 600,
-              }}
-            >
+          <Box className="flex flex-col items-start gap-1">
+            <Typography variant="h6" sx={{ fontWeight: 800, fontSize: "1.1rem", color: "#222" }}>
               {review.name}
             </Typography>
-            <Box className="flex items-center gap-1">
-              <Rating
-                value={review.rating}
-                readOnly
-                size="small"
-                icon={
-                  <Star
-                    sx={{
-                      color: "#FFC107",
-                      fontSize: "1.2rem",
-                    }}
-                  />
-                }
-                emptyIcon={
-                  <Star
-                    sx={{
-                      color: "#E0E0E0",
-                      fontSize: "1.2rem",
-                    }}
-                  />
-                }
-              />
-              <Typography
+            <Rating
+              value={review.rating}
+              readOnly
+              size="small"
+              icon={<Star sx={{ color: "#FF8C00", fontSize: "1rem" }} />} // Themed stars
+            />
+            <Typography
                 variant="caption"
                 className="text-gray-600 ml-1"
                 sx={{ fontSize: "0.75rem" }}
               >
                 {review.date}
               </Typography>
-            </Box>
           </Box>
         </Box>
 
-        {/* Review Text */}
+        {/* Cleaner Typography Scale */}
         <Typography
-          variant="body2"
-          className="text-gray-700 leading-relaxed"
+          variant="body1"
           sx={{
-            fontSize: "0.9rem",
-            lineHeight: 1.6,
-            display: "-webkit-box",
-            WebkitLineClamp: 6,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
+            color: "#444",
+            fontStyle: "italic",
+            lineHeight: 1.8,
+            fontSize: "0.95rem",
+            position: "relative",
+            "&::before": {
+              content: '"\\201C"',
+              position: "absolute",
+              top: -20,
+              left: -10,
+              fontSize: "4rem",
+              color: "rgba(255, 140, 0, 0.1)", // Subtle orange quote
+              fontFamily: "serif"
+            }
           }}
         >
           {review.text}
         </Typography>
-
-        {/* Google Logo Badge */}
-        <Box className="mt-4 flex items-center justify-end">
-          <Box
-            className="flex items-center gap-1"
-            sx={{
-              opacity: 0.7,
+        <Box className="flex justify-end items-center justify-end">
+          <Box className="flex items-center justify-end"
+            sx={{ 
+              
+              
+              bg: "white", 
+              p: 1, 
+              borderRadius: "12px",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+              
+              gap: 0.5
             }}
           >
             <Image
               src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
-              alt="Google Logo"
-              width={20}
-              height={20}
+              alt="Google"
+              width={16}
+              height={16}
             />
-            <Typography
-              variant="caption"
-              className="text-gray-600"
-              sx={{
-                fontSize: "0.7rem",
-                fontWeight: 500,
-              }}
-            >
+            <Typography sx={{ fontSize: "10px", fontWeight: 500, color: "#777" }}>
               Google
             </Typography>
           </Box>
         </Box>
+
+        
+       
       </CardContent>
     </Card>
   );

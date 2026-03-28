@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, EffectCoverflow } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import { Box, useTheme, useMediaQuery } from "@mui/material";
 import ReviewCard from "./ReviewCard";
 import { reviews } from "@/data/reviews";
+import { Autoplay, Pagination, EffectCoverflow, Mousewheel, FreeMode } from "swiper/modules";
 
 export default function ReviewsCarousel() {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
@@ -43,7 +43,7 @@ export default function ReviewsCarousel() {
           "& .swiper-pagination-bullet": {
             width: "10px",
             height: "10px",
-            backgroundColor: "rgba(255,255,255,0.5)",
+            backgroundColor: "rgba(255, 255, 255, 1)",
             opacity: 1,
             transition: "all 0.3s ease",
             "&.swiper-pagination-bullet-active": {
@@ -57,12 +57,17 @@ export default function ReviewsCarousel() {
         <Swiper
           onSwiper={setSwiper}
           onSlideChange={handleSlideChange}
-          modules={[Autoplay, Pagination, EffectCoverflow]}
+          modules={[Autoplay, Pagination, EffectCoverflow, Mousewheel, FreeMode]}
           loop={true}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
+            pauseOnMouseEnter: true,
           }}
+          freeMode={true}
+  mousewheel={{ forceToAxis: true }}
+  grabCursor={true}
+  
           slidesPerView={isMobile ? 1 : isTablet ? 1.5 : 1.5}
           spaceBetween={isMobile ? 16 : 24}
           centeredSlides={true}
@@ -82,8 +87,8 @@ export default function ReviewsCarousel() {
               spaceBetween: 24,
             },
             1024: {
-              slidesPerView: 2.5,
-              spaceBetween: 24,
+              slidesPerView: 3,
+              spaceBetween: 30,
             },
           }}
           effect="coverflow"
@@ -96,7 +101,7 @@ export default function ReviewsCarousel() {
           }}
         >
           {reviews.map((review) => (
-            <SwiperSlide key={review.id}>
+            <SwiperSlide key={review.id} className="pt-4">
               <ReviewCard review={review} />
             </SwiperSlide>
           ))}

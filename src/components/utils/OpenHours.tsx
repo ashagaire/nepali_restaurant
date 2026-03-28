@@ -30,14 +30,14 @@ export default function OpeningHours() {
   ] as const;
 
   return (
-    <div className="space-y-3 max-w-sm  ">
+    <div className="space-y-0.5 max-w-sm  ">
       {days.map((day) => (
         <div
           key={day}
-          className={`flex justify-between border-1 border-orange-400 rounded-4xl px-4 py-1 text-gray-700 font-bold ${currentDay === day ? "bg-orange-300" : "bg-orange-50"}`}
+          className={`flex justify-between mx-8 md:mx-0 rounded-lg px-4 py-1 text-gray-700 font-bold ${currentDay === day ? "bg-orange-300" : ""}`}
         >
-          <span className="font-bold">{day}</span>
-          <span>
+          <span className=" font-bold">{day}</span>
+          <span className="justify-end">
             {hours[day].open} - {hours[day].close}
           </span>
         </div>

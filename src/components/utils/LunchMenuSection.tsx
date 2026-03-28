@@ -109,7 +109,7 @@ export default function LunchMenuSection() {
             >
               <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1742281257687-092746ad6021?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBsdW5jaCUyMGJ1ZmZldCUyMHRoYWxpfGVufDF8fHx8MTc3NDYyODc2MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  src="/images/buffet.jpg"
                   alt="Lunch Buffet"
                   className="w-full h-full object-cover"
                 />

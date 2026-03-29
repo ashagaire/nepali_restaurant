@@ -3,17 +3,25 @@
 import OpeningHours from "@/components/utils/OpenHours";
 import Link from "next/link";
 import { Layout, Button, Space } from "antd";
+import { Typography } from "@mui/material";
 
 export default function ContactPage() {
   return (
     <section className="py-12 bg-white container mx-auto max-w-7xl p-4 ">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
-        <p className="text-lg text-gray-600">We'd love to here from you</p>
+        <Typography
+              variant="h3"
+              align="center"
+              sx={{ fontWeight: 700, my:  2, fontSize: { xs: 30, md: 50, lg: 60 } }}
+            >
+              <span className="block text-transparent leading-tight bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
+                Contact Us
+              </span>
+            </Typography>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-12">
-        <div>
+      <div className="grid lg:grid-cols-5 md:gap-16 gap-8">
+        <div className="col-span-2">
           <div className="bg-gray-200 rounded-xl h-80 mb-6">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1984.4!2d24.9354!3d60.1699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNjDCsDEwJzExLjYiTiAyNMKwNTYnMDcuNCJF!5e0!3m2!1sen!2sfi!4v1"
@@ -30,8 +38,8 @@ export default function ContactPage() {
 
           <div className="space-y-4">
             <div>
-              <h3 className="font-semibold text-lg mb-2">Public Transport</h3>
-              <p className="text-gray-600">
+              <h3 className="font-semibold text-lg mb-2 text-orange-600">Public Transport</h3>
+              <p className="text-gray-800">
                 Tram 1, 2, 3 - Stop Fredrikinkatu. Metro - Kamppi Station (5 min
                 walk)
               </p>
@@ -40,16 +48,16 @@ export default function ContactPage() {
               href="https://maps.google.com/?q=Fredrikinkatu+42,+Helsinki"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-block px-4 py-2 bg-orange-400 text-white rounded-lg hover:bg-orange-500 transition-colors"
             >
               Get Directions
             </a>
           </div>
         </div>
-        <div className="space-y-8">
+        <div className="md:space-y-8 space-y-4 col-span-1">
           <div>
-            <h3 className="font-semibold text-lg mb-4">Address</h3>
-            <address className="not-italic text-gray-600">
+            <h3 className="font-semibold text-lg mb-4 text-orange-600">Address</h3>
+            <address className="not-italic text-gray-800">
               <p>Himalayan Kitchen</p>
               <p>Fredrikinkatu 42</p>
               <p>00100 Helsinki, Finland</p>
@@ -57,7 +65,7 @@ export default function ContactPage() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4">Phone</h3>
+            <h3 className="font-semibold text-lg mb-4 text-orange-600">Phone</h3>
             <a
               href="tel:+358401234567"
               className="text-red-700 hover:text-red-800 text-lg"
@@ -67,7 +75,7 @@ export default function ContactPage() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4">Email</h3>
+            <h3 className="font-semibold text-lg mb-4 text-orange-600">Email</h3>
             <a
               href="mailto:info@himalayankitchen.fi"
               className="text-red-700 hover:text-red-800"
@@ -90,11 +98,12 @@ export default function ContactPage() {
             </a>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-lg mb-4">Opening Hours</h3>
+          
+        </div>
+        <div className="col-span-2">
+            <h3 className="font-semibold text-lg mb-4 text-orange-600">Opening Hours</h3>
             <OpeningHours />
           </div>
-        </div>
       </div>
     </section>
   );

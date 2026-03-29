@@ -50,7 +50,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="py-12 bg-[#FFFBF7]">
+    <section className="py-12 bg-gradient-to-br from-yellow-50 to-orange-50">
       <div className="container mx-auto px-4 max-w-7xl">
         
         {/* Header - Balanced for all screens */}

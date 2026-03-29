@@ -10,8 +10,8 @@ export default async function Home() {
     <main className="lg:pb-12">
       <Hero />
       <LunchMenuSection />
-      <Services />
       <PopularDishes />
+      <Services />
       <GoogleReviews />
       <OpeningDetails />
     </main>

@@ -26,6 +26,24 @@ interface MenuItemCardProps {
   onDelete?: (id: string) => void;
 }
 
+function toDecimalNumber(value: unknown): number {
+  if (value == null) return 0;
+  if (typeof value === "number") return value;
+  if (typeof value === "string") {
+    const n = parseFloat(value);
+    return Number.isFinite(n) ? n : 0;
+  }
+  if (
+    typeof value === "object" &&
+    value !== null &&
+    "toNumber" in value &&
+    typeof (value as { toNumber: unknown }).toNumber === "function"
+  ) {
+    return (value as { toNumber: () => number }).toNumber();
+  }
+  return 0;
+}
+
 const MenuItemCard: React.FC<MenuItemCardProps> = ({
   item,
   showAdminActions,
@@ -33,11 +51,13 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
 }) => {
   const router = useRouter();
 
-  const hasDiscount = item.discount > 0;
-  const finalPrice = hasDiscount ? item.price - item.discount : item.price;
+  const price = toDecimalNumber(item.price);
+  const discount = toDecimalNumber(item.discount);
+  const hasDiscount = discount > 0;
+  const finalPrice = hasDiscount ? price - discount : price;
 
   return (
-    <div className=" flex bg-white rounded-2xl overflow-hidden border-2 border-orange-200 hover:border-orange-300 shadow-2xl hover:shadow-3xl hover:-translate-y-4 transition-all duration-300  ">
+    <div className=" flex bg-white rounded-2xl overflow-hidden border-2 border-orange-200 hover:border-orange-300 shadow-md hover:shadow-xl hover:-translate-y-4 transition-all duration-300  ">
       {/* LEFT SIDE — CONTENT */}
       <div className=" relative w-4/7 flex flex-col justify-between p-2 ">
         <div>

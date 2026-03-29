@@ -54,16 +54,16 @@ export default function LunchBuffetList() {
                     }}
                 >
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon sx={{ color: '#e31e24' }} />}
+                        expandIcon={<ExpandMoreIcon sx={{ color: '#f9962dff' }} />}
                         aria-controls={`panel-${dailyMenu.day}-content`}
                         id={`panel-${dailyMenu.day}-header`}
                         sx={{
-                            backgroundColor: expanded === `panel-${dailyMenu.day}` ? '#fbcfcfff' : '#ffedd5',
+                            backgroundColor: expanded === `panel-${dailyMenu.day}` ? '#f9b66fff' : '#f9d09bff',
                             transition: 'background-color 0.3s ease',
                             padding: { xs: '8px 16px', sm: '12px 24px' } // Responsive padding
                         }}
                     >
-                        <span className={`text-lg md:text-xl font-bold uppercase ${expanded === `panel-${dailyMenu.day}` ? 'text-[#e31e24]' : 'text-[#2c913f]'}`}>
+                        <span className={`text-lg md:text-xl font-bold uppercase ${expanded === `panel-${dailyMenu.day}` ? 'text-orange-500' : 'text-orange-500'}`}>
                             {dailyMenu.day}
                         </span>
                     </AccordionSummary>

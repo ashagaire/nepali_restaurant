@@ -34,7 +34,7 @@ export default function LunchMenuSection() {
             <div className="flex items-center justify-center gap-3 mb-4">
               <ChefHat className="w-10 h-10 text-orange-600" />
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
-                Today's Lunch Special
+                Today's Lunch <span className="text-orange-500">Special</span>
               </h2>
             </div>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">

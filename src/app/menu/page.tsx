@@ -3,6 +3,7 @@ import { useMenuItems } from "@/hooks/menu/useMenuItems";
 import MenuItemCard from "@/components/menu/MenuItemCard";
 import MenuSection from "@/components/menu/MenuSection";
 import SearchOptions from "@/components/menu/SearchOptions";
+import { Button, Typography } from "@mui/material";
 
 import LoadingMeanuSection from "@/components/Skeletons/loadingMenuSection";
 import { toast } from "react-toastify";
@@ -18,8 +19,16 @@ export default function Menu() {
     <section>
       <SearchOptions />
       <div className="bg-gray-50 rounded-md shadow-sm">
-        <div className="py-12 container mx-auto max-w-7xl p-4 ">
-          <h2 className="text-3xl font-bold mb-4 text-center">Our Menu</h2>
+        <div className="py-2 md:py-6 lg:py-12 container mx-auto max-w-7xl px-4 ">
+           <Typography
+              variant="h3"
+              align="center"
+              sx={{ fontWeight: 700, my:  2, fontSize: { xs: 30, md: 50, lg: 60 } }}
+            >
+              <span className="block text-transparent leading-tight bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
+                Our Menu
+              </span>
+            </Typography>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {menuItems.map((item) => (

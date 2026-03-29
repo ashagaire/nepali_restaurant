@@ -1,15 +1,23 @@
 "use client";
-
+import { Typography } from "@mui/material";
 export default function About() {
   return (
     <div className="py-12 ">
       <div className=" container mx-auto max-w-4xl p-4 ">
-        <h1 className="text-4xl font-bold text-center mb-12">About Us</h1>
+        <Typography
+              variant="h3"
+              align="center"
+              sx={{ fontWeight: 700, my:  2, fontSize: { xs: 30, md: 50, lg: 60 } }}
+            >
+              <span className="block text-transparent leading-tight bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
+                About Us
+              </span>
+            </Typography>
 
         <section className="mb-16">
-          <h2 className="text-2xl font-bold mb-6">Our Story</h2>
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className=" max-w-none text-gray-600 space-y-4">
+          <h2 className="md:text-4xl text-2xl font-bold mb-6 text-orange-500">Our Story</h2>
+          <div className="flex flex-col md:flex-row gap-4 justify-center">
+            <div className=" max-w-none text-gray-800 space-y-4 leading-relaxed">
               <p>
                 Fusion Nepal was founded with a simple dream, to bring the
                 authentic flavors of Nepal to the heart of Helsinki. Our journey
@@ -36,30 +44,30 @@ export default function About() {
                 flavorful dishes and exceptional customer service.
               </p>
             </div>
-            <img src="/images/chef.webp" alt="Chef" className="w-1/2 h-1/2" />
+            <img src="/images/chef.webp" alt="Chef" className=" max-h-96 p-4" />
           </div>
         </section>
 
         <section className="mb-16">
-          <h2 className="text-2xl font-bold mb-8 text-center">Our Values</h2>
+          <h2 className="md:text-4xl text-2xl font-bold mb-8 text-center text-orange-600">Our Values</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-red-200 rounded-xl">
+            <div className="text-center p-6 bg-orange-100 rounded-xl">
               <div className="text-4xl mb-4">🍛</div>
-              <h3 className="font-semibold text-lg mb-2">Authentic Recipes</h3>
+              <h3 className="font-semibold text-lg mb-2 text-orange-600">Authentic Recipes</h3>
               <p className="text-gray-600 text-sm">
                 Traditional recipes passed down through generations
               </p>
             </div>
             <div className="text-center p-6 bg-yellow-50 rounded-xl">
               <div className="text-4xl mb-4">🥬</div>
-              <h3 className="font-semibold text-lg mb-2">Fresh Ingredients</h3>
+              <h3 className="font-semibold text-lg mb-2 text-orange-600">Fresh Ingredients</h3>
               <p className="text-gray-600 text-sm">
                 Locally sourced produce with imported Nepali spices
               </p>
             </div>
             <div className="text-center p-6 bg-green-50 rounded-xl">
               <div className="text-4xl mb-4">🙏</div>
-              <h3 className="font-semibold text-lg mb-2">Warm Hospitality</h3>
+              <h3 className="font-semibold text-lg mb-2 text-orange-600">Warm Hospitality</h3>
               <p className="text-gray-600 text-sm">
                 The spirit of Nepali 'Atithi Devo Bhava' - Guest is God
               </p>
@@ -67,9 +75,9 @@ export default function About() {
           </div>
         </section>
 
-        <section className="bg-gray-100 rounded-2xl p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Welcome!</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+        <section className="bg-orange-200 rounded-2xl p-8 text-center">
+          <h2 className="text-2xl font-bold mb-4 text-orange-600">Welcome!</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto ">
             We look forward to serving you and sharing the flavors of Nepal with
             you.
           </p>

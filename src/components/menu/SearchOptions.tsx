@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTags } from "@/hooks/menu/useTags";
 import { toast } from "react-toastify";
-import { ToggleButton, ToggleButtonGroup, Chip, Button } from "@mui/material";
+import { ToggleButton, ToggleButtonGroup, Chip, Button, Typography } from "@mui/material";
 
 export default function SearchOptions() {
   const [categories, setCategories] = useState<string[]>([]);
@@ -32,10 +32,16 @@ export default function SearchOptions() {
   return (
     <section className=" bg-gray-100">
       <div className="py-8 container mx-auto max-w-7xl p-4 ">
-        <h2 className="text-3xl font-bold pt-4 text-center">Find Menu</h2>
-        <p className="text-xl text-gray-600 mb-4 text-center">
-          Explore our selection of authentic Nepali dishes
-        </p>
+        <Typography
+              variant="h3"
+              align="center"
+              sx={{ fontWeight: 700, my:  2, fontSize: { xs: 30, md: 50, lg: 60 } }}
+            >
+              <span className="block text-transparent leading-tight bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
+                Find Menu
+              </span>
+            </Typography>
+        
         <div className="  flex flex-col  gap-2 mt-2 jystify-center items-center text-red-400">
           <div className="pb-4">
             <ToggleButtonGroup

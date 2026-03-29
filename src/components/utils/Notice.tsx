@@ -9,14 +9,14 @@ export function ImportantNotice() {
         <div className="">
           {/* Header */}
           <div className="flex items-center gap-3 mb-6">
-            <AlertCircle className="w-8 h-8 text-red-600 flex-shrink-0" />
+            <AlertCircle className="w-8 h-8 text-orange-600 flex-shrink-0" />
             <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">
               IMPORTANT NOTICE TO THE CUSTOMER
             </h2>
           </div>
 
           {/* Main Alert Message */}
-          <div className="bg-red-100 border-l-4 border-red-600 p-6 mb-8 rounded-r-lg shadow-sm">
+          <div className="bg-orange-100 border-l-4 border-orange-600 p-6 mb-8 rounded-r-lg shadow-sm">
             <p className="text-lg font-semibold text-gray-900 mb-2">
               HUOM! Älä unohda kysyä jos sinulla minkäänlaisia allergioita yrteista ja mausteista…
             </p>

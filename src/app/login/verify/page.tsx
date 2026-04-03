@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Card, Form, Input, Button } from "antd";
 import { toast } from "react-toastify";
 
-export default function VerifyOtpPage() {
+function VerifyContent() {
   const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -43,7 +43,11 @@ export default function VerifyOtpPage() {
   return (
     <main style={{ padding: "2rem" }}>
       <Card title="Enter OTP" style={{ maxWidth: 420, margin: "40px auto" }}>
-        <Form layout="vertical" onFinish={onFinish} initialValues={{ email: emailParam }}>
+        <Form
+          layout="vertical"
+          onFinish={onFinish}
+          initialValues={{ email: emailParam }}
+        >
           <Form.Item label="Email" name="email">
             <Input defaultValue={emailParam} disabled />
           </Form.Item>
@@ -62,5 +66,13 @@ export default function VerifyOtpPage() {
         </Form>
       </Card>
     </main>
+  );
+}
+
+export default function VerifyOtpPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <VerifyContent />
+    </Suspense>
   );
 }

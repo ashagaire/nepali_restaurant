@@ -1,24 +1,22 @@
 import type { NextConfig } from "next";
 
-const nextConfig: any = {
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'wolt.com',
+        protocol: "https",
+        hostname: "wolt.com",
       },
       {
-        protocol: 'https',
-        hostname: 'www.foodora.fi',
+        protocol: "https",
+        hostname: "www.foodora.fi",
       },
     ],
   },
+  // Add these two sections below to fix the Vercel Build hang:
   typescript: {
+    // This allows the build to finish even if there are type errors
     ignoreBuildErrors: true,
-  },
-  eslint: {
-    // This prevents the build from failing due to linting warnings/errors
-    ignoreDuringBuilds: true,
   },
 };
 

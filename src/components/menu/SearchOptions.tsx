@@ -30,20 +30,22 @@ export default function SearchOptions() {
   };
 
   return (
-    <section className=" bg-gray-100">
-      <div className="py-8 container mx-auto max-w-7xl p-4 ">
+    <section className="text-center   pt-6 md:pt-12 left-0 right-0 w-full z-40 bg-white border-b border-gray-200 shadow-sm ">
+      <div className="container mx-auto max-w-7xl px-4 ">
         <Typography
               variant="h3"
               align="center"
-              sx={{ fontWeight: 700, my:  2, fontSize: { xs: 30, md: 50, lg: 60 } }}
+              sx={{ fontWeight: 700, my:  2, fontSize: { xs: 30, sm: 45, md: 50 } }}
             >
               <span className="block text-transparent leading-tight bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
                 Find Menu
               </span>
+              <div className="w-50 mx-auto border-b border-2 border-orange-200"></div>
             </Typography>
+            
         
-        <div className="  flex flex-col  gap-2 mt-2 jystify-center items-center text-red-400">
-          <div className="pb-4">
+        <div className="  flex flex-col  gap-2 mt-2 jystify-center items-center text-red-400 ">
+          {/* <div className="pb-4">
             <ToggleButtonGroup
               value={categories}
               onChange={handleCategories}
@@ -86,7 +88,7 @@ export default function SearchOptions() {
                 Dessert
               </ToggleButton>
             </ToggleButtonGroup>
-          </div>
+          </div> */}
 
           <div className="pb-4 ">
             {tags.length > 0 && (

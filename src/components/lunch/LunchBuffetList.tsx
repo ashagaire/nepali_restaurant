@@ -38,7 +38,7 @@ export default function LunchBuffetList() {
     };
 
     return (
-        <div className="container mx-auto px-4 max-w-4xl space-y-4">
+        <div className="container mx-auto px-4 md:px-8 max-w-4xl space-y-4">
             {lunchMenuData.map((dailyMenu) => (
                 <Accordion
                     key={dailyMenu.day}
@@ -46,7 +46,7 @@ export default function LunchBuffetList() {
                     onChange={handleChange(`panel-${dailyMenu.day}`)}
                     sx={{
                         boxShadow: 'none',
-                        border: '1px solid #fdba74',
+                        border: '1px solid #f9c78cff',
                         borderRadius: '8px !important',
                         '&:before': { display: 'none' },
                         overflow: 'hidden',
@@ -54,16 +54,16 @@ export default function LunchBuffetList() {
                     }}
                 >
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon sx={{ color: '#f9962dff' }} />}
+                        expandIcon={<ExpandMoreIcon sx={{ color: '#faf8f7ff', fontSize: 30 }} />}
                         aria-controls={`panel-${dailyMenu.day}-content`}
                         id={`panel-${dailyMenu.day}-header`}
                         sx={{
-                            backgroundColor: expanded === `panel-${dailyMenu.day}` ? '#f9b66fff' : '#f9d09bff',
+                            backgroundColor: expanded === `panel-${dailyMenu.day}` ? '#f7a745ff' : '#f7a745ff',
                             transition: 'background-color 0.3s ease',
-                            padding: { xs: '8px 16px', sm: '12px 24px' } // Responsive padding
+                            padding: { xs: '8px 16px', sm: '6px 24px' } // Responsive padding
                         }}
                     >
-                        <span className={`text-lg md:text-xl font-bold uppercase ${expanded === `panel-${dailyMenu.day}` ? 'text-orange-500' : 'text-orange-500'}`}>
+                        <span className={`text-lg md:text-xl font-bold uppercase ${expanded === `panel-${dailyMenu.day}` ? 'text-white' : 'text-white'}`}>
                             {dailyMenu.day}
                         </span>
                     </AccordionSummary>

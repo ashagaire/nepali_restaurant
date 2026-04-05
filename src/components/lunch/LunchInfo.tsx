@@ -4,13 +4,13 @@ import { Button, Typography } from "@mui/material";
 
 export default function LunchInfo() {
     return (
-        <div className="container mx-auto px-4 max-w-4xl pt-12">
+        <div className="container mx-auto px-4 md:px-8 max-w-4xl pt-6 md:pt-12">
             {/* Creative Info Div & Heading */}
             <div>
                 <Typography
               variant="h3"
               align="center"
-              sx={{ fontWeight: 700, my:  2, fontSize: { xs: 30, md: 50, lg: 60 } }}
+              sx={{ fontWeight: 700, my:  2, fontSize: {  xs: 30, sm: 45, md: 50 } }}
             >
               <span className="block text-transparent leading-tight bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
                 Lunch Special
@@ -19,7 +19,7 @@ export default function LunchInfo() {
                 
             </div>
 
-            <div className="mb-6 md:mb-10 p-4 md:p-6 md:p-4 bg-gradient-to-br from-green-50 to-emerald-100/50 rounded-2xl shadow-sm border border-green-100 relative overflow-hidden">
+            <div className="mb-6 md:mb-6 p-4 md:p-6 md:p-4 bg-gradient-to-r from-orange-100 to-green-50 rounded-2xl shadow-sm border border-green-100 relative overflow-hidden">
                 <div className="absolute -top-4 -right-2 p-4 opacity-10 pointer-events-none">
                     <FaLeaf size={120} className="text-green-600" />
                 </div>
@@ -37,7 +37,7 @@ export default function LunchInfo() {
                     </div>
                     
                     <div className="text-left">
-                        <p className="text-gray-700 leading-relaxed mb-4 text-base md:text-lg">
+                        <p className="text-gray-700 leading-relaxed italic mb-4 text-base md:text-lg">
                             All our food items are prepared with <strong>fresh, high-quality ingredients</strong>. 
                             <br/>
                             Lunch buffet includes a rich <strong>salad bar, daily soup, naan bread, 

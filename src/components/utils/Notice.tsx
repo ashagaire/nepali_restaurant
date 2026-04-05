@@ -4,8 +4,8 @@ import { FaLeaf } from "react-icons/fa";
 
 export function ImportantNotice() {
   return (
-    <section className=" bg-gradient-to-r from-red-50 via-orange-50 to-yellow-50 border-t-2 border-orange-500 py-12 mt-12">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <section className=" bg-gradient-to-r from-red-50 via-orange-50 to-yellow-50 border-t-2 border-orange-500 py-12  mt-12">
+      <div className="container mx-auto px-4 md:px-8 max-w-4xl">
         <div className="">
           {/* Header */}
           <div className="flex items-center gap-3 mb-6">

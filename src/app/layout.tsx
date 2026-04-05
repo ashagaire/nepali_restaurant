@@ -31,14 +31,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={twinkleStar.className}>
+    <html lang="en" className={`${twinkleStar.className} scroll-smooth`}>
       <body
         className={`${geistSans.variable} ${geistMono.variable}  antialiased`}
       >
         <ThemeProviderClient>
           <AuthProvider>
             <Navbar />
-            <main className="pt-14 md:pt-16 lg:pt-16 overflow-x-hidden">
+            <main className="pt-12 md:pt-12  overflow-x-clip">
               {children}
             </main>
             <Footer />

@@ -18,19 +18,9 @@ export default function Menu() {
   return (
     <section>
       <SearchOptions />
-      <div className="bg-gray-50 rounded-md shadow-sm">
-        <div className="py-2 md:py-6 lg:py-12 container mx-auto max-w-7xl px-4 ">
-           <Typography
-              variant="h3"
-              align="center"
-              sx={{ fontWeight: 700, my:  2, fontSize: { xs: 30, md: 50, lg: 60 } }}
-            >
-              <span className="block text-transparent leading-tight bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
-                Our Menu
-              </span>
-            </Typography>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className=" rounded-md shadow-sm ">
+        <div className="py-6 container mx-auto max-w-7xl px-4  ">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
             {menuItems.map((item) => (
               <MenuItemCard key={item.id} item={item} />
             ))}

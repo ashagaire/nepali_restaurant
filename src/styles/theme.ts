@@ -10,13 +10,14 @@ const theme = createTheme({
     // },
 
     text: {
-      primary: "#c2410c", // #c2410c
-      secondary: "#fdba74", // #fdba74
+      // primary: "#c2410c", // #c2410c
+      // secondary: "#fdba74", // #fdba74
     },
 
     primary: {
       main: "#c2410c", // #c2410c
       dark: "#9a3412", // #9a3412
+      light: "#f97316",
       contrastText: "#ffffff",
     },
 
@@ -127,6 +128,34 @@ const theme = createTheme({
     MuiTextField: {
       defaultProps: {
         variant: "outlined",
+        size: "small",
+      },
+    },
+
+    MuiFormControl: {
+      defaultProps: {
+        size: "small",
+      },
+    },
+
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "rgba(0, 0, 0, 0.23)",
+            borderWidth: "2px",
+          },
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          "&.Mui-focused": {
+            color: "rgba(0, 0, 0, 0.6)",
+          },
+        },
       },
     },
 

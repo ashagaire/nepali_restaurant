@@ -5,7 +5,7 @@ export default function AlacartePage() {
   return (
     <section className="">
       {/* Fixed Output Title Header */}
-      <div className="text-center fixed   pt-6 md:pt-12 left-0 right-0 w-full z-40 bg-white/100 border-b border-gray-200 shadow-sm xl:border-none xl:shadow-none">
+      <div className="text-center fixed   pt-6 md:pt-12 left-0 right-0 w-full z-40 bg-white/100 xl:border-none xl:shadow-none">
        <Typography
               variant="h3"
               align="center"
@@ -19,7 +19,7 @@ export default function AlacartePage() {
       </div>
       
       {/* Provide padding compensation so regular components do not overlap with new fixed header */}
-      <div className="container mx-auto max-w-7xl p-4 pt-20 md:pt-24 xl:pt-32">
+      <div className="container mx-auto max-w-7xl p-4 pt-24 md:pt-24 xl:pt-32">
         <Alacarte />
       </div>
     </section>

@@ -51,15 +51,24 @@ export default function Alacarte() {
   return (
     <div className="w-full flex flex-col lg:flex-row gap-8 lg:gap-12 relative items-start bg-white pt-[80px]  xl:pt-0">
       {/* Mobile Sticky Nav */}
-      <nav className="xl:hidden fixed top-[140px] md:top-[180px] lg:top-[180px] left-0 w-full z-20 bg-white py-2 md:py-4 px-2  md:px-4 border-b border-gray-100 md:overflow-x-auto md:whitespace-nowrap [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] shadow-sm">
+      <nav className="xl:hidden fixed top-[140px] md:top-[180px] lg:top-[180px] left-0 w-full z-20 bg-white py-2 md:py-4 px-6  md:px-4 md:overflow-x-auto md:whitespace-nowrap [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
         <ul className="grid grid-cols-3 gap-2 sm:gap-3 md:flex md:items-center md:justify-center md:space-x-6 mt-2">
           {menuData.sections.map((s) => {
             const sectionId = s.name.replace(/\s+/g, '-').toLowerCase();
             const isActive = activeSection === sectionId;
             return (
-              <li key={s.name} className="flex justify-center items-center text-center ">
-                <a href={`#${sectionId}`} className={`text-[10px] sm:text-[11px] md:text-sm lg:text-base font-semibold tracking-wider uppercase leading-tight ${isActive ? 'text-orange-600' : 'text-gray-600 hover:text-orange-600'}`}>
-                  {s.name}
+              <li key={s.name} className="w-full">
+                <a 
+                  href={`#${sectionId}`} 
+                //  className={`text-[10px] sm:text-[11px] md:text-sm lg:text-base font-semibold tracking-wider uppercase leading-tight ${isActive ? 'text-orange-600' : 'text-gray-600 hover:text-orange-600'}`}>
+
+                  className={`flex justify-center items-center text-center w-full px-1 py-1.5 sm:py-2.5 md:px-5 md:py-2.5 rounded-md border-b text-[10px] sm:text-[11px] md:text-xs font-medium tracking-wider uppercase transition-all duration-300 ${
+                    isActive 
+                      ? 'bg-orange-50 border-orange-400 text-orange-600 shadow-[0_2px_10px_-3px_rgba(234,88,12,0.3)]' 
+                      : 'bg-white border-gray-200 text-gray-500 hover:border-orange-300 hover:text-orange-600 hover:bg-orange-50/30 hover:shadow-sm'
+                  }`}
+                >
+                  <span className="truncate">{s.name}</span>
                 </a>
               </li>
             );
@@ -95,10 +104,10 @@ export default function Alacarte() {
             <section 
               key={section.name} 
               id={sectionId}
-              className="mb-16 scroll-mt-[190px] md:scroll-mt-[235px] lg:scroll-mt-[240px] xl:scroll-mt-[170px]"
+              className="mb-16 scroll-mt-[220px] md:scroll-mt-[235px] lg:scroll-mt-[240px] xl:scroll-mt-[170px]"
             >
               {/* Section Header */}
-              <div className="sticky top-[190px] md:top-[235px] lg:top-[240px] xl:top-[170px] z-10 bg-white py-4 lg:py-8  flex flex-col items-center">
+              <div className="sticky top-[220px] md:top-[235px] lg:top-[240px] xl:top-[170px] z-10 bg-white py-4 lg:py-8  flex flex-col items-center">
                 <h2 className="text-2xl md:text-3xl font-serif font-light tracking-[0.1em] text-gray-950 uppercase text-center xl:mr-32 ">
                   {section.name}
                 </h2>
@@ -123,20 +132,20 @@ export default function Alacarte() {
                       <div className={`
                         ${currentImage ? "md:col-span-6" : "md:col-span-12"} 
                         ${currentImage && isImageLeft ? "md:order-2" : "md:order-1"}
-                        space-y-12
+                        space-y-8 lg:space-y-10
                       `}>
                         {group.map((item: any) => (
                           <div key={item.name} className="group">
                             <div className="flex justify-between items-baseline">
-                              <h3 className="text-2xl font-serif italic text-gray-900 group-hover:text-orange-600 transition-colors duration-300">
+                              <h3 className="text-lg lg:text-xl xl:text-2xl font-serif italic text-gray-900 group-hover:text-orange-600 transition-colors duration-300">
                                 {item.name.split('(')[0].trim()}
                               </h3>
                               <div className="flex-1 border-b border-gray-100 mx-4 h-px" />
-                              <span className="text-xl font-light text-gray-500 tabular-nums">{item.price}</span>
+                              <span className="text-lg lg:text-xl xl:text-2xl font-light text-gray-500 tabular-nums">{item.price}</span>
                             </div>
                             
                             {/* Minimalist Tags */}
-                            <div className="flex flex-wrap gap-4 mb-4">
+                            <div className="flex flex-wrap gap-4 mb-2">
                               {extractTags(item.name).map((tag) => (
                                 <span key={tag} className="text-[11px] font-bold tracking-widest text-orange-600 border-b border-orange-200 uppercase">
                                   {tag}
@@ -144,7 +153,7 @@ export default function Alacarte() {
                               ))}
                             </div>
                             
-                            <p className="text-gray-600 font-light text-lg leading-relaxed md:max-w-[85%]">
+                            <p className="text-gray-600 font-light text-sm lg:text-base xl:text-lg leading-relaxed md:max-w-[85%] ">
                               {item.desc_en}
                             </p>
                           </div>

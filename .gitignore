@@ -45,3 +45,5 @@ src/lib/generated/prisma
 
 .vercel
 .env*.local
+
+gettingStarted.txt

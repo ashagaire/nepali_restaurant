@@ -1,58 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍽️ Nepali Restaurant Web Application
 
-## Getting Started
+This is a comprehensive, full-stack restaurant web application customized to deliver a seamless experience for both restaurant customers and administrators.
 
-## installation
+## ✨ Features
 
-```bash
-npm install
-```
+### For Customers (User-Facing)
+- **Lunch Menus:** A dedicated, visually appealing page for users to browse specific daily or lunch menus.
+- **Online Ordering:** Integrated functionality allowing users to explore and place orders directly from the menu.
+- **Table Reservations:** A complete *a la carte* table reservation system for users to conveniently book their dining experience online.
 
-## Database setup
+### For Restaurant Owners (Admin Panel)
+- **Secure Access:** Secure admin portal protected by **Email Authentication**.
+- **Menu Management (CRUD):** Full Create, Read, Update, and Delete functionality enabling the admin to easily add new menu items, update prices, and manage other related application data.
+- **Data Operations:** Streamlined data flow allowing the owner to track menu updates and operations.
 
-```bash
-npx prisma generate
+## 🛠️ Tech Stack & Tools
 
-# Run ONLY when change in schema.prisma
-npx prisma format
-npx prisma validate
-npx prisma migrate dev
-npx prisma generate
+This application is built utilizing modern, efficient web technologies focusing on performance and clean architecture:
 
-# Reseting datbase
-Remove-Item -Recurse -Force prisma\migrations
-npx prisma migrate reset --skip-seed
-npx prisma migrate dev
-npx prisma generate
+### Core Stack
+- **Frontend Core:** **React**, utilizing custom React Hooks for efficient logic encapsulation and state management.
+- **Full-Stack Framework:** **Next.js** handling server-side rendering, routing, and the overall base.
+- **Language:** **TypeScript** used throughout for static typing, robust code quality, and maintainability.
 
-# Only when data has to be seeded
+### Backend & Database
+- **Database:** **PostgreSQL**, a robust relational database ensuring data reliability and seamless relations.
+- **ORM:** **Prisma**, providing type-safe database queries, simple migrations, and a clean schema management experience.
+- **API Architecture:** Custom-built internal APIs focused on secure and efficient data extraction between the React frontend and the PostgreSQL database.
 
+---
 
-npx prisma db seed
-
-```
-
-## Run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.

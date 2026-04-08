@@ -12,9 +12,15 @@ import { toast } from "react-toastify";
 export default function Menu() {
   const [page, setPage] = useState(1);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const limit = 12;
 
-  const { menuItems, total, totalPages, loading, error, reload } = useMenuItems({ page, limit, tags: selectedTags });
+  const { menuItems, total, totalPages, loading, error, reload } = useMenuItems({ 
+    page, 
+    limit, 
+    tags: selectedTags,
+    categories: selectedCategories 
+  });
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -32,6 +38,19 @@ export default function Menu() {
 
   const handleClearTags = () => {
     setSelectedTags([]);
+    setPage(1);
+  };
+
+  const handleCategoryToggle = (categoryId: string) => {
+    setSelectedCategories((prev) => {
+      const newCats = prev.includes(categoryId) ? prev.filter((c) => c !== categoryId) : [...prev, categoryId];
+      setPage(1);
+      return newCats;
+    });
+  };
+
+  const handleClearCategories = () => {
+    setSelectedCategories([]);
     setPage(1);
   };
 
@@ -60,7 +79,9 @@ export default function Menu() {
       <SearchOptions 
         selectedTags={selectedTags} 
         onTagToggle={handleTagToggle} 
-        onClearTags={handleClearTags} 
+        selectedCategories={selectedCategories}
+        onCategoryToggle={handleCategoryToggle}
+        onClearCategories={handleClearCategories}
       />
 
       <div className="rounded-md shadow-sm relative">

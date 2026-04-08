@@ -57,7 +57,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
   const finalPrice = hasDiscount ? price - discount : price;
 
   return (
-    <div className=" flex bg-white rounded-2xl overflow-hidden border-2 border-orange-200 hover:border-orange-300 shadow-md hover:shadow-xl hover:-translate-y-4 transition-all duration-300  ">
+    <div className=" flex bg-white rounded-xl overflow-hidden border-2 border-orange-200 hover:border-orange-300 shadow-md hover:shadow-xl hover:-translate-y-4 transition-all duration-300  ">
       {/* LEFT SIDE — CONTENT */}
       <div className=" relative w-4/7 flex flex-col justify-between p-2 ">
         <div>

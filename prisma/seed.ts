@@ -15,11 +15,15 @@ async function main() {
   // 2. Setup Categories
   const categoriesData = [
     { nameEn: "Starters", nameFi: "Alkuruoat", order: 1 },
-    { nameEn: "Vegetarian Dishes", nameFi: "Kasvisruoat", order: 2 },
-    { nameEn: "Chicken Dishes", nameFi: "Kanaruoat", order: 3 },
-    { nameEn: "Lamb Dishes", nameFi: "Lammasruoat", order: 4 },
-    { nameEn: "Fish & Seafood", nameFi: "Kala- ja äyriäisruoat", order: 5 },
-    { nameEn: "Tandoori & Grill", nameFi: "Tandoori ja Grilli", order: 6 },
+    { nameEn: "Soups", nameFi: "Keitot", order: 2 },
+    { nameEn: "Salads", nameFi: "Salaatit", order: 3 },
+    { nameEn: "Kids Menu", nameFi: "Lasten Menu", order: 4 },
+    { nameEn: "Main Courses", nameFi: "Pääruoat", order: 5 },
+    { nameEn: "Vegetarian Dishes", nameFi: "Kasvisruoat", order: 6 },
+    { nameEn: "Chicken Dishes", nameFi: "Kanaruoat", order: 7 },
+    { nameEn: "Lamb Dishes", nameFi: "Lammasruoat", order: 8 },
+    { nameEn: "Fish & Seafood", nameFi: "Kala- ja äyriäisruoat", order: 9 },
+    { nameEn: "Tandoori & Grill", nameFi: "Tandoori ja Grilli", order: 9 },
     { nameEn: "Breads", nameFi: "Leivät", order: 7 },
     { nameEn: "Desserts", nameFi: "Jälkiruoat", order: 8 },
   ];
@@ -39,6 +43,7 @@ async function main() {
     { nameEn: "Gluten-free", nameFi: "Gluteeniton", symbol: "G" },
     { nameEn: "Lactose-free", nameFi: "Laktoositon", symbol: "L" },
     { nameEn: "Vegan", nameFi: "Vegaani", symbol: "V" },
+    { nameEn: "Spicy", nameFi: "Tulinen", symbol: "SP" },
   ];
 
   for (const tag of tagsData) {

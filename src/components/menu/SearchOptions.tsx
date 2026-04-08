@@ -2,33 +2,45 @@
 
 import { useState } from "react";
 import { useTags } from "@/hooks/menu/useTags";
+import { useCategories } from "@/hooks/menu/useCategories";
 import { toast } from "react-toastify";
-import { ToggleButton, ToggleButtonGroup, Chip, Button, Typography } from "@mui/material";
+import { Chip, Typography, useMediaQuery, useTheme, Button } from "@mui/material";
 
 interface SearchOptionsProps {
   selectedTags: string[];
   onTagToggle: (tagId: string) => void;
-  onClearTags: () => void;
+  selectedCategories: string[];
+  onCategoryToggle: (categoryId: string) => void;
+  onClearCategories: () => void;
 }
 
-export default function SearchOptions({ selectedTags, onTagToggle, onClearTags }: SearchOptionsProps) {
-  const [categories, setCategories] = useState<string[]>([]);
+export default function SearchOptions({
+  selectedTags,
+  onTagToggle,
+  selectedCategories,
+  onCategoryToggle,
+  onClearCategories,
+}: SearchOptionsProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const { data: tags, loading, create, remove, error } = useTags();
-  if (loading) return <p> loading Tags </p>;
-  if (error) {
-    toast.error(error);
-    return <p className="text-red-500">{error}</p>;
+  const { data: tags, loading: tagsLoading, error: tagsError } = useTags();
+  const { data: categories, loading: categoriesLoading, error: categoriesError } = useCategories();
+
+  const displayedCategories = (isSmallScreen && !isExpanded) 
+    ? categories.slice(0, 5) 
+    : categories;
+
+  const hasMoreCategories = categories.length > 5;
+
+  if (tagsLoading || categoriesLoading) return <p className="text-center py-4">Loading options...</p>;
+  
+  if (tagsError || categoriesError) {
+    const errorMsg = tagsError || categoriesError;
+    toast.error(errorMsg);
+    return <p className="text-red-500 text-center py-4">{errorMsg}</p>;
   }
-
-  const handleCategories = (
-    _event: React.MouseEvent<HTMLElement>,
-    newCategories: string[] | null,
-  ) => {
-    setCategories(newCategories ?? []);
-  };
-
-  // The parent handles tag toggling now
 
   return (
     <section className="mt-6 lg:mt-12">
@@ -36,85 +48,88 @@ export default function SearchOptions({ selectedTags, onTagToggle, onClearTags }
         
             
         
-        <div className="  flex flex-col  gap-2 mt-2 jystify-center items-center text-red-400 ">
-          {/* <div className="pb-4">
-            <ToggleButtonGroup
-              value={categories}
-              onChange={handleCategories}
-              aria-label="categories"
-              exclusive
-              size="small"
-              sx={{
-                backgroundColor: "background.paper",
-                borderRadius: "12px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                "& .MuiToggleButton-root": {
-                  border: "none",
-                  borderRadius: "10px",
-                  px: 2,
-                  py: 0.75,
-                  textTransform: "none",
-                  fontWeight: 500,
-                  fontSize: "0.875rem",
-                  color: "text.secondary",
-                  "&.Mui-selected": {
-                    backgroundColor: "primary.main",
-                    color: "white",
-                    "&:hover": {
-                      backgroundColor: "primary.dark",
-                    },
-                  },
-                  "&:hover": {
-                    backgroundColor: "action.hover",
-                  },
-                },
-              }}
-            >
-              <ToggleButton value="Appetizer" aria-label="Appetizer">
-                Appetizer
-              </ToggleButton>
-              <ToggleButton value="MainCourse" aria-label="MainCourse">
-                Main Course
-              </ToggleButton>
-              <ToggleButton value="Dessert" aria-label="Dessert">
-                Dessert
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </div> */}
-
-          <div className="pb-4 ">
-            {tags.length > 0 && (
-              <div>
-                <div className={`flex flex-wrap gap-2 mb-0}`}>
+        <div className="flex flex-col gap-6 mt-2 justify-center items-center">
+          {/* Categories Section */}
+          <div className="w-full">
+            <div className="hidden lg:flex">
+            <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 1.5, fontWeight: 600, textAlign: 'left' }}>
+              Select From
+            </Typography>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={onClearCategories}
+                className={`flex justify-center items-center text-center px-4 py-1.5 sm:py-2 md:px-5 md:py-2.5 rounded-md border-b text-[10px] sm:text-[11px] md:text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
+                  selectedCategories.length === 0
+                    ? "bg-orange-200 border-orange-400 text-orange-600 shadow-[0_2px_10px_-3px_rgba(234,88,12,0.3)]"
+                    : "bg-white border-transparent text-gray-500 hover:bg-gray-50 hover:text-orange-600"
+                }`}
+              >
+                All
+              </button>
+              {displayedCategories.map((category) => {
+                const isSelected = selectedCategories.includes(category.id);
+                return (
                   <button
-                    onClick={onClearTags}
-                    className={`px-4 py-1 rounded-full text-sm font-medium transition-colors ${
-                      selectedTags.length === 0
-                        ? "bg-blue-600 text-white hover:bg-blue-700"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    key={category.id}
+                    onClick={() => onCategoryToggle(category.id)}
+                    className={`flex justify-center items-center text-center px-2 py-1 sm:py-2 md:px-5 md:py-2.5 rounded-md border-b text-[10px] sm:text-[11px] md:text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
+                      isSelected
+                        ? "bg-orange-200 border-orange-400 text-orange-600 shadow-[0_2px_10px_-3px_rgba(234,88,12,0.3)]"
+                        : "bg-orange-50 border-orange-400 text-gray-500 hover:bg-gray-50 hover:text-orange-600"
                     }`}
                   >
-                    All
+                    {category.nameEn}
                   </button>
-                  {tags.map((tag) => {
-                    const isSelected = selectedTags.includes(tag.id);
-                    return (
-                      <Chip
-                        key={tag.id}
-                        label={tag.nameEn}
-                        onClick={() => onTagToggle(tag.id)}
-                        color={isSelected ? "primary" : "default"}
-                        variant={isSelected ? "filled" : "outlined"}
-                        size="medium"
-                        clickable
-                        className={"font-medium rounded-md"}
-                      />
-                    );
-                  })}
-                  
-                </div>
-              </div>
-            )}
+                );
+              })}
+              
+              {isSmallScreen && hasMoreCategories && (
+                <Button 
+                  size="small" 
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  sx={{ 
+                    textTransform: 'none', 
+                    fontWeight: 600,
+                    color: 'primary.main',
+                    minWidth: 'auto',
+                    ml: 1,
+                    p:0
+                  }}
+                >
+                  {isExpanded ? "Show Less" : "More..."}
+                </Button>
+              )}
+            </div>
+          </div>
+
+          {/* Tags Section */}
+          <div className="w-full">
+            
+            <div className="flex flex-wrap  gap-2">
+              {tags.map((tag) => {
+                const isSelected = selectedTags.includes(tag.id);
+                return (
+                  <Chip
+                    key={tag.id}
+                    label={tag.symbol}
+                    onClick={() => onTagToggle(tag.id)}
+                    variant="filled"
+                    size="small"
+                    clickable
+                    sx={{
+                      fontWeight: 500,
+                      borderRadius: "6px",
+                      px: { xs: 0, lg: 1 },
+                      py: { xs: 0, lg: 2 },
+
+                      bgcolor: isSelected ? "#fed7aa" : "#ffedd5",
+                      color: isSelected ? "#c2410c" : "#6b7280",
+                    }}
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

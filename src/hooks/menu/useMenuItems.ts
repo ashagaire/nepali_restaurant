@@ -5,17 +5,19 @@ interface UseMenuItemsProps {
   page?: number;
   limit?: number;
   tags?: string[];
+  categories?: string[];
 }
 
-export function useMenuItems({ page, limit, tags }: UseMenuItemsProps = {}) {
+export function useMenuItems({ page, limit, tags, categories }: UseMenuItemsProps = {}) {
   const [menuItems, setMenuItems] = useState<MenuItemWithRelations[]>([]);
   const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Stringify tags to use in dependency array
+  // Stringify tags and categories to use in dependency array
   const tagsStr = JSON.stringify(tags || []);
+  const categoriesStr = JSON.stringify(categories || []);
 
   const loadItems = useCallback(async () => {
     setLoading(true);
@@ -24,6 +26,7 @@ export function useMenuItems({ page, limit, tags }: UseMenuItemsProps = {}) {
       if (page) params.append("page", page.toString());
       if (limit) params.append("limit", limit.toString());
       if (tags && tags.length > 0) params.append("tags", tags.join(","));
+      if (categories && categories.length > 0) params.append("categories", categories.join(","));
 
       const qs = params.toString();
       const url = qs ? `/api/menu?${qs}` : "/api/menu";
@@ -39,7 +42,7 @@ export function useMenuItems({ page, limit, tags }: UseMenuItemsProps = {}) {
     } finally {
       setLoading(false);
     }
-  }, [page, limit, tagsStr]);
+  }, [page, limit, tagsStr, categoriesStr]);
 
   useEffect(() => {
     loadItems();

@@ -60,8 +60,6 @@ export default function Alacarte() {
               <li key={s.name} className="w-full">
                 <a 
                   href={`#${sectionId}`} 
-                //  className={`text-[10px] sm:text-[11px] md:text-sm lg:text-base font-semibold tracking-wider uppercase leading-tight ${isActive ? 'text-orange-600' : 'text-gray-600 hover:text-orange-600'}`}>
-
                   className={`flex justify-center items-center text-center w-full px-1 py-1.5 sm:py-2.5 md:px-5 md:py-2.5 rounded-md border-b text-[10px] sm:text-[11px] md:text-xs font-medium tracking-wider uppercase transition-all duration-300 ${
                     isActive 
                       ? 'bg-orange-50 border-orange-400 text-orange-600 shadow-[0_2px_10px_-3px_rgba(234,88,12,0.3)]' 

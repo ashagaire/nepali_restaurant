@@ -9,11 +9,22 @@ export async function GET(req: Request) {
   const pageParam = searchParams.get("page");
   const limitParam = searchParams.get("limit");
   const tagsParam = searchParams.get("tags");
+  const categoriesParam = searchParams.get("categories");
 
   const page = pageParam ? parseInt(pageParam, 10) : 1;
   const limit = limitParam ? parseInt(limitParam, 10) : 0;
 
   const whereClause: any = {};
+
+  if (categoriesParam) {
+    const categories = categoriesParam.split(",").filter((c) => c.trim() !== "");
+    if (categories.length > 0) {
+      whereClause.categoryId = {
+        in: categories,
+      };
+    }
+  }
+
   if (tagsParam) {
     const tags = tagsParam.split(",").filter((t) => t.trim() !== "");
     if (tags.length > 0) {

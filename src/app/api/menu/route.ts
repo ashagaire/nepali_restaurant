@@ -4,16 +4,55 @@ import { cookies } from "next/headers";
 
 const SESSION_COOKIE = "session_id";
 
-export async function GET() {
-  const items = await prisma.menuItem.findMany({
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const pageParam = searchParams.get("page");
+  const limitParam = searchParams.get("limit");
+  const tagsParam = searchParams.get("tags");
+
+  const page = pageParam ? parseInt(pageParam, 10) : 1;
+  const limit = limitParam ? parseInt(limitParam, 10) : 0;
+
+  const whereClause: any = {};
+  if (tagsParam) {
+    const tags = tagsParam.split(",").filter((t) => t.trim() !== "");
+    if (tags.length > 0) {
+      whereClause.tags = {
+        some: {
+          id: {
+            in: tags,
+          },
+        },
+      };
+    }
+  }
+
+  const queryArgs: any = {
+    where: whereClause,
     include: {
       category: true,
       tags: true,
       ingredients: true,
     },
-  });
+  };
 
-  return NextResponse.json(items);
+  if (limit > 0) {
+    queryArgs.skip = (page - 1) * limit;
+    queryArgs.take = limit;
+  }
+
+  const [items, total] = await Promise.all([
+    prisma.menuItem.findMany(queryArgs),
+    prisma.menuItem.count({ where: whereClause }),
+  ]);
+
+  return NextResponse.json({
+    items,
+    total,
+    page,
+    limit: limit > 0 ? limit : total,
+    totalPages: limit > 0 ? Math.ceil(total / limit) : 1,
+  });
 }
 
 export async function POST(req: Request) {

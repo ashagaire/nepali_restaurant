@@ -5,9 +5,14 @@ import { useTags } from "@/hooks/menu/useTags";
 import { toast } from "react-toastify";
 import { ToggleButton, ToggleButtonGroup, Chip, Button, Typography } from "@mui/material";
 
-export default function SearchOptions() {
+interface SearchOptionsProps {
+  selectedTags: string[];
+  onTagToggle: (tagId: string) => void;
+  onClearTags: () => void;
+}
+
+export default function SearchOptions({ selectedTags, onTagToggle, onClearTags }: SearchOptionsProps) {
   const [categories, setCategories] = useState<string[]>([]);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const { data: tags, loading, create, remove, error } = useTags();
   if (loading) return <p> loading Tags </p>;
@@ -23,25 +28,12 @@ export default function SearchOptions() {
     setCategories(newCategories ?? []);
   };
 
-  const handleTagClick = (tag: string) => {
-    setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
-    );
-  };
+  // The parent handles tag toggling now
 
   return (
-    <section className="text-center   pt-6 md:pt-12 left-0 right-0 w-full z-40 bg-white border-b border-gray-200 shadow-sm ">
+    <section className="mt-6 lg:mt-12">
       <div className="container mx-auto max-w-7xl px-4 ">
-        <Typography
-              variant="h3"
-              align="center"
-              sx={{ fontWeight: 700, my:  2, fontSize: { xs: 30, sm: 45, md: 50 } }}
-            >
-              <span className="block text-transparent leading-tight bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
-                Find Menu
-              </span>
-              <div className="w-50 mx-auto border-b border-2 border-orange-200"></div>
-            </Typography>
+        
             
         
         <div className="  flex flex-col  gap-2 mt-2 jystify-center items-center text-red-400 ">
@@ -95,7 +87,7 @@ export default function SearchOptions() {
               <div>
                 <div className={`flex flex-wrap gap-2 mb-0}`}>
                   <button
-                    onClick={() => setSelectedTags([])}
+                    onClick={onClearTags}
                     className={`px-4 py-1 rounded-full text-sm font-medium transition-colors ${
                       selectedTags.length === 0
                         ? "bg-blue-600 text-white hover:bg-blue-700"
@@ -110,7 +102,7 @@ export default function SearchOptions() {
                       <Chip
                         key={tag.id}
                         label={tag.nameEn}
-                        onClick={() => handleTagClick(tag.id)}
+                        onClick={() => onTagToggle(tag.id)}
                         color={isSelected ? "primary" : "default"}
                         variant={isSelected ? "filled" : "outlined"}
                         size="medium"
@@ -119,23 +111,7 @@ export default function SearchOptions() {
                       />
                     );
                   })}
-                  {/* {hasMoreTags && (
-                    <Button
-                      size="small"
-                      onClick={() => setShowAllTags(!showAllTags)}
-                      endIcon={
-                        showAllTags ? <ExpandLessIcon /> : <ExpandMoreIcon />
-                      }
-                      sx={{
-                        textTransform: "none",
-                        fontWeight: 500,
-                        fontSize: "0.875rem",
-                        mt: 0.5,
-                      }}
-                    >
-                      {showAllTags ? "Show less" : `Show all tags`}
-                    </Button>
-                  )} */}
+                  
                 </div>
               </div>
             )}

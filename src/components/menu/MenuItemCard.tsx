@@ -57,32 +57,40 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
   const finalPrice = hasDiscount ? price - discount : price;
 
   return (
-    <div className=" flex bg-white rounded-xl overflow-hidden border-2 border-orange-200 hover:border-orange-300 shadow-md hover:shadow-xl hover:-translate-y-4 transition-all duration-300  ">
+    <div className=" flex bg-white rounded-xl overflow-hidden border-2 border-orange-400  shadow-md hover:shadow-xl hover:-translate-y-4 transition-all duration-300  ">
       {/* LEFT SIDE — CONTENT */}
-      <div className=" relative w-4/7 flex flex-col justify-between p-2 ">
-        <div>
+      <div className=" relative w-4/7 flex flex-col justify-between px-2 ">
+        <div className="flex flex-col text-left mt-2">
           {/* Title */}
-          <h3 className="text-lg font-semibold leading-tight">{item.nameEn}</h3>
+          <h3 className="text-lg text-orange-600 font-semibold leading-tight " >{item.nameEn}</h3>
 
           {/* Description */}
-          <p className="text-sm text-gray-500 line-clamp-2 mt-1">
+          <p className="text-sm text-gray-500 text-left mt-2 ">
             {item.descriptionEn}
           </p>
+
+
+          {/* Tags */}
+          <div className="text-xs text-orange-600 flex gap-2 mt-2">
+            {item.tags.map((tag) => (
+              <span className="border border-orange-200 px-2 py-0.5  rounded-sm " key={tag.id}>{tag.symbol}</span>
+            ))}
+          </div>
         </div>
 
         {/* Bottom Row */}
         <div className="flex items-center justify-between mt-3">
           {/* Price */}
-          <span className="text-lg font-bold">€{finalPrice.toFixed(2)}</span>
+          <span className="text-lg font-bold text-orange-600">€{finalPrice.toFixed(2)}</span>
 
           {/* Add Button */}
 
           {!showAdminActions ? (
-            <button className="px-2 py-2 text-sm  rounded-full hover:bg-gray-800 transition">
+            <button className="px-2 py-2 text-sm  rounded-full text-orange-600 hover:bg-orange-100 transition">
               <ShoppingCartIcon fontSize="medium" />
             </button>
           ) : (
-            <Box display="flex" gap={1} justifyContent="space-between">
+            <Box display="flex" gap={1} justifyContent="space-between" >
               <Button
                 variant="outlined"
                 color="primary"
@@ -120,42 +128,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
       </div>
     </div>
 
-    // <Card className="menu-card overflow-hidden">
-    //   <CardContent className="flex !p-0">
-    //     {/* LEFT SIDE — TEXT */}
-    //     <Box className="flex flex-col w-1/2 !p-4 relative">
-    //       <Typography variant="h6" className="font-semibold leading-tight">
-    //         {item.nameEn}
-    //       </Typography>
-
-    //       <Typography
-    //         variant="body2"
-    //         color="textSecondary"
-    //         className="line-clamp-2 mt-2"
-    //       >
-    //         {item.descriptionEn}
-    //       </Typography>
-
-    //       <Box className="mt-auto">
-    //         <Typography variant="h6">€{finalPrice.toFixed(2)}</Typography>
-    //       </Box>
-    //     </Box>
-
-    //     {/* RIGHT SIDE — IMAGE */}
-    //     <Box className="relative w-1/2 ">
-    //       <CardMedia
-    //         component="img"
-    //         image={item.imageUrl || "/images/banner1.jpg"}
-    //         alt={item.nameEn}
-    //         className="absolute inset-0 w-full h-full object-cover block"
-    //       />
-
-    //       <Box className="absolute top-2 right-2">
-    //         <SpiceIndicator level={item.spicey} />
-    //       </Box>
-    //     </Box>
-    //   </CardContent>
-    // </Card>
+    
   );
 };
 

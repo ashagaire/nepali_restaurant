@@ -51,11 +51,7 @@ export default function SearchOptions({
         <div className="flex flex-col gap-6 mt-2 justify-center items-center">
           {/* Categories Section */}
           <div className="w-full">
-            <div className="hidden lg:flex">
-            <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 1.5, fontWeight: 600, textAlign: 'left' }}>
-              Select From
-            </Typography>
-            </div>
+            
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={onClearCategories}
@@ -76,7 +72,7 @@ export default function SearchOptions({
                     className={`flex justify-center items-center text-center px-2 py-1 sm:py-2 md:px-5 md:py-2.5 rounded-md border-b text-[10px] sm:text-[11px] md:text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
                       isSelected
                         ? "bg-orange-200 border-orange-400 text-orange-600 shadow-[0_2px_10px_-3px_rgba(234,88,12,0.3)]"
-                        : "bg-orange-50 border-orange-400 text-gray-500 hover:bg-gray-50 hover:text-orange-600"
+                        : "bg-orange-100 border-orange-400 text-orange-600 hover:bg-orange-200 hover:text-orange-600"
                     }`}
                   >
                     {category.nameEn}
@@ -117,6 +113,8 @@ export default function SearchOptions({
                     variant="filled"
                     size="small"
                     clickable
+                    className="!border-b !border-orange-400"
+
                     sx={{
                       fontWeight: 500,
                       borderRadius: "6px",
@@ -124,7 +122,7 @@ export default function SearchOptions({
                       py: { xs: 0, lg: 2 },
 
                       bgcolor: isSelected ? "#fed7aa" : "#ffedd5",
-                      color: isSelected ? "#c2410c" : "#6b7280",
+                      color: isSelected ? "#c2410c" : "#f97316",
                     }}
                   />
                 );

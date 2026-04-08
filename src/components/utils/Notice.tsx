@@ -10,17 +10,17 @@ export function ImportantNotice() {
           {/* Header */}
           <div className="flex items-center gap-3 mb-6">
             <AlertCircle className="w-8 h-8 text-orange-600 flex-shrink-0" />
-            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">
+            <h2 className="text-base md:text-xl lg:text-3xl font-bold text-gray-800">
               IMPORTANT NOTICE TO THE CUSTOMER
             </h2>
           </div>
 
           {/* Main Alert Message */}
           <div className="bg-orange-100 border-l-4 border-orange-600 p-6 mb-8 rounded-r-lg shadow-sm">
-            <p className="text-lg font-semibold text-gray-900 mb-2">
+            <p className="text-sm md:text-lg font-semibold text-gray-800 mb-2">
               HUOM! Älä unohda kysyä jos sinulla minkäänlaisia allergioita yrteista ja mausteista…
             </p>
-            <p className="text-gray-800">
+            <p className="text-sm md:text-lg text-gray-800">
               <strong>NOTE:</strong> Please do not forget to ask if you have any allergies on herbs, spices or foods
             </p>
           </div>
@@ -29,14 +29,14 @@ export function ImportantNotice() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {/* Dietary Labels Column */}
             <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
-              <h3 className="text-xl font-bold text-gray-900 mb-4 border-b-2 border-orange-500 pb-2">
+              <h3 className="text-base md:text-xl font-bold text-gray-800 mb-4 border-b-2 border-orange-500 pb-2">
                 Dietary Labels
               </h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <span className="font-bold text-blue-600 text-xl min-w-[30px] pt-0.5">L</span>
                   <div>
-                    <p className="font-semibold text-gray-900">Lactose-free</p>
+                    <p className="font-semibold text-gray-800">Lactose-free</p>
                     <p className="text-sm text-gray-600 mt-1">
                       Note: The portion of raita, mint sauce, and spread butter on naan bread may contain lactose. 
                       Be sure to ask for lactose-free substitutes instead.
@@ -47,7 +47,7 @@ export function ImportantNotice() {
                 <div className="flex items-start gap-3">
                   <span className="font-bold text-amber-600 text-xl min-w-[30px] pt-0.5">G</span>
                   <div>
-                    <p className="font-semibold text-gray-900">Gluten-free</p>
+                    <p className="font-semibold text-gray-800">Gluten-free</p>
                     <p className="text-sm text-gray-600 mt-1">
                       Note: Naan bread included in portions contains gluten.
                     </p>
@@ -57,7 +57,7 @@ export function ImportantNotice() {
                 <div className="flex items-start gap-3">
                   <span className="font-bold text-green-600 text-xl min-w-[30px] pt-0.5">V</span>
                   <div>
-                    <p className="font-semibold text-gray-900">Vegan</p>
+                    <p className="font-semibold text-gray-800">Vegan</p>
                     <p className="text-sm text-gray-600 mt-1">
                       Note: Remember to ask for vegan options.
                     </p>
@@ -72,7 +72,7 @@ export function ImportantNotice() {
             <div className="space-y-6">
               {/* Spice Levels */}
               <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
-                <h3 className="text-xl font-bold text-gray-900 mb-4 border-b-2 border-red-500 pb-2">
+                <h3 className="text-base md:text-xl font-bold text-gray-800 mb-4 border-b-2 border-red-500 pb-2">
                   Spice Levels
                 </h3>
                 <div className="space-y-4">
@@ -100,7 +100,7 @@ export function ImportantNotice() {
 
               {/* Food Types */}
               <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
-                <h3 className="text-xl font-bold text-gray-900 mb-4 border-b-2 border-green-500 pb-2">
+                <h3 className="text-base md:text-xl font-bold text-gray-800 mb-4 border-b-2 border-green-500 pb-2">
                   Food Types
                 </h3>
                 <div className="space-y-4">
@@ -120,7 +120,7 @@ export function ImportantNotice() {
 
           {/* Bottom Message */}
           <div className="text-center bg-orange-100 rounded-lg px-5 py-3 shadow-sm border border-orange-200">
-            <p className="text-gray-800 font-semibold text-lg">
+            <p className="text-gray-600 font-semibold text-base md:text-lg">
               🙏 Your safety is our priority. Please inform our staff about any dietary restrictions or allergies.
             </p>
           </div>

@@ -19,25 +19,17 @@ export default function LunchInfo() {
                 
             </div>
 
-            <div className="mb-6 md:mb-6 p-4 md:p-6 md:p-4 bg-gradient-to-r from-orange-100 to-green-50 rounded-2xl shadow-sm border border-green-100 relative overflow-hidden">
+            <div className="mb-6 md:mb-6 px-4 py-2 md:px-6 md:py-4 bg-gradient-to-r from-orange-100 to-green-50 rounded-2xl shadow-sm border border-green-100 relative overflow-hidden">
                 <div className="absolute -top-4 -right-2 p-4 opacity-10 pointer-events-none">
                     <FaLeaf size={120} className="text-green-600" />
                 </div>
-                <div className="relative z-10 flex flex-col items-start gap-2">
-                    <div className="flex flex-row items-center">
-                        
-                        {/* <div className="flex-shrink-0 bg-white p-2 rounded-full shadow-sm">
-                            <div className="bg-green-100 p-3 rounded-full">
-                                <FaLeaf className="text-green-600 text-xl md:text-3xl" />
-                            </div>
-                        </div> */}
-                        <h3 className="text-xl md:text-2xl font-bold text-gray-800 ">Fresh & Delicious</h3>
+                <div className="relative z-10 flex flex-col items-start gap-1 md:gap-2">
+                        <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-800 ">Fresh & Delicious</h3>
 
 
-                    </div>
                     
                     <div className="text-left">
-                        <p className="text-gray-700 leading-relaxed italic mb-4 text-base md:text-lg">
+                        <p className="text-gray-800 leading-relaxed  mb-2 md:mb-4 text-xs md:text-base md:text-lg">
                             All our food items are prepared with <strong>fresh, high-quality ingredients</strong>. 
                             <br/>
                             Lunch buffet includes a rich <strong>salad bar, daily soup, naan bread, 

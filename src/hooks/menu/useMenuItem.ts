@@ -32,9 +32,9 @@ export function useMenuItem(id?: string, options?: UseMenuItemOptions) {
           throw new Error("Failed to fetch menu item");
         }
 
-        const json = (await res.json()) as MenuItemWithRelations;
+        const json = await res.json();
         if (!cancelled) {
-          setData(json);
+          setData(json.data);
         }
       } catch (e: any) {
         if (!cancelled) {

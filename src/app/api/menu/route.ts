@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { getAuthSession } from "@/lib/auth/getAuthSession";
 
 const SESSION_COOKIE = "session_id";
 
@@ -70,20 +71,9 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    // Get current user from session cookie
-    const sessionId = (await cookies()).get(SESSION_COOKIE)?.value;
-    if (!sessionId) {
-      return NextResponse.json(
-        { success: false, message: "Unauthorized" },
-        { status: 401 }
-      );
-    }
-
-    const session = await prisma.session.findUnique({
-      where: { id: sessionId },
-      include: { user: true },
-    });
-    if (!session || session.expiresAt < new Date()) {
+    // Get current user from session (or dev mode bypass)
+    const session = await getAuthSession();
+    if (!session) {
       return NextResponse.json(
         { success: false, message: "Unauthorized" },
         { status: 401 }

@@ -71,9 +71,8 @@ export default function Menu() {
         sx={{ fontWeight: 700, my: 2, fontSize: { xs: 30, sm: 45, md: 50 } }}
       >
         <span className="block text-transparent leading-tight bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
-          Find Menu
+          Find Order Menu
         </span>
-        <div className="w-50 mx-auto border-b border-2 border-orange-200"></div>
       </Typography>
       
       <SearchOptions 
@@ -106,9 +105,7 @@ export default function Menu() {
 
           {total > 0 && (
             <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-              <Typography variant="body2" color="text.secondary">
-                Showing {startItem}-{endItem} of {total} items
-              </Typography>
+              
               <Pagination 
                 count={totalPages} 
                 page={page} 

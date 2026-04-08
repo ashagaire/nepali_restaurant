@@ -43,7 +43,6 @@ async function main() {
     { nameEn: "Gluten-free", nameFi: "Gluteeniton", symbol: "G" },
     { nameEn: "Lactose-free", nameFi: "Laktoositon", symbol: "L" },
     { nameEn: "Vegan", nameFi: "Vegaani", symbol: "V" },
-    { nameEn: "Spicy", nameFi: "Tulinen", symbol: "SP" },
   ];
 
   for (const tag of tagsData) {

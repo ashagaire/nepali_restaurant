@@ -86,7 +86,7 @@ body {
 /* Nav link with underline animation */
 .nav-link {
   position: relative;
-  color: #c2410c;
+  color: #ea580c;
   cursor: pointer;
   font-weight: bold;
   transition: color 0.3s;
@@ -99,7 +99,7 @@ body {
   bottom: -4px;
   width: 0;
   height: 2px;
-  background: #9a3412;
+  background: #dc2626;
   transition: width 0.3s;
 }
 
@@ -109,11 +109,11 @@ body {
 }
 
 .nav-link.active {
-  color: #9a3412;
+  color: #dc2626;
 }
 
 .nav-link:hover {
-  color: #9a3412;
+  color: #dc2626;
 }
 
 /* Hero section buttons */

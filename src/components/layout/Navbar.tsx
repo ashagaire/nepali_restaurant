@@ -21,8 +21,15 @@ export default function Navbar() {
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
   return (
-    <Header className="fixed top-0 left-0 w-full shadow-md z-50  !bg-orange-200 ">
-      <nav className="max-w-7xl mx-auto px-4 py-2 sm:py-2 md:py-4 lg:py-4 xl:py-6 flex flex-wrap justify-between items-center relative ">
+    <Header className="fixed top-0 left-0 w-full shadow-md z-50  !bg-orange-50 ">
+      {/* Click outside to close mobile menu */}
+      {menuOpen && (
+        <div 
+          className="fixed inset-0 z-40" 
+          onClick={() => setMenuOpen(false)} 
+        />
+      )}
+      <nav className="max-w-7xl mx-auto px-4 py-2 sm:py-2 md:py-4 lg:py-4 xl:py-6 flex flex-wrap justify-between items-center relative z-50 ">
         {/* Logo */}
         <Logo />
 
@@ -53,7 +60,13 @@ export default function Navbar() {
               </Space>
             ) : (
               /* user actions */
-              <Space>
+              <Space >
+                <Link
+                  href="/"
+                  className={`nav-link px-2 py-1 ${pathname === "/" ? "active" : ""}`}
+                >
+                  Home
+                </Link>
                 <Link
                   href="/menu"
                   className={`nav-link px-2 py-1 ${pathname === "/menu" ? "active" : ""}`}
@@ -104,12 +117,12 @@ export default function Navbar() {
             <CartButton />
             <button
               onClick={toggleMenu}
-              className=" p-2 rounded-md bg-gray-200 hover:bg-gray-300"
+              className=" p-2 rounded-md bg-orange-100 hover:bg-orange-200"
             >
               {menuOpen ? (
-                <X className="h-6 w-6 text-gray-700" />
+                <X className="h-6 w-6 text-orange-700" />
               ) : (
-                <Menu className="h-6 w-6 text-gray-700" />
+                <Menu className="h-6 w-6 text-orange-700" />
               )}
             </button>
           </div>
@@ -117,7 +130,7 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {menuOpen && (
           <div className="w-full mt-2 grid  grid-cols-1 lg:hidden px-2 m">
-            <div className="grid gap-2 justify-items-center text-center border-t border-gray-300 pt-2">
+            <div className="grid gap-2 justify-items-center text-center border-t border-orange-100 pt-2">
               {isAdminMode ? (
                 /* admin actions */
                 <Space orientation="vertical">

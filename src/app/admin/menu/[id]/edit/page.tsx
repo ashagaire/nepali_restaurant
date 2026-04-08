@@ -73,8 +73,8 @@ export default function EditMenuItemPage() {
     spicey: menuItem.spicey,
     visibility: menuItem.visibility,
     categoryId: menuItem.categoryId,
-    tagIds: menuItem.tags.map((t) => t.id),
-    ingredientIds: menuItem.ingredients.map((i) => i.id),
+    tagIds: menuItem.tags?.map((t) => t.id) || [],
+    ingredientIds: menuItem.ingredients?.map((i) => i.id) || [],
     imageUrl: menuItem.imageUrl ?? undefined,
     imagePublicId: menuItem.imagePublicId ?? undefined,
   };
@@ -82,7 +82,7 @@ export default function EditMenuItemPage() {
   const handleSubmit = async (values: MenuItemFormValues) => {
     try {
       const res = await updateMenuItem(values);
-      if (!res.ok) throw new Error("Update menu item failed");
+      if (!res.success) throw new Error("Update menu item failed");
       toast.success("Menu item updated successfully");
       router.push("/admin/menu");
     } catch (err: any) {

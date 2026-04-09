@@ -7,7 +7,7 @@ import { Typography } from "@mui/material";
 
 export default function ContactPage() {
   return (
-    <section className="py-12 bg-white container mx-auto max-w-7xl p-4 ">
+    <section className="py-6 md:py-12  bg-white container mx-auto max-w-7xl px-4 ">
       <div className="text-center mb-12">
         <Typography
               variant="h3"

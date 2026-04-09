@@ -11,6 +11,8 @@ import type { MenuItemWithRelations } from "@/types/menuItemWithRelations";
 import SpiceIndicator from "@/components/utils/SpiceIndicator";
 import ConfirmDialog from "@/components/utils/ConfirmDialog";
 import { useRouter } from "next/navigation";
+import { useCart } from "@/context/CartContext";
+import { toast } from "react-toastify";
 
 interface MenuItemCardProps {
   item: MenuItemWithRelations;
@@ -43,11 +45,29 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
   onDelete,
 }) => {
   const router = useRouter();
+  const { addToCart, toggleCart } = useCart();
 
   const price = toDecimalNumber(item.price);
   const discount = toDecimalNumber(item.discount);
   const hasDiscount = discount > 0;
   const finalPrice = hasDiscount ? price - discount : price;
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: item.id,
+      name: item.nameEn,
+      price: finalPrice,
+      quantity: 1,
+      imageUrl: item.imageUrl || undefined,
+    });
+
+    toast.info("Go To Shopping Cart", {
+      position: "top-right",
+      autoClose: 2000,
+      onClick: () => toggleCart(),
+      className: "cursor-pointer font-bold ",
+    });
+  };
 
   return (
     <div className=" flex bg-white rounded-xl overflow-hidden border-2 border-orange-400  shadow-md hover:shadow-xl hover:-translate-y-4 transition-all duration-300  ">
@@ -79,7 +99,10 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
           {/* Add Button */}
 
           {!showAdminActions ? (
-            <button className="px-2 py-2 text-sm  rounded-full text-orange-600 hover:bg-orange-100 transition">
+            <button 
+              onClick={handleAddToCart}
+              className="px-2 py-2 text-sm  rounded-full text-orange-600 hover:bg-orange-100 transition"
+            >
               <ShoppingCart fontSize="medium" />
             </button>
           ) : (
@@ -110,7 +133,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
             </div>
           )}
         </div>
-        {/* Optional Spice Badge */}
+        
       </div>
 
       {/* RIGHT SIDE — IMAGE */}

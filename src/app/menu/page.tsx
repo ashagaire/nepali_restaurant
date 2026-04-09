@@ -71,7 +71,7 @@ export default function Menu() {
         sx={{ fontWeight: 700, my: 2, fontSize: { xs: 30, sm: 45, md: 50 } }}
       >
         <span className="block text-transparent leading-tight bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
-          Find Order Menu
+          Order Menu
         </span>
       </Typography>
       

@@ -1,9 +1,15 @@
 "use client";
+import { useState } from "react";
 import { Typography } from "@mui/material";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown, ChevronUp } from "lucide-react";
+
 export default function About() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
-    <div className="py-12 ">
-      <div className=" container mx-auto max-w-4xl p-4 ">
+    <div className="md:py-12 py-6 ">
+      <div className=" container mx-auto max-w-4xl px-4 ">
         <Typography
               variant="h3"
               align="center"
@@ -16,35 +22,81 @@ export default function About() {
 
         <section className="mb-16">
           <h2 className="md:text-4xl text-2xl font-bold mb-6 text-orange-600">Our Story</h2>
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <div className=" max-w-none text-gray-800 space-y-4 leading-relaxed">
+          <div className="flex flex-col md:flex-row gap-6 justify-center items-start">
+            <div className=" max-w-none text-gray-800 space-y-6 leading-relaxed flex-1">
               <p>
                 Fusion Nepal was founded with a simple dream, to bring the
                 authentic flavors of Nepal to the heart of Helsinki. Our journey
                 began in 2018 when our head chef, trained in the mountain
                 villages of Nepal, decided to share the recipes passed down
                 through generations of his family.
+                {!isExpanded && (
+                  <button
+                    onClick={() => setIsExpanded(true)}
+                    className="md:hidden inline text-orange-600 font-semibold hover:text-orange-700 transition-colors ml-1 cursor-pointer"
+                  >
+                    Read more ...
+                  </button>
+                )}
               </p>
-              <br />
-              <p>
-                Every dish we prepare carries the essence of Nepali hospitality
-                – warm, generous, and made with love. We use traditional cooking
-                methods and source authentic spices directly from Nepal to
-                ensure each bite transports you to the Himalayas.
-              </p>
-              <br />
+              
+              {/* Desktop view: always visible */}
+              <div className="hidden md:block space-y-6">
+                <p>
+                  Every dish we prepare carries the essence of Nepali hospitality
+                  – warm, generous, and made with love. We use traditional cooking
+                  methods and source authentic spices directly from Nepal to
+                  ensure each bite transports you to the Himalayas.
+                </p>
 
-              <p>
-                Our team is dedicated to creating not just meals, but
-                experiences that celebrate the rich culinary heritage of Nepal.
-                We are committed to providing excellent service and ensuring
-                that every dining experience at Fusion Nepal is memorable.
-                Whether you're dining in, taking out, or having your meal
-                delivered, we strive to exceed your expectations with our
-                flavorful dishes and exceptional customer service.
-              </p>
+                <p>
+                  Our team is dedicated to creating not just meals, but
+                  experiences that celebrate the rich culinary heritage of Nepal.
+                  We are committed to providing excellent service and ensuring
+                  that every dining experience at Fusion Nepal is memorable.
+                  Whether you're dining in, taking out, or having your meal
+                  delivered, we strive to exceed your expectations with our
+                  flavorful dishes and exceptional customer service.
+                </p>
+              </div>
+
+              {/* Mobile view: collapsible */}
+              <AnimatePresence>
+                {isExpanded && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="md:hidden space-y-6 overflow-hidden"
+                  >
+                    <p>
+                      Every dish we prepare carries the essence of Nepali hospitality
+                      – warm, generous, and made with love. We use traditional cooking
+                      methods and source authentic spices directly from Nepal to
+                      ensure each bite transports you to the Himalayas.
+                    </p>
+
+                    <p>
+                      Our team is dedicated to creating not just meals, but
+                      experiences that celebrate the rich culinary heritage of Nepal.
+                      We are committed to providing excellent service and ensuring
+                      that every dining experience at Fusion Nepal is memorable.
+                      Whether you're dining in, taking out, or having your meal
+                      delivered, we strive to exceed your expectations with our
+                      flavorful dishes and exceptional customer service.
+                      <button
+                        onClick={() => setIsExpanded(false)}
+                        className="inline text-orange-600 font-semibold hover:text-orange-700 transition-colors ml-1 cursor-pointer"
+                      >
+                        Read less.
+                      </button>
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-            <img src="/images/chef.webp" alt="Chef" className=" max-h-96 p-4" />
+            <img src="/images/chef.webp" alt="Chef" className="w-full md:w-1/3 max-h-96 object-cover rounded-2xl shadow-lg border-2 border-orange-100" />
           </div>
         </section>
 

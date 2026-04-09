@@ -5,7 +5,7 @@ import ReservationForm from "@/components/forms/ReservationForm";
 export default function Reservation() {
   return (
     <section className="py-6 md:py-12 bg-white container mx-auto max-w-7xl  ">
-      <div className="mx-auto max-w-2xl p-4">
+      <div className="mx-auto max-w-2xl px-4">
         <div className="text-center mb-6 md:mb-12">
           <Typography
               variant="h3"
@@ -16,7 +16,7 @@ export default function Reservation() {
                 Reserve Table
               </span>
             </Typography>
-          <p className="text-base md:text-lg  text-gray-600">
+          <p className="text-base md:text-lg  text-gray-600 px-4">
             Join us for an authentic Nepali dining experience. 
           </p>
         </div>

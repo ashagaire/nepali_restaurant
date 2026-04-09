@@ -15,7 +15,7 @@ export default function About() {
             </Typography>
 
         <section className="mb-16">
-          <h2 className="md:text-4xl text-2xl font-bold mb-6 text-orange-500">Our Story</h2>
+          <h2 className="md:text-4xl text-2xl font-bold mb-6 text-orange-600">Our Story</h2>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <div className=" max-w-none text-gray-800 space-y-4 leading-relaxed">
               <p>
@@ -75,7 +75,7 @@ export default function About() {
           </div>
         </section>
 
-        <section className="bg-orange-200 rounded-2xl p-8 text-center">
+        <section className="bg-orange-100 rounded-2xl p-8 text-center">
           <h2 className="text-2xl font-bold mb-4 text-orange-600">Welcome!</h2>
           <p className="text-gray-600 max-w-2xl mx-auto ">
             We look forward to serving you and sharing the flavors of Nepal with

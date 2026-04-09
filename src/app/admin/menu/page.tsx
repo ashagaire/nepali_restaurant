@@ -3,9 +3,7 @@ import { useState } from "react";
 import LoadingMeanuSection from "@/components/Skeletons/loadingMenuSection";
 import { toast } from "react-toastify";
 import MenuItemCard from "@/components/menu/MenuItemCard";
-import CategoryBlock from "@/components/menu/CategoryBlock";
-import TagBlock from "@/components/menu/TagBlock";
-import IngredientBlock from "@/components/menu/IngredientBlock";
+
 import { useMenuItems } from "@/hooks/menu/useMenuItems";
 import { Pagination, Box, Typography } from "@mui/material";
 
@@ -47,13 +45,9 @@ export default function AdminMenuPage() {
   const endItem = Math.min(page * limit, total);
 
   return (
-    <main style={{ padding: "2rem" }}>
+    <main className="min-h-[60vh] max-w-7xl mx-auto px-6 py-12 flex flex-col items-center ">
       <h1>Menu Page for Admin</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <CategoryBlock />
-        <TagBlock />
-        <IngredientBlock />
-      </div>
+
       <div>
         {" "}
         <p> Menu search section </p>

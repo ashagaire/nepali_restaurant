@@ -104,7 +104,7 @@ export default function PopularDishes() {
           <div className="hidden md:block justify-center mt-2">
           <Link
             href="/menu"
-            className="mt-6 md:mt-0 group px-7 py-3.5 bg-orange-100 text-orange-700 rounded-2xl font-bold flex items-center gap-3 hover:bg-orange-200 transition-all text-sm"
+            className="mt-6 md:mt-0 group px-7 py-3.5 bg-orange-100 text-orange-500 rounded-2xl font-bold flex items-center gap-3 hover:bg-orange-200 transition-all text-sm"
           >
             Full Menu <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>

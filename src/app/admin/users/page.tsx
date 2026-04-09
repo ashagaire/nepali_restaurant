@@ -70,7 +70,7 @@ export default function UsersPage() {
   }
 
   return (
-    <main style={{ padding: "2rem" }}>
+    <main className="min-h-[60vh] max-w-7xl mx-auto px-6 py-12 flex flex-col items-center ">
       <h1>Super Admin – Admin Users</h1>
       <div className="flex items-center gap-2 my-4">
         <Button type="primary" onClick={() => setOpen(true)}>

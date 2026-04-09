@@ -31,14 +31,14 @@ export default function LunchBuffetList() {
     const renderDietaryTags = (item: LunchItem) => {
         if (!item.dietary || item.dietary.length === 0) return null;
         return (
-            <span className="text-sm font-medium text-gray-500 ml-2">
+            <span className="text-sm font-medium text-gray-800 ml-2">
                 ({item.dietary.join(', ')})
             </span>
         );
     };
 
     return (
-        <div className="container mx-auto px-4 md:px-8 max-w-4xl space-y-4">
+        <div className="container mx-auto px-4 md:px-8 max-w-4xl space-y-4 ">
             {lunchMenuData.map((dailyMenu) => (
                 <Accordion
                     key={dailyMenu.day}
@@ -54,20 +54,20 @@ export default function LunchBuffetList() {
                     }}
                 >
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon sx={{ color: '#faf8f7ff', fontSize: 30 }} />}
+                        expandIcon={<ExpandMoreIcon sx={{ color: '#383736ff', fontSize: 30 }} />}
                         aria-controls={`panel-${dailyMenu.day}-content`}
                         id={`panel-${dailyMenu.day}-header`}
                         sx={{
-                            backgroundColor: expanded === `panel-${dailyMenu.day}` ? '#f7a745ff' : '#f7a745ff',
+                            backgroundColor: expanded === `panel-${dailyMenu.day}` ? '#f97316' : '#f97316',
                             transition: 'background-color 0.3s ease',
                             padding: { xs: '8px 16px', sm: '6px 24px' } // Responsive padding
                         }}
                     >
-                        <span className={`text-lg md:text-xl font-bold uppercase ${expanded === `panel-${dailyMenu.day}` ? 'text-white' : 'text-white'}`}>
+                        <span className={`text-lg md:text-xl font-bold uppercase text-gray-800'}`}>
                             {dailyMenu.day}
                         </span>
                     </AccordionSummary>
-                    <AccordionDetails sx={{ padding: 0, backgroundColor: '#fcfcfc', borderTop: '1px solid #f3f4f6' }}>
+                    <AccordionDetails sx={{ padding: 0, backgroundColor: '#fcfcfc'}}>
                         <div className="p-4 md:p-6 space-y-4 md:space-y-6">
                             {dailyMenu.items.map((item, index) => (
                                 <div key={item.id} className="bg-white p-4 md:p-5 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow relative">
@@ -75,7 +75,7 @@ export default function LunchBuffetList() {
                                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                                         <div className="flex-1">
                                             <div className="flex items-center flex-wrap gap-2">
-                                                <h3 className="text-base md:text-lg font-bold text-gray-900">
+                                                <h3 className="text-base md:text-lg font-bold text-gray-800">
                                                     {index + 1}. {item.name}
                                                 </h3>
                                                 {renderDietaryTags(item)}

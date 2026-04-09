@@ -34,7 +34,7 @@ export default function OpeningHours() {
       {days.map((day) => (
         <div
           key={day}
-          className={`flex justify-between mx-8 md:mx-0 rounded-lg px-4 py-1 text-gray-700 font-bold ${currentDay === day ? "bg-orange-300" : ""}`}
+          className={`flex justify-between mx-8 md:mx-0 rounded-lg px-4 py-1 text-gray-800 font-bold ${currentDay === day ? "bg-orange-400" : ""}`}
         >
           <span className=" font-bold">{day}</span>
           <span className="justify-end">

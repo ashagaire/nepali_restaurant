@@ -10,7 +10,7 @@ export function ImportantNotice() {
           {/* Header */}
           <div className="flex items-center gap-3 mb-6">
             <AlertCircle className="w-8 h-8 text-orange-600 flex-shrink-0" />
-            <h2 className="text-base md:text-xl lg:text-3xl font-bold text-gray-800">
+            <h2 className="text-base md:text-xl lg:text-2xl font-bold text-gray-800">
               IMPORTANT NOTICE TO THE CUSTOMER
             </h2>
           </div>

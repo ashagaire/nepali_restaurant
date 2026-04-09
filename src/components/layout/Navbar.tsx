@@ -2,31 +2,38 @@
 
 import { Layout, Space } from "antd";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import CartButton from "../utils/CartButton";
 import Logo from "../utils/Logo";
+import { useAuthContext } from "@/context/AuthContext";
+
 const { Header } = Layout;
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isAdminMode, setIsAdminMode] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, logout } = useAuthContext();
 
-  useEffect(() => {
-    const mode = process.env.NEXT_PUBLIC_NAV_MODE;
-    setIsAdminMode(mode === "admin");
-  }, []);
+  // Derive admin mode from URL path
+  const isAdminMode = pathname.startsWith("/admin");
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
+
+  const handleLogout = async () => {
+    await logout();
+    router.push("/login");
+  };
+
   return (
-    <Header className="fixed top-0 left-0 w-full shadow-md z-50  !bg-orange-50 ">
+    <Header className="fixed top-0 left-0 w-full shadow-md z-50  !bg-orange-400 ">
       {/* Click outside to close mobile menu */}
       {menuOpen && (
-        <div 
-          className="fixed inset-0 z-40" 
-          onClick={() => setMenuOpen(false)} 
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => setMenuOpen(false)}
         />
       )}
       <nav className="max-w-7xl mx-auto px-4 py-2 sm:py-2 md:py-4 lg:py-4 xl:py-6 flex flex-wrap justify-between items-center relative z-50 ">
@@ -39,28 +46,55 @@ export default function Navbar() {
             {isAdminMode ? (
               /* admin actions */
               <Space>
-                <Link
-                  href="/login"
-                  className={`nav-link px-2 py-1 ${pathname === "/login" ? "active" : ""}`}
-                >
-                  Login
-                </Link>
-                <Link
-                  href="/request-admin"
-                  className={`nav-link px-2 py-1 ${pathname === "/request-admin" ? "active" : ""}`}
-                >
-                  Request Admin
-                </Link>
-                <Link
-                  href="/admin/menu/add"
-                  className={`nav-link px-2 py-1 ${pathname.startsWith("/admin/menu/add") ? "active" : ""}`}
-                >
-                  Add Menu
-                </Link>
+                {user ? (
+                  <>
+                  
+                    <Link
+                      href="/admin"
+                      className={`nav-link px-2 py-1 ${pathname === "/admin" ? "active" : ""}`}
+                    >
+                      Admin
+                    </Link>
+                    <Link
+                      href="/"
+                      className={`nav-link px-2 py-1 ${pathname === "/" ? "active" : ""}`}
+                    >
+                      Home
+                    </Link>
+                    
+                     <button
+                    onClick={handleLogout}
+                    className="nav-link px-2 py-1 cursor-pointer"
+                  >
+                    Logout
+                  </button>
+                  </>
+                ) : (
+                  <>
+                  <Link
+                      href="/"
+                      className={`nav-link px-2 py-1 ${pathname === "/" ? "active" : ""}`}
+                    >
+                      Home
+                    </Link>
+                    <Link
+                      href="/login"
+                      className={`nav-link px-2 py-1 ${pathname === "/login" ? "active" : ""}`}
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href="/request-admin"
+                      className={`nav-link px-2 py-1 ${pathname === "/request-admin" ? "active" : ""}`}
+                    >
+                      Request Admin
+                    </Link>
+                  </>
+                )}
               </Space>
             ) : (
               /* user actions */
-              <Space >
+              <Space>
                 <Link
                   href="/"
                   className={`nav-link px-2 py-1 ${pathname === "/" ? "active" : ""}`}
@@ -109,6 +143,56 @@ export default function Navbar() {
         </div>
 
         {/* Right side - Cart and menu button */}
+        {isAdminMode ? (/* admin actions */
+              <div className="lg:hidden flex justify-end items-center">
+                
+                {user ? (
+                  <>
+                  
+                    <Link
+                      href="/admin"
+                      className={`nav-link px-2 py-1 ${pathname === "/admin" ? "active" : ""}`}
+                    >
+                      Admin
+                    </Link>
+                    <Link
+                      href="/"
+                      className={`nav-link px-2 py-1 ${pathname === "/" ? "active" : ""}`}
+                    >
+                      Home
+                    </Link>
+                     <button
+                    onClick={handleLogout}
+                    className="nav-link px-2 py-1 cursor-pointer"
+                  >
+                    Logout
+                  </button>
+                  </>
+                 
+                ) : (
+                  <>
+                  <Link
+                      href="/"
+                      className={`nav-link px-2 py-1 ${pathname === "/" ? "active" : ""}`}
+                    >
+                      Home
+                    </Link>
+                    <Link
+                      href="/login"
+                      className={`nav-link px-2 py-1 ${pathname === "/login" ? "active" : ""}`}
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href="/request-admin"
+                      className={`nav-link px-2 py-1 ${pathname === "/request-admin" ? "active" : ""}`}
+                    >
+                      Request Admin
+                    </Link>
+                  </>
+                )}
+              </div>
+        ) : (
         <div className="flex justify-end items-center">
           <div className="hidden lg:block">
             <CartButton />
@@ -127,38 +211,46 @@ export default function Navbar() {
             </button>
           </div>
         </div>
+        )}
         {/* Mobile Menu */}
         {menuOpen && (
           <div className="w-full mt-2 grid  grid-cols-1 lg:hidden px-2 m">
-            <div className="grid gap-2 justify-items-center text-center border-t border-orange-100 pt-2">
+            <div className="grid gap-2 justify-items-center text-lg text-center border-t border-orange-100 pt-2">
               {isAdminMode ? (
                 /* admin actions */
-                <Space orientation="vertical">
-                  <Link
-                    href="/login"
-                    className={`nav-link block py-2 ${pathname === "/login" ? "active" : ""}`}
-                    onClick={toggleMenu}
-                  >
-                    Login
-                  </Link>
-                  <Link
-                    href="/request-admin"
-                    className={`nav-link block py-2 ${pathname === "/request-admin" ? "active" : ""}`}
-                    onClick={toggleMenu}
-                  >
-                    Request Admin
-                  </Link>
-                  <Link
-                    href="/admin/menu/add"
-                    className={`nav-link block py-2 ${pathname.startsWith("/admin/menu/add") ? "active" : ""}`}
-                    onClick={toggleMenu}
-                  >
-                    Add Menu
-                  </Link>
+                <Space direction="vertical">
+                  {user ? (
+                    <button
+                      onClick={() => {
+                        toggleMenu();
+                        handleLogout();
+                      }}
+                      className="nav-link block py-2 cursor-pointer"
+                    >
+                      Logout
+                    </button>
+                  ) : (
+                    <>
+                      <Link
+                        href="/login"
+                        className={`nav-link block py-2 ${pathname === "/login" ? "active" : ""}`}
+                        onClick={toggleMenu}
+                      >
+                        Login
+                      </Link>
+                      <Link
+                        href="/request-admin"
+                        className={`nav-link block py-2 ${pathname === "/request-admin" ? "active" : ""}`}
+                        onClick={toggleMenu}
+                      >
+                        Request Admin
+                      </Link>
+                    </>
+                  )}
                 </Space>
               ) : (
                 /* user actions */
-                <Space orientation="vertical">
+                <Space direction="vertical">
                   <Link
                     href="/"
                     className={`nav-link block py-2 ${pathname === "/" ? "active" : ""}`}

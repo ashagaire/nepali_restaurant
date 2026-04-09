@@ -110,7 +110,7 @@ export default function Services() {
 
         {/* Partners Row - Responsive scaling */}
         <div className="mt-8 pt-8 border-t border-orange-100 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-           <p className="text-sm font-bold tracking-widest text-orange-300 uppercase">Partnered with</p>
+           <p className="text-sm font-bold tracking-widest text-orange-500 uppercase">Partnered with</p>
            <div className="flex flex-wrap justify-center items-center gap-8 opacity-80 hover:opacity-100">
              <img src="images/wolt.png" alt="Wolt" className="h-16 md:h-20 object-contain" />
              <img src="images/foodora.png" alt="Foodora" className="h-16 md:h-20 object-contain" />

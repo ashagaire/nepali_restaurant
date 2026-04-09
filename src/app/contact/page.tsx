@@ -68,7 +68,7 @@ export default function ContactPage() {
             <h3 className="font-semibold text-lg mb-4 text-orange-600">Phone</h3>
             <a
               href="tel:+358401234567"
-              className="text-red-700 hover:text-red-800 text-lg"
+              className="text-gray-800 text-lg"
             >
               +358 40 123 4567
             </a>
@@ -78,7 +78,7 @@ export default function ContactPage() {
             <h3 className="font-semibold text-lg mb-4 text-orange-600">Email</h3>
             <a
               href="mailto:info@himalayankitchen.fi"
-              className="text-red-700 hover:text-red-800"
+              className="text-gray-800"
             >
               info@himalayankitchen.fi
             </a>

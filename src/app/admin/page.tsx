@@ -8,8 +8,8 @@ export default function AdminPage() {
   // const { menuItems, loading, error, reload } = useMenuItems();
 
   return (
-    <main style={{ padding: "2rem" }}>
-      <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col items-center ">
+    <main className="min-h-[60vh] max-w-7xl mx-auto px-6 py-12 flex flex-col items-center ">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col items-center">
         <div className="flex items-center gap-4">
           <Link href="/admin/menu">
             <Button type="link">Go to Menu</Button>
@@ -22,6 +22,9 @@ export default function AdminPage() {
         </div>
 
         <div className="flex items-center gap-2">
+          <Link href="/admin/sub-components">
+            <Button>Add sub components</Button>
+          </Link>
           <Link href="/admin/menu/new">
             <Button type="primary">Add Menu Item</Button>
           </Link>

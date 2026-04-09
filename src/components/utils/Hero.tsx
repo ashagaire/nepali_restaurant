@@ -120,9 +120,9 @@ export default function Hero() {
             <Typography
               variant="h6"
               align="left"
+              className="text-gray-700"
               sx={{
                 py: { xs: 2, lg: 4 },
-                color: "primary.main",
                 fontWeight: 400,
                 lineHeight: 1.4,
                 textAlign: "justify",

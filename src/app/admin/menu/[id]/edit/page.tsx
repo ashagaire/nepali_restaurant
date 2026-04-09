@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import { useMenuItem } from "@/hooks/menu/useMenuItem";
 import { useCategories } from "@/hooks/menu/useCategories";
 import { useTags } from "@/hooks/menu/useTags";
-import { useIngredients } from "@/hooks/menu/useIngredients";
 import { useUpdateMenuItem } from "@/hooks/menu/useUpdateMenuItem";
 
 import type { MenuItemFormValues } from "@/types/menu";
@@ -29,11 +28,6 @@ export default function EditMenuItemPage() {
     error: catError,
   } = useCategories();
   const { data: tags = [], loading: tagLoading, error: tagError } = useTags();
-  const {
-    data: ingredients = [],
-    loading: ingLoading,
-    error: ingError,
-  } = useIngredients();
 
   const {
     updateMenuItem,
@@ -41,9 +35,9 @@ export default function EditMenuItemPage() {
     error: saveError,
   } = useUpdateMenuItem(id);
 
-  const isLoading = itemLoading || catLoading || tagLoading || ingLoading;
+  const isLoading = itemLoading || catLoading || tagLoading;
   // TODO: error handling page
-  const error = catError || tagError || ingError || itemError || saveError;
+  const error = catError || tagError || itemError || saveError;
 
   if (isLoading) return <Spin fullscreen />;
 
@@ -74,7 +68,6 @@ export default function EditMenuItemPage() {
     visibility: menuItem.visibility,
     categoryId: menuItem.categoryId,
     tagIds: menuItem.tags?.map((t) => t.id) || [],
-    ingredientIds: menuItem.ingredients?.map((i) => i.id) || [],
     imageUrl: menuItem.imageUrl ?? undefined,
     imagePublicId: menuItem.imagePublicId ?? undefined,
   };
@@ -96,7 +89,6 @@ export default function EditMenuItemPage() {
       initialValues={initialValues}
       categories={categories}
       tags={tags}
-      ingredients={ingredients}
       onSubmit={handleSubmit}
       loading={saving}
     />

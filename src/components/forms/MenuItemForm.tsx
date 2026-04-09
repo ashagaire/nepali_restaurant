@@ -27,7 +27,6 @@ interface Props {
   // dropdown data (fetched outside)
   categories: { id: string; nameEn: string }[];
   tags: { id: string; nameEn: string }[];
-  ingredients: { id: string; nameEn: string }[];
 }
 
 export default function MenuItemForm({
@@ -37,7 +36,6 @@ export default function MenuItemForm({
   title = "Menu Item",
   categories,
   tags,
-  ingredients,
 }: Props) {
   const [form] = Form.useForm<MenuItemFormValues>();
   const [imageUrl, setImageUrl] = useState<string | undefined>(
@@ -230,15 +228,6 @@ export default function MenuItemForm({
           />
         </Form.Item>
 
-        <Form.Item name="ingredientIds" label="Ingredients">
-          <Select
-            mode="multiple"
-            options={ingredients.map((i) => ({
-              value: i.id,
-              label: i.nameEn,
-            }))}
-          />
-        </Form.Item>
 
         <Button type="primary" htmlType="submit" loading={loading} block>
           Save Menu Item

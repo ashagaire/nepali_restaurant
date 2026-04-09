@@ -66,7 +66,7 @@ export default function LunchMenuSection() {
                         transition={{ delay: idx * 0.1 }}
                         className="border-b border-gray-200 last:border-0 pb-4 last:pb-0"
                       >
-                        <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                        <h3 className="text-xl font-semibold text-red-600 mb-1">
                           {item.name}
                         </h3>
                         <p className="text-gray-600">{item.description}</p>

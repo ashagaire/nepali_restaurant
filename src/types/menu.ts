@@ -23,7 +23,6 @@ export type MenuItemFormValues = {
   categoryId: string;
 
   tagIds: string[];
-  ingredientIds: string[];
 };
 
 export interface MenuFeaturesItems {

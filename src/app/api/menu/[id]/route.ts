@@ -18,7 +18,6 @@ export async function GET(
       include: {
         category: true,
         tags: true,
-        ingredients: true,
       },
     });
 
@@ -100,14 +99,10 @@ export async function PUT(
 
         category: { connect: { id: body.categoryId } },
         tags: { set: body.tagIds?.map((id: string) => ({ id })) ?? [] },
-        ingredients: {
-          set: body.ingredientIds?.map((id: string) => ({ id })) ?? [],
-        },
       },
       include: {
         category: true,
         tags: true,
-        ingredients: true,
       },
     });
 

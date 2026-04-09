@@ -44,7 +44,6 @@ export async function GET(req: Request) {
     include: {
       category: true,
       tags: true,
-      ingredients: true,
     },
   };
 
@@ -112,14 +111,10 @@ export async function POST(req: Request) {
           connect: body.tagIds?.map((id: string) => ({ id })) ?? [],
         },
 
-        ingredients: {
-          connect: body.ingredientIds?.map((id: string) => ({ id })) ?? [],
-        },
       },
       include: {
         category: true,
         tags: true,
-        ingredients: true,
       },
     });
 

@@ -6,7 +6,6 @@
 // import { useMenuItem } from "@/hooks/menu/useMenuItem";
 // import { useCategories } from "@/hooks/menu/useCategories";
 // import { useTags } from "@/hooks/menu/useTags";
-// import { useIngredients } from "@/hooks/menu/useIngredients";
 // import { useUpdateMenuItem } from "@/hooks/menu/useUpdateMenuItem";
 // import { useCreateMenuItem } from "@/hooks/menu/useCreateMenuItem";
 
@@ -34,11 +33,6 @@
 
 //   const { data: tags, loading: tagsLoading, error: tagsError } = useTags();
 
-//   const {
-//     data: ingredients,
-//     loading: ingredientsLoading,
-//     error: ingredientsError,
-//   } = useIngredients();
 
 //   /* ---------- EDIT ONLY ---------- */
 //   const {
@@ -65,13 +59,11 @@
 //   const isLoading =
 //     categoriesLoading ||
 //     tagsLoading ||
-//     ingredientsLoading ||
 //     (mode === "edit" && menuItemLoading);
 
 //   const error =
 //     categoriesError ||
 //     tagsError ||
-//     ingredientsError ||
 //     menuItemError ||
 //     updateError ||
 //     createError;
@@ -114,7 +106,6 @@
 //           visibility: menuItem.visibility,
 //           categoryId: menuItem.categoryId,
 //           tagIds: menuItem.tags.map((t) => t.id),
-//           ingredientIds: menuItem.ingredients.map((i) => i.id),
 //           imageUrl: menuItem.imageUrl ?? undefined,
 //           imagePublicId: menuItem.imagePublicId ?? undefined,
 //         }
@@ -136,7 +127,6 @@
 //       initialValues={initialValues}
 //       categories={categories}
 //       tags={tags}
-//       ingredients={ingredients}
 //       onSubmit={handleSubmit}
 //       loading={mode === "edit" ? updateLoading : createLoading}
 //     />

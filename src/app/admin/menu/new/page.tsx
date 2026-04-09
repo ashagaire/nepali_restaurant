@@ -5,7 +5,6 @@ import MenuItemForm from "@/components/forms/MenuItemForm";
 import { useRouter } from "next/navigation";
 import { useCategories } from "@/hooks/menu/useCategories";
 import { useTags } from "@/hooks/menu/useTags";
-import { useIngredients } from "@/hooks/menu/useIngredients";
 import { useCreateMenuItem } from "@/hooks/menu/useCreateMenuItem";
 import { toast } from "react-toastify";
 import type { MenuItemFormValues } from "@/types/menu";
@@ -18,11 +17,6 @@ export default function NewMenuItemPage() {
     error: catError,
   } = useCategories();
   const { data: tags = [], loading: tagLoading, error: tagError } = useTags();
-  const {
-    data: ingredients = [],
-    loading: ingLoading,
-    error: ingError,
-  } = useIngredients();
 
   const {
     createMenuItem,
@@ -30,8 +24,8 @@ export default function NewMenuItemPage() {
     error: saveError,
   } = useCreateMenuItem();
 
-  const isLoading = catLoading || tagLoading || ingLoading;
-  const error = catError || tagError || ingError || saveError;
+  const isLoading = catLoading || tagLoading;
+  const error = catError || tagError || saveError;
 
   const handleSubmit = async (values: MenuItemFormValues) => {
     try {
@@ -53,7 +47,6 @@ export default function NewMenuItemPage() {
       title="Add Menu Item"
       categories={categories}
       tags={tags}
-      ingredients={ingredients}
       onSubmit={handleSubmit}
       loading={saving}
     />

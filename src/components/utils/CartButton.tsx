@@ -9,7 +9,7 @@ export default function CartButton() {
     <>
       <button
         onClick={toggleCart}
-        className="relative px-4 text-white hover:text-orange-100 transition-colors"
+        className="relative px-4 text-red-600 hover:text-orange-100 transition-colors"
         aria-label="Open cart"
       >
         <svg

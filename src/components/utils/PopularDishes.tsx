@@ -5,6 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Star, ShoppingCart, Flame, ChevronLeft, ChevronRight } from "lucide-react";
 import { useMenuItems } from "@/hooks/menu/useMenuItems";
+import { useCart } from "@/context/CartContext";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { toDecimalNumber } from "@/lib/toDecimal";
 import LoadingMeanuSection from "../Skeletons/loadingMenuSection";
 
 export default function PopularDishes() {
@@ -12,9 +16,32 @@ export default function PopularDishes() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
 
+  const router = useRouter();
+    const { addToCart, toggleCart } = useCart();
+
   if (loading) return <LoadingMeanuSection />;
   if (error) return <p className="text-red-500 text-center py-10">{error}</p>;
 
+    const handleAddToCart = (itemPrice: any, itemDiscount: any) => {
+      const price = toDecimalNumber(itemPrice);
+      const discount = toDecimalNumber(itemDiscount);
+      const hasDiscount = discount > 0;
+      const finalPrice = hasDiscount ? price - (price * discount / 100) : price;
+      addToCart({
+        id: item.id,
+        name: item.nameEn,
+        price: finalPrice,
+        quantity: 1,
+        imageUrl: item.imageUrl || undefined,
+      });
+  
+      toast.info("Go To Shopping Cart", {
+        position: "top-right",
+        autoClose: 2000,
+        onClick: () => toggleCart(),
+        className: "cursor-pointer font-bold ",
+      });
+    };
   const displayItems = menuItems.length > 0
     ? Array.from({ length: 5 }, (_, i) => menuItems[i % menuItems.length])
     : [];
@@ -43,11 +70,7 @@ export default function PopularDishes() {
     setCurrentIndex(i);
   };
 
-  /**
-   * Smooth crossfade + gentle slide + subtle tilt.
-   * Cards never go fully edge-on → no blank/white frame.
-   * mode="sync" lets exit & enter overlap simultaneously.
-   */
+ 
   const pageVariants = {
     enter: (dir: number) => ({
       x: dir > 0 ? 80 : -80,
@@ -83,7 +106,7 @@ export default function PopularDishes() {
 
   const item = displayItems[currentIndex];
 
-  // Safety guard — should not happen given the count === 0 check above
+  
   if (!item) return null;
 
   return (
@@ -104,7 +127,7 @@ export default function PopularDishes() {
           <div className="hidden md:block justify-center mt-2">
           <Link
             href="/menu"
-            className="mt-6 md:mt-0 group px-7 py-3.5 bg-orange-100 text-orange-500 rounded-2xl font-bold flex items-center gap-3 hover:bg-orange-200 transition-all text-sm"
+            className="mt-6 md:mt-0 group px-7 py-3.5 bg-orange-100 text-orange-600 rounded-2xl font-bold flex items-center gap-3 hover:bg-orange-200 transition-all text-sm"
           >
             Full Menu <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
@@ -167,10 +190,7 @@ export default function PopularDishes() {
                     touchAction: "pan-y", // allow vertical page scroll, intercept horizontal
                   }}
                 >
-                  {/* Page number badge */}
-                  <div className="absolute top-5 left-5 bg-orange-100 text-orange-500 text-[11px] font-black px-2.5 py-1 rounded-xl tracking-wide">
-                    {currentIndex + 1} / {count}
-                  </div>
+                  
 
                   {/* Image */}
                   <div className="relative w-full aspect-square overflow-hidden rounded-[2rem] mb-4 mt-2">
@@ -192,15 +212,16 @@ export default function PopularDishes() {
                       ))}
                       <span className="text-gray-400 font-semibold text-xs ml-2">4.9</span>
                     </div>
-                    <h3 className="text-lg font-extrabold text-gray-900 mb-1 line-clamp-1">
+                    <h3 className="text-lg font-semibold text-orange-600 mb-1 line-clamp-1">
                       {item.nameEn}
                     </h3>
-                    <p className="text-gray-400 text-xs line-clamp-2 leading-relaxed flex-grow">
+                    <p className="text-gray-600 text-xs line-clamp-2 leading-relaxed flex-grow">
                       {item.descriptionEn}
                     </p>
-                    <button className="mt-4 w-full bg-orange-50 hover:bg-orange-500 text-orange-600 hover:text-white py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all duration-300 text-sm">
+                    <button className="mt-4 w-full bg-orange-100 hover:bg-orange-500 text-orange-600 hover:text-white py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all duration-300 text-sm"
+                    onClick={() => handleAddToCart(item.price, item.discount)} >
                       <ShoppingCart size={15} />
-                      Add to Plate
+                      Add to Cart
                     </button>
                   </div>
                 </motion.div>
@@ -262,7 +283,7 @@ export default function PopularDishes() {
                   <p className="text-orange-500 text-xs font-bold uppercase tracking-widest mb-3">
                     Chef's Pick #{currentIndex + 1}
                   </p>
-                  <h3 className="text-3xl font-black text-gray-900 mb-3 leading-tight">
+                  <h3 className="text-3xl font-bold text-orange-600 mb-3 leading-tight">
                     {item.nameEn}
                   </h3>
                   <p className="text-gray-500 leading-relaxed text-sm">
@@ -273,7 +294,7 @@ export default function PopularDishes() {
               {/* Stable spacer so the container keeps its height */}
               <div className="invisible" aria-hidden>
                 <p className="text-orange-500 text-xs font-bold uppercase tracking-widest mb-3">Chef's Pick #0</p>
-                <h3 className="text-3xl font-black text-gray-900 mb-3 leading-tight">{item.nameEn}</h3>
+                <h3 className="text-3xl font-black text-orange-600 mb-3 leading-tight">{item.nameEn}</h3>
                 <p className="text-gray-500 leading-relaxed text-sm">{item.descriptionEn}</p>
               </div>
             </div>

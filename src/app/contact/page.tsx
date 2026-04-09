@@ -58,7 +58,7 @@ export default function ContactPage() {
           <div>
             <h3 className="font-semibold text-lg mb-4 text-orange-600">Address</h3>
             <address className="not-italic text-gray-800">
-              <p>Himalayan Kitchen</p>
+              <p>Helsinki Spice</p>
               <p>Fredrikinkatu 42</p>
               <p>00100 Helsinki, Finland</p>
             </address>
@@ -68,7 +68,7 @@ export default function ContactPage() {
             <h3 className="font-semibold text-lg mb-4 text-orange-600">Phone</h3>
             <a
               href="tel:+358401234567"
-              className="text-gray-800 text-lg"
+              className="text-gray-800 "
             >
               +358 40 123 4567
             </a>
@@ -77,10 +77,10 @@ export default function ContactPage() {
           <div>
             <h3 className="font-semibold text-lg mb-4 text-orange-600">Email</h3>
             <a
-              href="mailto:info@himalayankitchen.fi"
+              href="mailto:info@helsinkispice.fi"
               className="text-gray-800"
             >
-              info@himalayankitchen.fi
+              info@helsinkispice.fi
             </a>
           </div>
 

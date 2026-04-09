@@ -9,8 +9,8 @@ const Logo = () => {
           className="cursor-pointer text-[#d92cf9] hover:text-purple-600"
         >
           <img
-            src="/images/logo1.png"
-            alt="Asha Signature"
+            src="/images/logo.png"
+            alt="Helsinki Spice"
             className="w-auto max-h-24 sm:max-h-24 md:max-h-32 lg:max-h-32"
           />
         </Link>

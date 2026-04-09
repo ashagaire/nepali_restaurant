@@ -13,6 +13,7 @@ import ConfirmDialog from "@/components/utils/ConfirmDialog";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { toast } from "react-toastify";
+import { toDecimalNumber } from "@/lib/toDecimal";
 
 interface MenuItemCardProps {
   item: MenuItemWithRelations;
@@ -21,23 +22,7 @@ interface MenuItemCardProps {
   onDelete?: (id: string) => void;
 }
 
-function toDecimalNumber(value: unknown): number {
-  if (value == null) return 0;
-  if (typeof value === "number") return value;
-  if (typeof value === "string") {
-    const n = parseFloat(value);
-    return Number.isFinite(n) ? n : 0;
-  }
-  if (
-    typeof value === "object" &&
-    value !== null &&
-    "toNumber" in value &&
-    typeof (value as { toNumber: unknown }).toNumber === "function"
-  ) {
-    return (value as { toNumber: () => number }).toNumber();
-  }
-  return 0;
-}
+
 
 const MenuItemCard: React.FC<MenuItemCardProps> = ({
   item,
@@ -50,7 +35,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
   const price = toDecimalNumber(item.price);
   const discount = toDecimalNumber(item.discount);
   const hasDiscount = discount > 0;
-  const finalPrice = hasDiscount ? price - discount : price;
+  const finalPrice = hasDiscount ? price - (price * discount / 100) : price;
 
   const handleAddToCart = () => {
     addToCart({
@@ -93,10 +78,18 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
 
         {/* Bottom Row */}
         <div className="flex items-center justify-between mt-2 mb-1">
-          {/* Price */}
-          <span className="text-lg font-bold text-orange-600">€{finalPrice.toFixed(2)}</span>
+          <div className="flex items-baseline gap-2">
+            {hasDiscount && (
+              <span className="text-md font-bold text-red-600 line-through decoration-red-500 decoration-2">
+                €{price.toFixed(2)}
+              </span>
+            )}
+            <span className="text-lg font-bold text-orange-600">
+              €{finalPrice.toFixed(2)}
+            </span>
+          </div>
 
-          {/* Add Button */}
+          {/* Cart and Admin actions buttons */}
 
           {!showAdminActions ? (
             <button 

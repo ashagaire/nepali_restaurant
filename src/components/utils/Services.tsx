@@ -43,7 +43,7 @@ const services = [
     description: "Explore our regions.",
     icon: BookOpen, 
     className: "col-span-1 md:col-span-2 lg:col-span-1 bg-orange-50 text-orange-800",
-    href: "/menu",
+    href: "/alacarte",
     image: "/services/menu.jpg"
   }
 ];

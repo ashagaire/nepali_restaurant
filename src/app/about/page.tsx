@@ -25,7 +25,7 @@ export default function About() {
           <div className="flex flex-col md:flex-row gap-6 justify-center items-start">
             <div className=" max-w-none text-gray-800 space-y-6 leading-relaxed flex-1">
               <p>
-                Fusion Nepal was founded with a simple dream, to bring the
+                Helsinki Spice was founded with a simple dream, to bring the
                 authentic flavors of Nepal to the heart of Helsinki. Our journey
                 began in 2018 when our head chef, trained in the mountain
                 villages of Nepal, decided to share the recipes passed down
@@ -53,7 +53,7 @@ export default function About() {
                   Our team is dedicated to creating not just meals, but
                   experiences that celebrate the rich culinary heritage of Nepal.
                   We are committed to providing excellent service and ensuring
-                  that every dining experience at Fusion Nepal is memorable.
+                  that every dining experience at Helsinki Spice is memorable.
                   Whether you're dining in, taking out, or having your meal
                   delivered, we strive to exceed your expectations with our
                   flavorful dishes and exceptional customer service.
@@ -81,7 +81,7 @@ export default function About() {
                       Our team is dedicated to creating not just meals, but
                       experiences that celebrate the rich culinary heritage of Nepal.
                       We are committed to providing excellent service and ensuring
-                      that every dining experience at Fusion Nepal is memorable.
+                      that every dining experience at Helsinki Spice is memorable.
                       Whether you're dining in, taking out, or having your meal
                       delivered, we strive to exceed your expectations with our
                       flavorful dishes and exceptional customer service.

@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fusion Nepal Ravintola",
+  title: "Helsinki Spice Ravintola",
   description: "Designed by Asha Gaire",
 };
 

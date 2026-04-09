@@ -36,6 +36,7 @@ export default function RequestAdminPage() {
   };
 
   return (
+    <main className="min-h-[60vh] max-w-7xl mx-auto px-6 py-12   items-center ">
     <Card
       title="Request Admin Access"
       style={{ maxWidth: 400, margin: "40px auto" }}
@@ -54,5 +55,6 @@ export default function RequestAdminPage() {
         </Button>
       </Form>
     </Card>
+    </main>
   );
 }

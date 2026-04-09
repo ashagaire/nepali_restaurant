@@ -58,7 +58,7 @@ export default function LunchBuffetList() {
                         aria-controls={`panel-${dailyMenu.day}-content`}
                         id={`panel-${dailyMenu.day}-header`}
                         sx={{
-                            backgroundColor: expanded === `panel-${dailyMenu.day}` ? '#f97316' : '#f97316',
+                            backgroundColor: expanded === `panel-${dailyMenu.day}` ? '#f97316' : '#fb923c',
                             transition: 'background-color 0.3s ease',
                             padding: { xs: '8px 16px', sm: '6px 24px' } // Responsive padding
                         }}

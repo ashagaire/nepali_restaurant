@@ -41,7 +41,7 @@ function VerifyContent() {
   };
 
   return (
-    <main style={{ padding: "2rem" }}>
+    <main className="min-h-[60vh]max-w-7xl mx-auto px-6 py-12 flex flex-col items-center ">
       <Card title="Enter OTP" style={{ maxWidth: 420, margin: "40px auto" }}>
         <Form
           layout="vertical"

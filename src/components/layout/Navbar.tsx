@@ -18,7 +18,10 @@ export default function Navbar() {
   const { user, logout } = useAuthContext();
 
   // Derive admin mode from URL path
-  const isAdminMode = pathname.startsWith("/admin");
+  const isAdminMode =
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/request-admin");
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
@@ -48,7 +51,6 @@ export default function Navbar() {
               <Space>
                 {user ? (
                   <>
-                  
                     <Link
                       href="/admin"
                       className={`nav-link px-2 py-1 ${pathname === "/admin" ? "active" : ""}`}
@@ -61,17 +63,17 @@ export default function Navbar() {
                     >
                       Home
                     </Link>
-                    
-                     <button
-                    onClick={handleLogout}
-                    className="nav-link px-2 py-1 cursor-pointer"
-                  >
-                    Logout
-                  </button>
+
+                    <button
+                      onClick={handleLogout}
+                      className="nav-link px-2 py-1 cursor-pointer"
+                    >
+                      Logout
+                    </button>
                   </>
                 ) : (
                   <>
-                  <Link
+                    <Link
                       href="/"
                       className={`nav-link px-2 py-1 ${pathname === "/" ? "active" : ""}`}
                     >
@@ -143,74 +145,71 @@ export default function Navbar() {
         </div>
 
         {/* Right side - Cart and menu button */}
-        {isAdminMode ? (/* admin actions */
-              <div className="lg:hidden flex justify-end items-center">
-                
-                {user ? (
-                  <>
-                  
-                    <Link
-                      href="/admin"
-                      className={`nav-link px-2 py-1 ${pathname === "/admin" ? "active" : ""}`}
-                    >
-                      Admin
-                    </Link>
-                    <Link
-                      href="/"
-                      className={`nav-link px-2 py-1 ${pathname === "/" ? "active" : ""}`}
-                    >
-                      Home
-                    </Link>
-                     <button
-                    onClick={handleLogout}
-                    className="nav-link px-2 py-1 cursor-pointer"
-                  >
-                    Logout
-                  </button>
-                  </>
-                 
-                ) : (
-                  <>
-                  <Link
-                      href="/"
-                      className={`nav-link px-2 py-1 ${pathname === "/" ? "active" : ""}`}
-                    >
-                      Home
-                    </Link>
-                    <Link
-                      href="/login"
-                      className={`nav-link px-2 py-1 ${pathname === "/login" ? "active" : ""}`}
-                    >
-                      Login
-                    </Link>
-                    <Link
-                      href="/request-admin"
-                      className={`nav-link px-2 py-1 ${pathname === "/request-admin" ? "active" : ""}`}
-                    >
-                      Request Admin
-                    </Link>
-                  </>
-                )}
-              </div>
-        ) : (
-        <div className="flex justify-end items-center">
-          <div className="hidden lg:block">
-            <CartButton />
-          </div>
+        {isAdminMode /* admin actions */ ? (
           <div className="lg:hidden flex justify-end items-center">
-            <CartButton />
-            <button
-              onClick={toggleMenu}
-              className=" p-2 rounded-md bg-orange-100 hover:bg-orange-200"
-            >
-              {menuOpen ? (
-                <X className="h-6 w-6 text-orange-700" />
-              ) : (
-                <Menu className="h-6 w-6 text-orange-700" />
-              )}
-            </button>
+            {user ? (
+              <>
+                <Link
+                  href="/admin"
+                  className={`nav-link px-2 py-1 ${pathname === "/admin" ? "active" : ""}`}
+                >
+                  Admin
+                </Link>
+                <Link
+                  href="/"
+                  className={`nav-link px-2 py-1 ${pathname === "/" ? "active" : ""}`}
+                >
+                  Home
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="nav-link px-2 py-1 cursor-pointer"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/"
+                  className={`nav-link px-2 py-1 ${pathname === "/" ? "active" : ""}`}
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/login"
+                  className={`nav-link px-2 py-1 ${pathname === "/login" ? "active" : ""}`}
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/request-admin"
+                  className={`nav-link px-2 py-1 ${pathname === "/request-admin" ? "active" : ""}`}
+                >
+                  Request Admin
+                </Link>
+              </>
+            )}
           </div>
-        </div>
+        ) : (
+          <div className="flex justify-end items-center">
+            <div className="hidden lg:block">
+              <CartButton />
+            </div>
+            <div className="lg:hidden flex justify-end items-center">
+              <CartButton />
+              <button
+                onClick={toggleMenu}
+                className=" p-2 rounded-md bg-orange-100 hover:bg-orange-200"
+              >
+                {menuOpen ? (
+                  <X className="h-6 w-6 text-orange-700" />
+                ) : (
+                  <Menu className="h-6 w-6 text-orange-700" />
+                )}
+              </button>
+            </div>
+          </div>
         )}
         {/* Mobile Menu */}
         {menuOpen && (
@@ -257,6 +256,13 @@ export default function Navbar() {
                     onClick={toggleMenu}
                   >
                     Home
+                  </Link>
+                  <Link
+                    href="/menu"
+                    className={`nav-link px-2 py-1 ${pathname === "/menu" ? "active" : ""}`}
+                    onClick={toggleMenu}
+                  >
+                    Menu
                   </Link>
                   <Link
                     href="/lunch"

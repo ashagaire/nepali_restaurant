@@ -1,19 +1,12 @@
 "use client";
 
 import React from "react";
+import { IconButton } from "@mui/material";
 import {
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Chip,
-  Box,
-  IconButton,
-  Button,
-} from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+  ShoppingCart,
+  Edit,
+  Delete
+} from "@mui/icons-material";
 import type { MenuItemWithRelations } from "@/types/menuItemWithRelations";
 import SpiceIndicator from "@/components/utils/SpiceIndicator";
 import ConfirmDialog from "@/components/utils/ConfirmDialog";
@@ -79,7 +72,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
         </div>
 
         {/* Bottom Row */}
-        <div className="flex items-center justify-between mt-3">
+        <div className="flex items-center justify-between mt-2 mb-1">
           {/* Price */}
           <span className="text-lg font-bold text-orange-600">€{finalPrice.toFixed(2)}</span>
 
@@ -87,29 +80,34 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
 
           {!showAdminActions ? (
             <button className="px-2 py-2 text-sm  rounded-full text-orange-600 hover:bg-orange-100 transition">
-              <ShoppingCartIcon fontSize="medium" />
+              <ShoppingCart fontSize="medium" />
             </button>
           ) : (
-            <Box display="flex" gap={1} justifyContent="space-between" >
-              <Button
-                variant="outlined"
-                color="primary"
-                size="small"
-                fullWidth
+            <div className="flex gap-0.5 justify-end" >
+              <IconButton
+                size="medium"
+                sx={{
+                  color: "#128425ff",
+                  p: 0.5,
+                }}
                 onClick={() => router.push(`/admin/menu/${item.id}/edit`)}
               >
-                Edit
-              </Button>
+                <Edit fontSize="medium" />
+              </IconButton>
 
               <ConfirmDialog
                 message={`Are you sure you want to delete this item ${item.nameEn}?`}
                 onConfirm={() => onDelete?.(item.id)}
               >
-                <Button variant="outlined" color="error" size="small" fullWidth>
-                  Delete
-                </Button>
+                <IconButton 
+                  size="medium"
+                  color="error"
+                  sx={{ p: 0.5 }}
+                >
+                  <Delete fontSize="medium" />
+                </IconButton>
               </ConfirmDialog>
-            </Box>
+            </div>
           )}
         </div>
         {/* Optional Spice Badge */}

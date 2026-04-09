@@ -46,12 +46,17 @@ export default function AdminMenuPage() {
 
   return (
     <main className="min-h-[60vh] max-w-7xl mx-auto px-6 py-12 flex flex-col items-center ">
-      <h1>Menu Page for Admin</h1>
+      <Typography
+              variant="h3"
+              align="center"
+              sx={{ fontWeight: 700, my: 2, fontSize: { xs: 30, sm: 45, md: 50 } }}
+            >
+              <span className="block text-transparent leading-tight bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
+                Menu Page for Admin
+              </span>
+            </Typography>
 
-      <div>
-        {" "}
-        <p> Menu search section </p>
-      </div>
+      
       <div className="relative">
         {loading && (
           <div className="absolute inset-0 bg-white/50 z-10 flex items-center justify-center">
@@ -59,7 +64,7 @@ export default function AdminMenuPage() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 mt-4">
           {menuItems.map((item) => (
             <MenuItemCard
               key={item.id}
